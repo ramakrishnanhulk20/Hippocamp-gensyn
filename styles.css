@@ -1056,25 +1056,30 @@ a:hover {
 
 .setup-card h3 {
     color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+    line-height: 1.4;
 }
 
 .setup-card > p {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.7;
+    font-size: 1.05rem;
 }
 
 .requirements {
     background: rgba(0, 0, 0, 0.2);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
 }
 
 .requirements h4 {
     color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
-    font-size: 1rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .requirements ul {
@@ -1083,6 +1088,8 @@ a:hover {
 
 .requirements li {
     color: var(--text-secondary);
+    padding: var(--spacing-sm) 0;
+    line-height: 1.6;
     margin-bottom: var(--spacing-sm);
     display: flex;
     align-items: center;
