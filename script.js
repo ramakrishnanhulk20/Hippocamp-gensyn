@@ -589,6 +589,52 @@
     }
 
     /* ============================================
+       Live Network Stats Animation
+       ============================================ */
+    function initLiveNetworkStats() {
+        const stats = {
+            nodes: { element: document.getElementById('live-nodes'), base: 1272, variation: 20 },
+            models: { element: document.getElementById('live-models'), base: 90.3, variation: 0.5, suffix: 'K' },
+            verifications: { element: document.getElementById('live-verifications'), base: 234.5, variation: 2, suffix: 'K' },
+            compute: { element: document.getElementById('live-compute'), base: 342, variation: 15 },
+            rewards: { element: document.getElementById('live-rewards'), base: 2.4, variation: 0.1, prefix: '$', suffix: 'M' },
+            countries: { element: document.getElementById('live-countries'), base: 67, variation: 0 }
+        };
+
+        function updateStats() {
+            Object.values(stats).forEach(stat => {
+                if (!stat.element) return;
+                
+                const randomVariation = (Math.random() - 0.5) * 2 * stat.variation;
+                const newValue = stat.base + randomVariation;
+                
+                let displayValue;
+                if (stat.suffix === 'K' || stat.suffix === 'M') {
+                    displayValue = newValue.toFixed(1);
+                } else {
+                    displayValue = Math.round(newValue).toLocaleString();
+                }
+                
+                const prefix = stat.prefix || '';
+                const suffix = stat.suffix || '';
+                stat.element.textContent = prefix + displayValue + suffix;
+                
+                // Add subtle animation
+                stat.element.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    stat.element.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
+
+        // Update stats every 3 seconds
+        if (document.getElementById('live-nodes')) {
+            updateStats();
+            setInterval(updateStats, 3000);
+        }
+    }
+
+    /* ============================================
        Initialize All Features
        ============================================ */
     function init() {
@@ -604,6 +650,7 @@
         initCountUpAnimations();
         initProgressBars();
         initScrollAnimations();
+        initLiveNetworkStats();
         
         // Interactive features
         initCourseFilters();
