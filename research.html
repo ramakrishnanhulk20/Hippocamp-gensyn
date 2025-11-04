@@ -398,6 +398,401 @@ Cost: $2-5 million at cloud prices
                 <div id="papers" class="tab-content">
                     <h2 style="margin-bottom: 30px;"><i class="fas fa-scroll"></i> Essential Research Papers</h2>
 
+                    <!-- SAPO Paper -->
+                    <div id="sapo" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">SAPO: Efficient Language Model Post-Training</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Research Team</span>
+                                    <span><i class="fas fa-file-pdf"></i> Paper</span>
+                                </div>
+                                <span class="paper-badge badge-applied">Applied Research</span>
+                                <span class="paper-badge badge-technical">Technical</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>SAPO (Self-Adaptive Policy Optimization) is a meta-algorithm that wraps around your preferred policy gradient algorithm to enable more efficient post-training of language models through collective reinforcement learning.</p>
+
+                        <h4>Key Contributions</h4>
+                        <ul>
+                            <li><strong>Meta-Algorithm Design:</strong> Compatible with any policy gradient method (PPO, GRPO, etc.)</li>
+                            <li><strong>Collective RL:</strong> Multiple models learn together, sharing experiences</li>
+                            <li><strong>Adaptive Learning Rates:</strong> Self-adjusting optimization for better convergence</li>
+                            <li><strong>Efficiency Gains:</strong> 30-40% faster convergence than solo training</li>
+                        </ul>
+
+                        <h4>How It Works</h4>
+                        <p>SAPO introduces a coordination layer between models that allows them to:</p>
+                        <ul>
+                            <li>Share gradient information selectively</li>
+                            <li>Adjust their learning based on peer performance</li>
+                            <li>Avoid redundant exploration of the solution space</li>
+                            <li>Dynamically balance exploration vs exploitation</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Practical Applications</h4>
+                            <p>SAPO is particularly effective for:</p>
+                            <ul>
+                                <li>Fine-tuning large language models for specific tasks</li>
+                                <li>RLHF (Reinforcement Learning from Human Feedback) workflows</li>
+                                <li>Multi-task learning scenarios</li>
+                                <li>Resource-constrained training environments</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- BlockAssist Paper -->
+                    <div id="blockassist" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">BlockAssist: AI Minecraft Assistant through Assistance Learning</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn AI Team</span>
+                                    <span><i class="fas fa-gamepad"></i> Gaming AI</span>
+                                </div>
+                                <span class="paper-badge badge-applied">Applied Research</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>BlockAssist demonstrates assistance learning in Minecraft, where an AI agent learns to help players by observing human actions and understanding contextual goals in a complex, open-world environment.</p>
+
+                        <h4>Key Innovations</h4>
+                        <ul>
+                            <li><strong>Imitation Learning:</strong> Agent learns from watching human players</li>
+                            <li><strong>Context Understanding:</strong> Infers player intent from actions and environment</li>
+                            <li><strong>Proactive Assistance:</strong> Anticipates needs before explicit requests</li>
+                            <li><strong>Interactive Environment:</strong> Real-time learning in dynamic 3D world</li>
+                        </ul>
+
+                        <h4>Technical Architecture</h4>
+                        <div class="formula-box">
+Training Pipeline:
+  1. Observation: Record human player actions + game state
+  2. Intent Inference: Model predicts player's goal
+  3. Action Prediction: Generate helpful next actions
+  4. Reward Signal: Feedback from successful assistance
+  5. Policy Update: Improve through reinforcement learning
+                        </div>
+
+                        <h4>Challenges Addressed</h4>
+                        <ul>
+                            <li>High-dimensional state space (voxel-based 3D world)</li>
+                            <li>Long-horizon tasks (building complex structures)</li>
+                            <li>Ambiguous intentions (multiple valid interpretations)</li>
+                            <li>Real-time decision making</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Why This Matters</h4>
+                            <p>BlockAssist represents progress toward general-purpose AI assistants that can:</p>
+                            <ul>
+                                <li>Understand human goals through observation</li>
+                                <li>Take initiative without explicit commands</li>
+                                <li>Adapt to individual user preferences</li>
+                                <li>Operate in complex, unstructured environments</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- GenRL Paper -->
+                    <div id="genrl" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">GenRL Framework: Simplified Multi-Agent RL</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Research Team</span>
+                                    <span><i class="fas fa-code"></i> Framework</span>
+                                </div>
+                                <span class="paper-badge badge-technical">Technical</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>GenRL is the new backend framework for RL Swarm, designed to dramatically simplify the creation of multi-agent, multi-stage reinforcement learning environments. It provides abstractions that make complex collaborative RL scenarios easy to implement.</p>
+
+                        <h4>Core Features</h4>
+                        <ul>
+                            <li><strong>Multi-Stage Pipelines:</strong> Define complex workflows (Answer → Critique → Resolve)</li>
+                            <li><strong>Agent Coordination:</strong> Automatic message passing and synchronization</li>
+                            <li><strong>Flexible Reward Shaping:</strong> Customizable incentive structures</li>
+                            <li><strong>Environment Abstractions:</strong> High-level API for common RL patterns</li>
+                        </ul>
+
+                        <h4>Architecture</h4>
+                        <div class="formula-box">
+GenRL Stack:
+
+Layer 1: Core Engine
+  - Agent lifecycle management
+  - State synchronization
+  - Action distribution
+
+Layer 2: Environment API
+  - Step functions
+  - Reward calculations
+  - Episode management
+
+Layer 3: Multi-Agent Coordination
+  - Turn-taking protocols
+  - Message broadcasting
+  - Consensus mechanisms
+
+Layer 4: User Interface
+  - Simple Python decorators
+  - Configuration files
+  - Monitoring dashboards
+                        </div>
+
+                        <h4>Example Usage</h4>
+                        <p>Creating a collaborative RL environment becomes as simple as:</p>
+                        <div class="formula-box">
+from genrl import Environment, Agent, Stage
+
+# Define multi-stage pipeline
+env = Environment([
+    Stage("answer", reward=correctness_reward),
+    Stage("critique", reward=quality_reward),
+    Stage("resolve", reward=consensus_reward)
+])
+
+# Add agents
+for i in range(5):
+    env.add_agent(Agent(model=f"model_{i}"))
+
+# Run training
+env.train(episodes=1000)
+                        </div>
+
+                        <div class="concept-box">
+                            <h4>Impact on RL Swarm</h4>
+                            <p>GenRL enabled rapid experimentation with different swarm configurations:</p>
+                            <ul>
+                                <li>Testing 2, 5, 10, 20 agent swarms</li>
+                                <li>Trying different reward structures</li>
+                                <li>Adding new stages to the pipeline</li>
+                                <li>Integrating external models easily</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CheckFree Paper -->
+                    <div id="checkfree" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">CheckFree: Fault Tolerance Without Checkpointing</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Systems Team</span>
+                                    <span><i class="fas fa-shield-alt"></i> Systems</span>
+                                </div>
+                                <span class="paper-badge badge-technical">Technical</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>CheckFree introduces a novel recovery method for distributed training failures that eliminates the need for traditional checkpointing or redundant computation. It enables efficient fault tolerance in decentralized networks where nodes can fail unpredictably.</p>
+
+                        <h4>The Problem</h4>
+                        <p>Traditional distributed training handles failures through:</p>
+                        <ul>
+                            <li><strong>Checkpointing:</strong> Save state periodically → High storage costs, IO overhead</li>
+                            <li><strong>Redundancy:</strong> Replicate computation → 2-3x computational cost</li>
+                            <li><strong>Restart:</strong> Begin from scratch → Wastes all progress</li>
+                        </ul>
+                        <p>None of these work well in Gensyn's trustless, heterogeneous network.</p>
+
+                        <h4>CheckFree's Solution</h4>
+                        <div class="formula-box">
+Key Insight: Gradient descent is error-tolerant!
+
+If training step fails:
+  1. Detect failure via heartbeat monitoring
+  2. Estimate gradient using recent history
+  3. Continue training with interpolated state
+  4. Network self-corrects over subsequent steps
+
+Mathematical Guarantee:
+  Convergence rate degrades by < 5% with up to 20% node failures
+  Still reaches optimal solution, just slightly slower
+                        </div>
+
+                        <h4>How It Works</h4>
+                        <ol>
+                            <li><strong>Gradient Caching:</strong> Keep recent gradients in distributed memory</li>
+                            <li><strong>State Reconstruction:</strong> Use gradient history to estimate missing updates</li>
+                            <li><strong>Adaptive Learning Rate:</strong> Temporarily reduce LR after failure</li>
+                            <li><strong>Convergence Monitoring:</strong> Verify recovery is on track</li>
+                        </ol>
+
+                        <h4>Performance Results</h4>
+                        <div class="concept-box">
+                            <h4>Benchmarks (ImageNet Training)</h4>
+                            <ul>
+                                <li><strong>Traditional Checkpointing:</strong> 15-20% overhead, 5min recovery time</li>
+                                <li><strong>Redundant Computation:</strong> 200% overhead, instant recovery</li>
+                                <li><strong>CheckFree:</strong> 2-3% overhead, 10-30 second recovery</li>
+                            </ul>
+                            <p><strong>Result:</strong> 5-10x more efficient fault tolerance!</p>
+                        </div>
+                    </div>
+
+                    <!-- NoLoCo Paper -->
+                    <div id="noloco" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">NoLoCo: Training Without All-Reduce</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Optimization Team</span>
+                                    <span><i class="fas fa-network-wired"></i> Distributed Systems</span>
+                                </div>
+                                <span class="paper-badge badge-technical">Technical</span>
+                                <span class="paper-badge badge-theory">Theory</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>NoLoCo (No Lock Coordination) replaces global synchronization barriers (all-reduce operations) with a gossip-based method for distributed training. This removes bottlenecks and enables truly decentralized, asynchronous training at scale.</p>
+
+                        <h4>The All-Reduce Problem</h4>
+                        <p>Traditional distributed training uses all-reduce to synchronize gradients:</p>
+                        <div class="formula-box">
+Standard Training Step:
+  1. Each GPU computes gradients locally
+  2. All-Reduce: Wait for ALL GPUs, aggregate gradients
+  3. Broadcast averaged gradient to all GPUs
+  4. Update model parameters synchronously
+
+Problems:
+  - Stragglers slow down entire cluster
+  - Requires fast, reliable interconnect
+  - Doesn't scale beyond 1000s of GPUs
+  - Single point of failure
+                        </div>
+
+                        <h4>NoLoCo's Gossip Protocol</h4>
+                        <div class="formula-box">
+Gossip-Based Training:
+  1. Each node computes gradients locally
+  2. Randomly select k peers (e.g., k=3)
+  3. Exchange and average gradients with peers
+  4. Update local model immediately
+  5. Repeat continuously (no global sync!)
+
+Each node:
+  - Runs at its own pace
+  - Gradually converges to consensus
+  - Never waits for stragglers
+                        </div>
+
+                        <h4>Theoretical Guarantees</h4>
+                        <ul>
+                            <li><strong>Convergence:</strong> Proven to reach optimal solution</li>
+                            <li><strong>Rate:</strong> O(1/√T) same as synchronous SGD</li>
+                            <li><strong>Communication:</strong> O(k) per node vs O(n) for all-reduce</li>
+                            <li><strong>Fault Tolerance:</strong> Gracefully handles node failures</li>
+                        </ul>
+
+                        <h4>Experimental Results</h4>
+                        <div class="concept-box">
+                            <h4>Performance (ResNet-50 on ImageNet)</h4>
+                            <table style="width: 100%; color: white; margin-top: 15px;">
+                                <tr style="background: rgba(255,255,255,0.1);">
+                                    <th style="padding: 10px; text-align: left;">Method</th>
+                                    <th style="padding: 10px;">Time to 76% Acc</th>
+                                    <th style="padding: 10px;">Network Bandwidth</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px;">All-Reduce (baseline)</td>
+                                    <td style="padding: 10px;">58 minutes</td>
+                                    <td style="padding: 10px;">100 Gbps</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.05);">
+                                    <td style="padding: 10px;">NoLoCo</td>
+                                    <td style="padding: 10px;">62 minutes</td>
+                                    <td style="padding: 10px;">10 Gbps</td>
+                                </tr>
+                            </table>
+                            <p style="margin-top: 15px;"><strong>Takeaway:</strong> 7% slower but works on 10x cheaper network!</p>
+                        </div>
+                    </div>
+
+                    <!-- SkipPipe Paper -->
+                    <div id="skipipe" class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">SkipPipe: Communication Efficiency in Heterogeneous Networks</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Systems Team</span>
+                                    <span><i class="fas fa-rocket"></i> Performance</span>
+                                </div>
+                                <span class="paper-badge badge-technical">Technical</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>SkipPipe introduces a communication-efficient method for pipeline parallelism in decentralized training across heterogeneous networks. It reduces inter-node communication by up to 70% through selective gradient transmission and smart scheduling.</p>
+
+                        <h4>Pipeline Parallelism Recap</h4>
+                        <p>Large models are split across multiple devices:</p>
+                        <div class="formula-box">
+Traditional Pipeline:
+
+Device 1: Layers 1-10   →
+Device 2: Layers 11-20  →
+Device 3: Layers 21-30  →
+Device 4: Layers 31-40
+
+Forward: Data flows Device 1→2→3→4
+Backward: Gradients flow Device 4→3→2→1
+
+Problem: Idle time ("pipeline bubbles") + heavy communication
+                        </div>
+
+                        <h4>SkipPipe Innovations</h4>
+                        <ul>
+                            <li><strong>Gradient Skipping:</strong> Not all gradients need to be sent every step</li>
+                            <li><strong>Compression:</strong> Quantize gradients to 8-bit or 4-bit</li>
+                            <li><strong>Prioritization:</strong> Send most important gradients first</li>
+                            <li><strong>Async Schedule:</strong> Overlap computation and communication</li>
+                        </ul>
+
+                        <h4>Gradient Importance Scoring</h4>
+                        <div class="formula-box">
+Which gradients to send?
+
+Importance(g) = |g| × variance(g) × layer_depth_weight
+
+Send top 30-50% by importance each step
+Accumulate skipped gradients, send in next step
+
+Theorem: Convergence guaranteed if importance threshold > 30%
+                        </div>
+
+                        <h4>Performance Gains</h4>
+                        <div class="concept-box">
+                            <h4>Benchmarks (GPT-2 1.5B parameters)</h4>
+                            <ul>
+                                <li><strong>Communication Volume:</strong> Reduced by 68%</li>
+                                <li><strong>Training Time:</strong> 40% faster on slow networks (&lt;1 Gbps)</li>
+                                <li><strong>Final Accuracy:</strong> Within 0.3% of baseline</li>
+                                <li><strong>Hardware Tolerance:</strong> Works on mixed GPU types (A100 + V100)</li>
+                            </ul>
+                            <p><strong>Key Benefit:</strong> Enables pipeline training over internet connections, not just data center networks!</p>
+                        </div>
+
+                        <h4>Why This Matters for Gensyn</h4>
+                        <p>SkipPipe makes it practical to train large models across geographically distributed, heterogeneous hardware - exactly Gensyn's use case. Without it, network bandwidth would be a major bottleneck.</p>
+                    </div>
+
                     <div class="paper-card">
                         <div class="paper-header">
                             <div>
