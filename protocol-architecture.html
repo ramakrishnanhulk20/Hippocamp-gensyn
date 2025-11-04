@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Architecture - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-course-id="protocol-architecture">
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Protocol Architecture">Protocol Architecture</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Deep dive into how Gensyn's decentralized protocol works! Understand the technical architecture that makes distributed AI training possible.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="fas fa-award"></i> Complete all lessons to earn the <strong style="color: var(--primary-color);">Protocol Master</strong> badge (300 points)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Course Progress -->
+                <div class="course-progress">
+                    <div class="course-progress-header">
+                        <span style="font-weight: 600; font-size: 1.1rem;">Course Progress</span>
+                        <span class="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-bar">
+                        <div class="course-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Lesson 1 -->
+                <div class="lesson" data-lesson-id="protocol-lesson-1" data-lesson-title="Understanding Decentralized Networks" data-points="70">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-network-wired"></i> Lesson 1: What is a Protocol?</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 7 min</span>
+                            <span><i class="fas fa-star"></i> 70 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>What is a Protocol?</h3>
+                        <p>Think of a protocol as a set of rules that computers follow to work together.</p>
+
+                        <div class="info-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Real-World Example:</strong> When you mail a letter, there's a protocol: write address on envelope, add stamp, put in mailbox. Everyone follows these rules so mail gets delivered!
+                        </div>
+
+                        <h3>Computer Protocols</h3>
+                        <p>You use protocols every day without realizing it:</p>
+                        <ul>
+                            <li><strong>HTTP/HTTPS:</strong> How websites load in your browser</li>
+                            <li><strong>Email (SMTP):</strong> How emails get sent and received</li>
+                            <li><strong>Bluetooth:</strong> How devices connect wirelessly</li>
+                            <li><strong>Wi-Fi:</strong> How your devices connect to internet</li>
+                        </ul>
+
+                        <h3>What Makes a Protocol Good?</h3>
+                        <p>A great protocol needs:</p>
+                        <ul>
+                            <li><strong>Clear Rules:</strong> Everyone knows what to do</li>
+                            <li><strong>Reliability:</strong> Works consistently</li>
+                            <li><strong>Security:</strong> Protects against bad actors</li>
+                            <li><strong>Efficiency:</strong> Doesn't waste resources</li>
+                        </ul>
+
+                        <h3>Centralized vs Decentralized</h3>
+                        
+                        <p><strong>Centralized (Traditional):</strong></p>
+                        <ul>
+                            <li>One company controls everything</li>
+                            <li>All data goes through their servers</li>
+                            <li>They make all the rules</li>
+                            <li>Example: Facebook, Gmail, traditional cloud computing</li>
+                        </ul>
+
+                        <p><strong>Decentralized (Gensyn):</strong></p>
+                        <ul>
+                            <li>No single controller</li>
+                            <li>Many computers work together</li>
+                            <li>Rules are enforced by code</li>
+                            <li>Example: Bitcoin, Ethereum, Gensyn</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-users"></i>
+                            <strong>Why Decentralize?</strong> Imagine if one company owned all roads. They could charge whatever they want! Decentralization means no single entity has that power.
+                        </div>
+
+                        <h3>The Gensyn Protocol</h3>
+                        <p>Gensyn is a protocol for decentralized AI training. It defines:</p>
+                        <ul>
+                            <li>How computers join the network</li>
+                            <li>How training work is distributed</li>
+                            <li>How to verify work was done correctly</li>
+                            <li>How participants get rewarded</li>
+                            <li>How to ensure security and fairness</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="protocol-q1">
+                            <div class="quiz-question">
+                                🤔 Quiz: What is the main advantage of decentralized protocols like Gensyn?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    They're always faster
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    No single entity controls the system; power is distributed
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They require less electricity
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They're easier to build
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson" data-lesson-id="protocol-lesson-2" data-lesson-title="Gensyn's Core Components" data-points="80">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-cubes"></i> Lesson 2: Protocol Building Blocks</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 8 min</span>
+                            <span><i class="fas fa-star"></i> 80 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>The Three Key Components</h3>
+                        <p>Gensyn's protocol has three main parts working together:</p>
+
+                        <h3>1. The Compute Layer</h3>
+                        <p>This is where the actual AI training happens!</p>
+                        
+                        <p><strong>What it does:</strong></p>
+                        <ul>
+                            <li>Connects computers (nodes) that offer computational power</li>
+                            <li>Distributes training work across the network</li>
+                            <li>Coordinates the swarm training process</li>
+                            <li>Manages resource allocation</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-server"></i>
+                            <strong>Think of it like:</strong> A construction site where different workers use their tools (compute power) to build something together (train AI).
+                        </div>
+
+                        <h3>2. The Verification Layer</h3>
+                        <p>This ensures everyone does honest work!</p>
+
+                        <p><strong>The Challenge:</strong></p>
+                        <ul>
+                            <li>How do we know nodes actually did the training?</li>
+                            <li>What if someone tries to cheat?</li>
+                            <li>Can't trust everyone blindly</li>
+                        </ul>
+
+                        <p><strong>Gensyn's Solution:</strong></p>
+                        <ul>
+                            <li><strong>Proof of Learning:</strong> Mathematical proof work was done</li>
+                            <li><strong>Random Checks:</strong> Verify a sample of the work</li>
+                            <li><strong>Cryptographic Signatures:</strong> Work can't be faked</li>
+                            <li><strong>Reputation System:</strong> Good nodes build trust over time</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>Why This Matters:</strong> Without verification, anyone could claim they did work without actually doing it. The verification layer keeps everyone honest!
+                        </div>
+
+                        <h3>3. The Incentive Layer</h3>
+                        <p>This makes sure participants get rewarded fairly!</p>
+
+                        <p><strong>How Rewards Work:</strong></p>
+                        <ul>
+                            <li>Nodes contribute compute power</li>
+                            <li>Work is verified as valid</li>
+                            <li>Nodes receive tokens as payment</li>
+                            <li>More work = more rewards</li>
+                        </ul>
+
+                        <p><strong>Smart Incentives:</strong></p>
+                        <ul>
+                            <li><strong>Good behavior rewarded:</strong> Honest nodes earn more</li>
+                            <li><strong>Bad behavior punished:</strong> Cheaters get nothing</li>
+                            <li><strong>Difficulty adjusts:</strong> Rewards match actual work done</li>
+                            <li><strong>Market-driven pricing:</strong> Supply and demand balance</li>
+                        </ul>
+
+                        <h3>How They Work Together</h3>
+                        
+                        <p><strong>Step 1:</strong> Someone needs AI training (Compute Layer connects them)</p>
+                        <p><strong>Step 2:</strong> Nodes do the training work (Compute Layer distributes)</p>
+                        <p><strong>Step 3:</strong> Work is checked (Verification Layer confirms)</p>
+                        <p><strong>Step 4:</strong> Nodes get paid (Incentive Layer rewards)</p>
+
+                        <div class="success-box">
+                            <i class="fas fa-sync"></i>
+                            <strong>The Beautiful Cycle:</strong> Good work → Gets verified → Earns rewards → Encourages more good work! This creates a sustainable system.
+                        </div>
+
+                        <div class="quiz-container" data-question-id="protocol-q2">
+                            <div class="quiz-question">
+                                🤔 Quiz: What does the Verification Layer prevent?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    It prevents AI models from learning too fast
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    It prevents nodes from claiming they did work without actually doing it
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It prevents too many nodes from joining
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It prevents the network from using too much electricity
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson" data-lesson-id="protocol-lesson-3" data-lesson-title="How Training Jobs Flow" data-points="80">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-project-diagram"></i> Lesson 3: Training Job Lifecycle</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 7 min</span>
+                            <span><i class="fas fa-star"></i> 80 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>From Request to Completion</h3>
+                        <p>Let's follow a training job through the entire Gensyn protocol!</p>
+
+                        <h3>Phase 1: Job Submission</h3>
+                        <p>A developer wants to train an AI model:</p>
+                        <ul>
+                            <li>They describe what model they want to train</li>
+                            <li>Specify the dataset to use</li>
+                            <li>Set training parameters (how long, what quality)</li>
+                            <li>Offer payment for the work</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-file-alt"></i>
+                            <strong>Like Ordering Food:</strong> You tell the restaurant what you want, how you want it cooked, and agree on a price!
+                        </div>
+
+                        <h3>Phase 2: Work Distribution</h3>
+                        <p>The protocol finds nodes to do the work:</p>
+
+                        <p><strong>Matching Process:</strong></p>
+                        <ul>
+                            <li>Available nodes check the job requirements</li>
+                            <li>Nodes with suitable hardware bid on the work</li>
+                            <li>Protocol selects best nodes (speed, price, reputation)</li>
+                            <li>Work is divided among selected nodes</li>
+                        </ul>
+
+                        <p><strong>Load Balancing:</strong></p>
+                        <ul>
+                            <li>Work split based on node capabilities</li>
+                            <li>Powerful GPUs get more work</li>
+                            <li>Coordination ensures efficiency</li>
+                        </ul>
+
+                        <h3>Phase 3: Training Execution</h3>
+                        <p>Nodes start training the AI model:</p>
+
+                        <p><strong>During Training:</strong></p>
+                        <ul>
+                            <li>Each node trains its assigned portion</li>
+                            <li>Nodes share updates with each other (swarm learning)</li>
+                            <li>Progress is tracked and reported</li>
+                            <li>Models gradually improve</li>
+                        </ul>
+
+                        <p><strong>Communication:</strong></p>
+                        <ul>
+                            <li>Nodes sync model parameters</li>
+                            <li>Share learning insights</li>
+                            <li>Coordinate through the protocol</li>
+                            <li>Network traffic is optimized</li>
+                        </ul>
+
+                        <h3>Phase 4: Verification</h3>
+                        <p>The protocol checks that work was done correctly:</p>
+
+                        <p><strong>What Gets Verified:</strong></p>
+                        <ul>
+                            <li>Did nodes actually perform the calculations?</li>
+                            <li>Are the results mathematically correct?</li>
+                            <li>Did the model improve as expected?</li>
+                            <li>Was the work done honestly?</li>
+                        </ul>
+
+                        <p><strong>Verification Methods:</strong></p>
+                        <ul>
+                            <li><strong>Proof of Learning:</strong> Cryptographic proof of work done</li>
+                            <li><strong>Sampling:</strong> Randomly check portions of work</li>
+                            <li><strong>Cross-validation:</strong> Multiple nodes verify same work</li>
+                            <li><strong>Model testing:</strong> Check if trained model actually works</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-check-double"></i>
+                            <strong>Trust But Verify:</strong> Like a teacher checking homework - you trust students but still verify they did the work correctly!
+                        </div>
+
+                        <h3>Phase 5: Payment & Completion</h3>
+                        <p>Once verified, everyone gets paid:</p>
+
+                        <p><strong>Payment Distribution:</strong></p>
+                        <ul>
+                            <li>Verified nodes receive their rewards</li>
+                            <li>Payment proportional to work contributed</li>
+                            <li>Happens automatically through smart contracts</li>
+                            <li>Instant, no middleman needed</li>
+                        </ul>
+
+                        <p><strong>Job Completion:</strong></p>
+                        <ul>
+                            <li>Trained model returned to requester</li>
+                            <li>Performance metrics provided</li>
+                            <li>Transaction recorded on blockchain</li>
+                            <li>Reputation scores updated</li>
+                        </ul>
+
+                        <h3>Timeline Example</h3>
+                        <p>Training a medium-sized language model:</p>
+                        <ul>
+                            <li><strong>Minute 0:</strong> Job submitted, nodes matched</li>
+                            <li><strong>Minute 5:</strong> Training begins across 50 nodes</li>
+                            <li><strong>Hour 12:</strong> 50% complete, models syncing regularly</li>
+                            <li><strong>Hour 24:</strong> Training complete, verification starts</li>
+                            <li><strong>Hour 25:</strong> Verification passed, payments sent</li>
+                            <li><strong>Hour 26:</strong> Model delivered to requester</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="protocol-q3">
+                            <div class="quiz-question">
+                                🤔 Quiz: When do nodes receive payment for their work?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Immediately when they start training
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    At the end of each day
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    After their work is verified as correct and complete
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Only if the requester is happy with results
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson" data-lesson-id="protocol-lesson-4" data-lesson-title="Security & Trust" data-points="70">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-lock"></i> Lesson 4: Keeping Everything Secure</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 6 min</span>
+                            <span><i class="fas fa-star"></i> 70 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Security in Decentralized Systems</h3>
+                        <p>Without a central authority, how do we keep everything secure?</p>
+
+                        <h3>Challenge #1: Bad Actors</h3>
+                        <p>What if someone tries to cheat?</p>
+
+                        <p><strong>Potential Attacks:</strong></p>
+                        <ul>
+                            <li><strong>Lazy nodes:</strong> Claim work done without doing it</li>
+                            <li><strong>Wrong results:</strong> Submit incorrect training data</li>
+                            <li><strong>Data poisoning:</strong> Try to corrupt the model</li>
+                            <li><strong>Resource theft:</strong> Use network resources unfairly</li>
+                        </ul>
+
+                        <p><strong>Gensyn's Defenses:</strong></p>
+                        <ul>
+                            <li><strong>Cryptographic proofs:</strong> Can't fake the work</li>
+                            <li><strong>Multiple verification:</strong> Several nodes check the same work</li>
+                            <li><strong>Economic punishment:</strong> Cheaters lose money and reputation</li>
+                            <li><strong>Redundancy:</strong> Critical work done by multiple nodes</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-user-secret"></i>
+                            <strong>Economic Security:</strong> Cheating costs more than honest work! This makes honesty the smart choice.
+                        </div>
+
+                        <h3>Challenge #2: Data Privacy</h3>
+                        <p>Training data might be sensitive. How do we protect it?</p>
+
+                        <p><strong>Privacy Solutions:</strong></p>
+                        <ul>
+                            <li><strong>Encryption:</strong> Data encrypted during transmission</li>
+                            <li><strong>Secure enclaves:</strong> Training in isolated environments</li>
+                            <li><strong>Differential privacy:</strong> Add noise to protect individual data points</li>
+                            <li><strong>Zero-knowledge proofs:</strong> Prove work done without revealing data</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-eye-slash"></i>
+                            <strong>Privacy Example:</strong> Like mailing a locked box - the delivery person (node) transports it but can't see inside!
+                        </div>
+
+                        <h3>Challenge #3: Network Reliability</h3>
+                        <p>What if nodes go offline or connections fail?</p>
+
+                        <p><strong>Reliability Measures:</strong></p>
+                        <ul>
+                            <li><strong>Fault tolerance:</strong> System continues if nodes fail</li>
+                            <li><strong>Checkpointing:</strong> Save progress regularly</li>
+                            <li><strong>Automatic recovery:</strong> Failed work reassigned automatically</li>
+                            <li><strong>Redundant storage:</strong> Important data stored in multiple places</li>
+                        </ul>
+
+                        <h3>Trust Through Mathematics</h3>
+                        <p>Instead of trusting people, we trust math!</p>
+
+                        <p><strong>Blockchain Foundation:</strong></p>
+                        <ul>
+                            <li>All transactions recorded publicly</li>
+                            <li>Can't change history without everyone knowing</li>
+                            <li>Transparent and auditable</li>
+                            <li>No single point of control</li>
+                        </ul>
+
+                        <p><strong>Smart Contracts:</strong></p>
+                        <ul>
+                            <li>Code enforces rules automatically</li>
+                            <li>No human intervention needed</li>
+                            <li>Rules can't be changed arbitrarily</li>
+                            <li>Everyone follows the same code</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-calculator"></i>
+                            <strong>Code is Law:</strong> When rules are in code, they're enforced automatically and fairly for everyone!
+                        </div>
+
+                        <h3>Reputation System</h3>
+                        <p>Over time, nodes build reputation:</p>
+
+                        <p><strong>Building Reputation:</strong></p>
+                        <ul>
+                            <li>Complete jobs successfully → Score increases</li>
+                            <li>Verified as honest → Reputation grows</li>
+                            <li>Long history of good work → Trusted node</li>
+                        </ul>
+
+                        <p><strong>Benefits of Good Reputation:</strong></p>
+                        <ul>
+                            <li>Get more work assignments</li>
+                            <li>Higher pay rates</li>
+                            <li>Less verification overhead</li>
+                            <li>Priority during node selection</li>
+                        </ul>
+
+                        <div class="success-box" style="text-align: center; padding: 30px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">🏗️ Course Complete!</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Complete this lesson to earn your <strong>Protocol Master</strong> badge!</p>
+                            <p style="font-size: 0.9rem; color: #cbd5e1;">+ 300 bonus points for course completion</p>
+                        </div>
+
+                        <div class="quiz-container" data-question-id="protocol-q4">
+                            <div class="quiz-question">
+                                🤔 Final Quiz: Why is cheating discouraged in Gensyn's protocol?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Because everyone is watching each other constantly
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Because it's economically unprofitable - cheating costs more than honest work
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Because a central authority punishes cheaters
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Because nodes must pass an honesty test first
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-trophy"></i> Complete Course & Earn Badge!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Complete -->
+                <div style="text-align: center; padding: 40px 20px; margin-top: 40px; background: rgba(255, 201, 212, 0.05); border-radius: 16px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">🎉 Ready to Go Deeper?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: #cbd5e1;">Continue mastering the Gensyn ecosystem</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#courses" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-arrow-left"></i> Back to Courses
+                        </a>
+                        <a href="advanced-optimization.html" class="btn-primary" style="text-decoration: none;">
+                            Next: Advanced Topics <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through interactive courses and earn badges!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>`n    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

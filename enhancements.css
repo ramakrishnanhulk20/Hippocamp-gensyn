@@ -1,0 +1,197 @@
+/* Add this to styles.css for unique visual identity */
+
+/* 1. Custom Cursor */
+body {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23FFC9D4" opacity="0.5"/><circle cx="12" cy="12" r="3" fill="%2352D4D4"/></svg>'), auto;
+}
+
+a, button {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%2352D4D4" opacity="0.8"/><path d="M12 8 L12 16 M8 12 L16 12" stroke="white" stroke-width="2"/></svg>'), pointer;
+}
+
+/* 2. Animated Gradient Text */
+.gradient-text {
+    background: linear-gradient(90deg, #FFC9D4, #52D4D4, #6366f1, #FFC9D4);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* 3. Glassmorphism Cards with Depth */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* 4. Floating Action Button (FAB) */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(255, 201, 212, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.fab:hover {
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 12px 32px rgba(255, 201, 212, 0.6);
+}
+
+/* 5. Tooltip System */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]:hover::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* 6. Progress Ring (Circular Progress) */
+.progress-ring {
+    width: 120px;
+    height: 120px;
+}
+
+.progress-ring-circle {
+    stroke: var(--primary-color);
+    stroke-width: 8;
+    fill: transparent;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-dasharray: 283; /* 2 * π * r where r = 45 */
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* 7. Particle Effect on Hover */
+@keyframes particle-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+.particle-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.particle-hover::after {
+    content: '✨';
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.particle-hover:hover::after {
+    animation: particle-float 1.5s ease-out;
+}
+
+/* 8. Neon Glow Effect */
+.neon-glow {
+    text-shadow: 
+        0 0 10px rgba(255, 201, 212, 0.8),
+        0 0 20px rgba(255, 201, 212, 0.6),
+        0 0 30px rgba(255, 201, 212, 0.4),
+        0 0 40px rgba(82, 212, 212, 0.3);
+    animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+    0%, 100% { 
+        text-shadow: 
+            0 0 10px rgba(255, 201, 212, 0.8),
+            0 0 20px rgba(255, 201, 212, 0.6),
+            0 0 30px rgba(255, 201, 212, 0.4);
+    }
+    50% { 
+        text-shadow: 
+            0 0 20px rgba(255, 201, 212, 1),
+            0 0 30px rgba(255, 201, 212, 0.8),
+            0 0 40px rgba(82, 212, 212, 0.6),
+            0 0 50px rgba(82, 212, 212, 0.4);
+    }
+}
+
+/* 9. Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* 10. Interactive Badge Shimmer */
+.badge-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}

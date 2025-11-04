@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Operation Guide - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .step-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 30px rgba(255, 201, 212, 0.3);
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .code-block-wrapper {
+            position: relative;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 201, 212, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            padding-right: 60px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .copy-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+        .copy-btn.copied {
+            background: #52D4D4;
+        }
+        .expected-output {
+            background: rgba(82, 212, 212, 0.1);
+            border-left: 4px solid #52D4D4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .expected-output-title {
+            font-weight: 700;
+            color: #52D4D4;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .expected-output pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin: 10px 0 0 0;
+        }
+        .info-box, .warning-box, .success-box {
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+        .info-box {
+            background: rgba(82, 212, 212, 0.1);
+            border-color: #52D4D4;
+        }
+        .warning-box {
+            background: rgba(255, 201, 212, 0.1);
+            border-color: var(--primary-color);
+        }
+        .success-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+        }
+        .hardware-option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 201, 212, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .hardware-option h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        .command-note {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+        }
+        .inline-code {
+            background: rgba(255, 201, 212, 0.15);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#courses" class="nav-link">Courses</a></li>
+                <li><a href="network-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="badges.html" class="nav-link">Badges</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Run RL Swarm Node">Run RL Swarm Node</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Complete step-by-step guide to setting up and running your Gensyn RL Swarm testnet node. Start contributing compute power and earning rewards.
+                </p>
+                <div style="margin-top: 20px;">
+                    <a href="https://github.com/0xmoei/gensyn-ai" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">
+                        <i class="fab fa-github"></i> Based on Community Guide by 0xmoei
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+
+                <!-- Hardware Requirements -->
+                <div class="step-card">
+                    <h2><i class="fas fa-server"></i> Hardware Requirements</h2>
+                    <p>Gensyn testnet currently trains the <a href="https://github.com/open-thought/reasoning-gym" target="_blank">reasoning-gym</a> swarm datasets. Choose your hardware based on the model you want to train:</p>
+                    
+                    <div class="hardware-option">
+                        <h4>✅ CPU-Only Option</h4>
+                        <ul>
+                            <li><strong>CPU:</strong> arm64 or x86</li>
+                            <li><strong>RAM:</strong> Minimum 32GB (may crash if running other apps during training)</li>
+                            <li><strong>Best for:</strong> Testing or low-resource setups</li>
+                        </ul>
+                    </div>
+
+                    <div class="hardware-option">
+                        <h4>🚀 GPU Options (Recommended)</h4>
+                        <ul>
+                            <li><strong>Supported GPUs:</strong> RTX 3090, RTX 4090, RTX 5090, A100, H100</li>
+                            <li><strong>VRAM:</strong> ≥12GB minimum, 24GB+ recommended</li>
+                            <li><strong>CUDA Driver:</strong> ≥12.4</li>
+                            <li><strong>Best for:</strong> Optimal performance and earnings</li>
+                        </ul>
+                    </div>
+
+                    <h3>Supported Models</h3>
+                    <p>Choose based on your hardware:</p>
+                    <ul>
+                        <li><span class="inline-code">Gensyn/Qwen2.5-0.5B-Instruct</span> - Best for lower VRAM (12GB)</li>
+                        <li><span class="inline-code">Qwen/Qwen3-0.6B</span> - Good for moderate hardware</li>
+                        <li><span class="inline-code">nvidia/AceInstruct-1.5B</span> - Requires more resources</li>
+                        <li><span class="inline-code">Gensyn/Qwen2.5-1.5B-Instruct</span> - For high-end GPUs</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>💡 Tip:</strong> Users with less powerful hardware should select smaller models (0.5B or 0.6B). Larger models require more VRAM.
+                    </div>
+                </div>
+
+                <!-- Environment Setup -->
+                <div class="step-card" id="environment">
+                    <h2><span class="step-number">1</span> Environment Setup</h2>
+                    <p>Choose your setup method based on your hardware:</p>
+
+                    <h3>Method 1: Windows (Home PC)</h3>
+                    <p>Install Ubuntu on Windows using WSL:</p>
+                    
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block"># Verify NVIDIA Driver
+nvidia-smi
+
+# Install NVIDIA Toolkit
+sudo apt-get update
+sudo apt-get install -y nvidia-cuda-toolkit
+
+# Verify CUDA Toolkit
+nvcc --version</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output (nvidia-smi):
+                        </div>
+                        <pre>+-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.129.03   Driver Version: 535.129.03   CUDA Version: 12.4     |
++-----------------------------------------------------------------------------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
++-----------------------------------------------------------------------------------------+
+|   0  NVIDIA GeForce RTX 4090    Off | 00000000:01:00.0  On |                  Off |
++-----------------------------------------------------------------------------------------+</pre>
+                    </div>
+
+                    <h3>Method 2: Rent Cloud GPU</h3>
+                    
+                    <h4>Option A: Vast.ai</h4>
+                    <ol>
+                        <li>Register at <a href="https://cloud.vast.ai/" target="_blank">Vast.ai</a></li>
+                        <li>Create SSH key in your local system</li>
+                        <li>Add SSH key to Vast.ai (Account → Keys)</li>
+                        <li>Select <strong>PyTorch template</strong></li>
+                        <li>Choose GPU (≥24GB vRAM recommended, 12GB+ supported)</li>
+                        <li>Increase disk space to <strong>50GB</strong></li>
+                        <li>Top up credits and rent</li>
+                        <li>Copy SSH command and add <span class="inline-code">-L 3000:localhost:3000</span> in front</li>
+                    </ol>
+
+                    <h4>Option B: QuickPod (Easiest, No SSH Key)</h4>
+                    <ol>
+                        <li>Visit <a href="https://console.quickpod.io/" target="_blank">QuickPod</a></li>
+                        <li>Sign up and verify email</li>
+                        <li>Deposit cryptocurrency</li>
+                        <li>Go to Templates → Find <strong>Cuda 12.4</strong></li>
+                        <li>Filter 4090/3090 GPUs, sort by cheapest price</li>
+                        <li>Create Pod and wait for deployment</li>
+                        <li>Click Connect → Choose "Connect to web" for browser terminal</li>
+                    </ol>
+
+                    <h4>Option C: Hyperbolic</h4>
+                    <ol>
+                        <li>Register at <a href="https://app.hyperbolic.xyz/" target="_blank">Hyperbolic Dashboard</a></li>
+                        <li>Go to Settings → Add SSH public key</li>
+                        <li>Choose GPU (e.g., RTX 4090)</li>
+                        <li>Select <strong>pytorch</strong> template</li>
+                        <li>Add <span class="inline-code">-L 3000:localhost:3000</span> to SSH command</li>
+                        <li>Connect via PowerShell</li>
+                    </ol>
+
+                    <h3>Method 3: VPS Server (CPU-Only)</h3>
+                    <p>Minimum specs: 16 cores, 64GB RAM</p>
+                    <p>Recommended providers: <a href="https://my.hostbrr.com/" target="_blank">Hostbrr</a>, Contabo, OVH</p>
+
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>⚠️ Note for QuickPod:</strong> Remove <span class="inline-code">sudo</span> from all commands below since you already have root access.
+                    </div>
+                </div>
+
+                <!-- Install Dependencies -->
+                <div class="step-card">
+                    <h2><span class="step-number">2</span> Install Dependencies</h2>
+                    
+                    <h3>1. Update System Packages</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sudo apt update && sudo apt upgrade -y</div>
+                    </div>
+
+                    <h3>2. Install General Utilities</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sudo apt install screen curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip -y</div>
+                    </div>
+
+                    <h3>3. Install Python</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sudo apt install python3 python3-pip python3-venv python3-dev -y</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Verify Python:
+                        </div>
+                        <pre>$ python3 --version
+Python 3.10.12</pre>
+                    </div>
+
+                    <h3>4. Install Node.js</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sudo apt update
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash -
+sudo apt install -y nodejs
+node -v</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output:
+                        </div>
+                        <pre>v22.11.0</pre>
+                    </div>
+
+                    <h3>5. Install Yarn</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">npm install -g yarn
+yarn -v</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output:
+                        </div>
+                        <pre>1.22.22</pre>
+                    </div>
+                </div>
+
+                <!-- HuggingFace -->
+                <div class="step-card">
+                    <h2><span class="step-number">3</span> Get HuggingFace Access Token</h2>
+                    <p>HuggingFace is used to store trained models (optional for testnet).</p>
+                    
+                    <ol>
+                        <li>Create account at <a href="https://huggingface.co/" target="_blank">HuggingFace.co</a></li>
+                        <li>Go to <a href="https://huggingface.co/settings/tokens" target="_blank">Settings → Tokens</a></li>
+                        <li>Click <strong>Create new token</strong></li>
+                        <li>Give it a name and select <strong>Write</strong> permissions</li>
+                        <li>Copy and save the token securely</li>
+                    </ol>
+
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> You can press <span class="inline-code">N</span> during setup to skip HuggingFace for testnet. Only needed if you want to upload trained models (requires 2GB upload bandwidth per model).
+                    </div>
+                </div>
+
+                <!-- Clone Repository -->
+                <div class="step-card">
+                    <h2><span class="step-number">4</span> Clone the Repository</h2>
+                    
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">git clone https://github.com/gensyn-ai/rl-swarm/
+cd rl-swarm</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output:
+                        </div>
+                        <pre>Cloning into 'rl-swarm'...
+remote: Enumerating objects: 1234, done.
+remote: Counting objects: 100% (1234/1234), done.
+remote: Compressing objects: 100% (456/456), done.
+Receiving objects: 100% (1234/1234), 5.67 MiB | 8.90 MiB/s, done.
+Resolving deltas: 100% (789/789), done.</pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>⚠️ Existing Users:</strong> If you're recovering a node, make sure your <span class="inline-code">swarm.pem</span> file is in the <span class="inline-code">rl-swarm</span> directory before starting!
+                    </div>
+                </div>
+
+                <!-- Run the Swarm -->
+                <div class="step-card">
+                    <h2><span class="step-number">5</span> Run the Swarm</h2>
+                    
+                    <h3>Method A: CLI (Recommended for GPU/Linux)</h3>
+                    
+                    <p><strong>1. Start a screen session (to run in background)</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">screen -S swarm</div>
+                    </div>
+
+                    <p><strong>2. Navigate to directory and create virtual environment</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd rl-swarm
+python3 -m venv .venv
+source .venv/bin/activate</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output:
+                        </div>
+                        <pre>(.venv) user@hostname:~/rl-swarm$</pre>
+                        <p class="command-note">You should see (.venv) at the start of your prompt</p>
+                    </div>
+
+                    <p><strong>3. Run the swarm</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">./run_rl_swarm.sh</div>
+                    </div>
+
+                    <h3>Method B: Docker (Mac, CPU, Ubuntu VM)</h3>
+                    <p>Good option for Mac users or CPU-only VPS servers.</p>
+
+                    <p><strong>1. Install Docker</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker $USER
+docker --version</div>
+                    </div>
+
+                    <p><strong>2. Start screen session</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">screen -S swarm
+cd rl-swarm</div>
+                    </div>
+
+                    <p><strong>3. Run with Docker</strong></p>
+                    
+                    <p>For CPU-only:</p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">docker compose run --rm --build -Pit swarm-cpu</div>
+                    </div>
+
+                    <p>For GPU:</p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">docker compose run --rm --build -Pit swarm-gpu</div>
+                    </div>
+
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Docker Note:</strong> In Docker method, <span class="inline-code">swarm.pem</span> saves in <span class="inline-code">/root/rl-swarm/user/keys/</span>
+                    </div>
+
+                    <h3>Screen Commands Reference</h3>
+                    <ul>
+                        <li><strong>Minimize screen:</strong> <span class="inline-code">CTRL + A + D</span></li>
+                        <li><strong>Return to screen:</strong> <span class="inline-code">screen -r swarm</span></li>
+                        <li><strong>Stop and kill:</strong> <span class="inline-code">screen -XS swarm quit</span></li>
+                        <li><strong>List all screens:</strong> <span class="inline-code">screen -ls</span></li>
+                    </ul>
+                </div>
+
+                <!-- Login -->
+                <div class="step-card">
+                    <h2><span class="step-number">6</span> Login & Configure</h2>
+                    
+                    <p><strong>1. Wait for the following message in logs:</strong></p>
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Look for this message:
+                        </div>
+                        <pre>Waiting for userData.json to be created...</pre>
+                    </div>
+
+                    <p><strong>2. Open login page in browser</strong></p>
+                    
+                    <h4>Local PC:</h4>
+                    <p>Open <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> in your browser</p>
+
+                    <h4>Cloud GPU / VPS:</h4>
+                    <p>Create a tunnel using localtunnel:</p>
+
+                    <p>Open a NEW terminal and run:</p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block"># Install localtunnel
+sudo npm install -g localtunnel
+
+# Get password (this will show your VPS IP)
+curl https://loca.lt/mytunnelpassword
+
+# Create tunnel
+lt --port 3000</div>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-check-circle"></i> Expected Output:
+                        </div>
+                        <pre>your url is: https://afraid-ladybugs-wave.loca.lt</pre>
+                    </div>
+
+                    <p>Visit the URL, enter your password (VPS IP), and you'll see the Gensyn login page.</p>
+
+                    <p><strong>3. Login with your preferred method</strong></p>
+                    <p>Choose from: Email, Google, Discord, or Wallet connection</p>
+
+                    <p><strong>4. Answer setup prompts</strong></p>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-terminal"></i> Prompt 1: HuggingFace
+                        </div>
+                        <pre>Would you like to push models you train in the RL swarm to the Hugging Face Hub? [y/N]</pre>
+                        <p class="command-note"><strong>Press <span class="inline-code">N</span></strong> for testnet (or <span class="inline-code">Y</span> and enter your token)</p>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-terminal"></i> Prompt 2: Model Selection
+                        </div>
+                        <pre>Enter the name of the model you want to use in huggingface repo/name format, 
+or press [Enter] to use the default model.</pre>
+                        <p class="command-note"><strong>Press <span class="inline-code">Enter</span></strong> for default, or enter one of:</p>
+                        <ul style="margin-top: 10px;">
+                            <li>Gensyn/Qwen2.5-0.5B-Instruct (smaller, less VRAM)</li>
+                            <li>Qwen/Qwen3-0.6B</li>
+                            <li>nvidia/AceInstruct-1.5B</li>
+                            <li>Gensyn/Qwen2.5-1.5B-Instruct (larger, more VRAM)</li>
+                        </ul>
+                    </div>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-terminal"></i> Prompt 3: AI Prediction Market
+                        </div>
+                        <pre>Would you like to participate in the AI Prediction Market? (Y/n)</pre>
+                        <p class="command-note"><strong>Press <span class="inline-code">Enter</span></strong> or <span class="inline-code">Y</span> to participate as Judge (recommended)</p>
+                    </div>
+
+                    <div class="success-box">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>About AI Prediction Market:</strong> Your models bet on correct answers to reasoning problems. Early correct bets earn higher rewards. You'll appear on the Judge leaderboard in the Gensyn dashboard!
+                    </div>
+                </div>
+
+                <!-- Find Node Name -->
+                <div class="step-card">
+                    <h2><span class="step-number">7</span> Find Your Node Name</h2>
+                    
+                    <p>After starting, your node will get a unique animal name (e.g., "whistling hulking armadillo").</p>
+
+                    <p><strong>How to find it:</strong></p>
+                    <ol>
+                        <li>Wait for node to finish initializing</li>
+                        <li>Press <span class="inline-code">CTRL + SHIFT + F</span> in terminal</li>
+                        <li>Search for the word <span class="inline-code">Hello</span></li>
+                        <li>Your animal name appears after "Hello"</li>
+                    </ol>
+
+                    <div class="expected-output">
+                        <div class="expected-output-title">
+                            <i class="fas fa-paw"></i> Example:
+                        </div>
+                        <pre>Hello whistling hulking armadillo</pre>
+                    </div>
+
+                    <p><strong>Save this name!</strong> You'll use it to:</p>
+                    <ul>
+                        <li>Check your node on the dashboard</li>
+                        <li>Verify rewards and performance</li>
+                        <li>Recover your node if needed</li>
+                    </ul>
+                </div>
+
+                <!-- Backup -->
+                <div class="step-card">
+                    <h2><i class="fas fa-save"></i> Backup Your Node</h2>
+                    
+                    <div class="warning-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>🚨 CRITICAL:</strong> Always backup your <span class="inline-code">swarm.pem</span> file! This is your node's identity. Without it, you'll lose your node and earnings!
+                    </div>
+
+                    <h3>File Locations</h3>
+                    <ul>
+                        <li><strong>VPS/Linux:</strong> <span class="inline-code">/root/rl-swarm/swarm.pem</span></li>
+                        <li><strong>WSL (Windows):</strong> <span class="inline-code">\\wsl.localhost\Ubuntu\root\rl-swarm\swarm.pem</span></li>
+                        <li><strong>Docker:</strong> <span class="inline-code">/root/rl-swarm/user/keys/swarm.pem</span></li>
+                        <li><strong>Vast.ai:</strong> <span class="inline-code">/workspace/rl-swarm/swarm.pem</span></li>
+                    </ul>
+
+                    <h3>Download via SFTP</h3>
+                    <p>For GPU servers (Vast, Hyperbolic, etc.):</p>
+
+                    <p><strong>1. Connect via SFTP</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sftp -P PORT ubuntu@xxxx.hyperbolic.xyz</div>
+                    </div>
+                    <p class="command-note">Replace PORT and hostname with your server details. User might be <span class="inline-code">root</span> or <span class="inline-code">ubuntu</span></p>
+
+                    <p><strong>2. Navigate to directory</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd /home/ubuntu/rl-swarm</div>
+                    </div>
+
+                    <p><strong>3. Download file</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">get swarm.pem</div>
+                    </div>
+
+                    <p><strong>4. Exit SFTP</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">exit</div>
+                    </div>
+
+                    <p>File will be downloaded to your current directory (usually <span class="inline-code">C:\Users\<your-username></span>)</p>
+
+                    <h3>Recover Node</h3>
+                    <p>To recover your node on a new instance:</p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block"># Upload swarm.pem to new server
+put swarm.pem /home/ubuntu/rl-swarm/swarm.pem</div>
+                    </div>
+                </div>
+
+                <!-- Monitoring -->
+                <div class="step-card">
+                    <h2><i class="fas fa-chart-line"></i> Monitor Your Node</h2>
+                    
+                    <h3>Official Gensyn Dashboard</h3>
+                    <p>Login at <a href="https://dashboard.gensyn.ai/" target="_blank" style="color: var(--primary-color); font-weight: 700;">dashboard.gensyn.ai</a></p>
+                    
+                    <p><strong>You can view:</strong></p>
+                    <ul>
+                        <li>All your nodes and their animal names</li>
+                        <li>Node health and uptime</li>
+                        <li>Training progress and metrics</li>
+                        <li>Rewards earned</li>
+                        <li>Judge leaderboard rankings</li>
+                        <li>Performance statistics</li>
+                    </ul>
+
+                    <h3>Contract Explorer</h3>
+                    <p>Query blockchain directly for node details:</p>
+                    <p><a href="https://gensyn-testnet.explorer.alchemy.com/address/0xFaD7C5e93f28257429569B854151A1B8DCD404c2?tab=read_proxy" target="_blank" style="color: var(--primary-color);">
+                        View on Alchemy Explorer
+                    </a></p>
+                    
+                    <p>Search for:</p>
+                    <ul>
+                        <li>Peer ID → EOA address</li>
+                        <li>Total rewards earned</li>
+                        <li>Training wins</li>
+                        <li>Transaction history</li>
+                    </ul>
+                </div>
+
+                <!-- Update Node -->
+                <div class="step-card">
+                    <h2><i class="fas fa-sync-alt"></i> Update Your Node</h2>
+                    
+                    <p><strong>1. Stop the node</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block"># List all screens
+screen -ls
+
+# Kill swarm screen
+screen -XS swarm quit</div>
+                    </div>
+
+                    <p><strong>2. Backup swarm.pem</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd rl-swarm
+cp ./swarm.pem ~/swarm.pem</div>
+                    </div>
+
+                    <p><strong>3. Update repository</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd ..
+rm -rf rl-swarm
+git clone https://github.com/gensyn-ai/rl-swarm
+cd rl-swarm
+cp ~/swarm.pem ./swarm.pem</div>
+                    </div>
+
+                    <p><strong>4. Re-run node</strong></p>
+                    <p>Go back to Step 5 above to run your updated node.</p>
+                </div>
+
+                <!-- Run Multiple Nodes -->
+                <div class="step-card">
+                    <h2><i class="fas fa-clone"></i> Run Multiple Nodes</h2>
+                    
+                    <p>You can run multiple nodes to maximize earnings:</p>
+
+                    <h3>Method 1: New Instance</h3>
+                    <p>Install the node on a new VPS/GPU instance. Each instance = 1 node.</p>
+
+                    <h3>Method 2: Same Instance, Different Directories</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block"># Clone to new directory
+git clone https://github.com/gensyn-ai/rl-swarm rl-swarm-2
+cd rl-swarm-2
+
+# Run in new screen
+screen -S swarm2
+python3 -m venv .venv
+source .venv/bin/activate
+./run_rl_swarm.sh</div>
+                    </div>
+
+                    <p>Each node gets:</p>
+                    <ul>
+                        <li>Unique animal name</li>
+                        <li>Own <span class="inline-code">swarm.pem</span> file</li>
+                        <li>Separate rewards tracking</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <i class="fas fa-users"></i>
+                        <strong>Tip:</strong> Monitor all your nodes from one email login on the <a href="https://dashboard.gensyn.ai/" target="_blank">Gensyn Dashboard</a>!
+                    </div>
+                </div>
+
+                <!-- Troubleshooting -->
+                <div class="step-card">
+                    <h2><i class="fas fa-wrench"></i> Troubleshooting</h2>
+                    
+                    <h3>⚠️ Daemon Failed to Start in 15.0 Seconds</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd rl-swarm
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Open daemon config file
+nano $(python3 -c "import hivemind.p2p.p2p_daemon as m; print(m.__file__)")</div>
+                    </div>
+                    <p>Change line: <span class="inline-code">startup_timeout: float = 15</span> to <span class="inline-code">startup_timeout: float = 120</span></p>
+                    <p>Save: <span class="inline-code">Ctrl + X</span>, <span class="inline-code">Y</span>, <span class="inline-code">Enter</span></p>
+
+                    <h3>⚠️ CUDA Memory Error</h3>
+                    <p>For GPUs with low VRAM (12GB):</p>
+
+                    <p><strong>Option 1: Use environment variable</strong></p>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">export PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True,max_split_size_mb:128"
+./run_rl_swarm.sh</div>
+                    </div>
+
+                    <p><strong>Option 2: Use optimized config</strong></p>
+                    <p>Download <a href="https://github.com/0xmoei/gensyn-ai/blob/main/rg-swarm.yaml" target="_blank">optimized rg-swarm.yaml</a> and replace default in <span class="inline-code">rl-swarm/rgym_exp/config/</span></p>
+
+                    <h3>⚠️ Stuck at Loading Page</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd rl-swarm
+sed -i '/^  return (/i\  useEffect(() => {\n    if (!user && !signerStatus.isInitializing) {\n      openAuthModal();\n    }\n  }, [user, signerStatus.isInitializing]);\n\n' modal-login/app/page.tsx</div>
+                    </div>
+
+                    <h3>⚠️ Error: PS1 Unbound Variable</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">sed -i '1i # ~/.bashrc: executed by bash(1) for non-login shells.\n\n# If not running interactively, don'\''t do anything\ncase $- in\n    *i*) ;;\n    *) return;;\nesac\n' ~/.bashrc</div>
+                    </div>
+
+                    <h3>⚠️ CPU Configuration Issues</h3>
+                    <div class="code-block-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+                        <div class="code-block">cd rl-swarm
+nano hivemind_exp/configs/mac/grpo-qwen-2.5-0.5b-deepseek-r1.yaml</div>
+                    </div>
+                    <p>Change <span class="inline-code">bf16</span> value to <span class="inline-code">false</span></p>
+                    <p>Reduce <span class="inline-code">max_steps</span> to <span class="inline-code">5</span></p>
+                </div>
+
+                <!-- Resources -->
+                <div class="step-card">
+                    <h2><i class="fas fa-book"></i> Additional Resources</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 12px 0;">
+                            <a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fab fa-github"></i> Official RL Swarm Repository
+                            </a>
+                        </li>
+                        <li style="margin: 12px 0;">
+                            <a href="https://github.com/0xmoei/gensyn-ai" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fab fa-github"></i> Community Guide by 0xmoei
+                            </a>
+                        </li>
+                        <li style="margin: 12px 0;">
+                            <a href="https://dashboard.gensyn.ai/" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fas fa-chart-bar"></i> Gensyn Dashboard
+                            </a>
+                        </li>
+                        <li style="margin: 12px 0;">
+                            <a href="https://blog.gensyn.ai/" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fas fa-blog"></i> Gensyn Blog
+                            </a>
+                        </li>
+                        <li style="margin: 12px 0;">
+                            <a href="https://discord.gg/gensyn" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fab fa-discord"></i> Discord Community
+                            </a>
+                        </li>
+                        <li style="margin: 12px 0;">
+                            <a href="https://twitter.com/gensynai" target="_blank" style="color: var(--primary-color); text-decoration: none; font-size: 1.05rem;">
+                                <i class="fab fa-twitter"></i> Twitter/X
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-box" style="text-align: center; padding: 40px;">
+                    <h2 style="color: #22c55e; margin-bottom: 15px;">🎉 You're All Set!</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">Your Gensyn RL Swarm node is now running!</p>
+                    <p style="color: #94a3b8; margin-bottom: 30px;">
+                        Monitor your node at <a href="https://dashboard.gensyn.ai/" target="_blank" style="color: var(--primary-color); font-weight: 700;">dashboard.gensyn.ai</a>
+                    </p>
+                    <a href="index.html" class="btn-primary" style="display: inline-block; text-decoration: none;">
+                        <i class="fas fa-arrow-left"></i> Back to Academy
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through comprehensive guides and tutorials.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.innerHTML = '<i class="fas fa-times"></i> Error!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Hub - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .research-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .research-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 30s linear infinite;
+        }
+        .paper-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .paper-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 40px rgba(255, 201, 212, 0.3);
+        }
+        .paper-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .paper-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .paper-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        .paper-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-technical {
+            background: rgba(99, 102, 241, 0.2);
+            color: #6366f1;
+        }
+        .badge-theory {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+        .badge-applied {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        .concept-box {
+            background: rgba(82, 212, 212, 0.1);
+            border-left: 4px solid #52D4D4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .formula-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 201, 212, 0.2);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .section-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 12px 24px;
+            border: 2px solid rgba(255, 201, 212, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #000;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid #000;
+        }
+        .glossary-term {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary-color);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        .glossary-term h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#courses" class="nav-link">Courses</a></li>
+                <li><a href="network-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="badges.html" class="nav-link">Badges</a></li>
+                <li><a href="research.html" class="nav-link active">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="research-hero">
+        <div class="container">
+            <div class="hero-content" style="text-align: center; position: relative; z-index: 1;">
+                <h1 class="glitch-text" data-text="Research Hub">Research Hub</h1>
+                <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto;">
+                    Deep dive into the academic research, technical papers, and theoretical foundations that power Gensyn Protocol. From fundamentals to cutting-edge innovations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+
+                <!-- Section Tabs -->
+                <div class="section-tabs">
+                    <button class="tab-btn active" onclick="showTab('foundations')">
+                        <i class="fas fa-book"></i> Foundations
+                    </button>
+                    <button class="tab-btn" onclick="showTab('papers')">
+                        <i class="fas fa-file-alt"></i> Key Papers
+                    </button>
+                    <button class="tab-btn" onclick="showTab('concepts')">
+                        <i class="fas fa-brain"></i> Core Concepts
+                    </button>
+                    <button class="tab-btn" onclick="showTab('timeline')">
+                        <i class="fas fa-clock"></i> Evolution
+                    </button>
+                    <button class="tab-btn" onclick="showTab('glossary')">
+                        <i class="fas fa-book-open"></i> Glossary
+                    </button>
+                </div>
+
+                <!-- Foundations Tab -->
+                <div id="foundations" class="tab-content active">
+                    <h2 style="margin-bottom: 30px;"><i class="fas fa-graduation-cap"></i> Theoretical Foundations</h2>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">The Problem: Centralized ML Compute</h3>
+                        <div class="concept-box">
+                            <h4>Historical Context</h4>
+                            <p>The current machine learning infrastructure landscape is dominated by a few major cloud providers (AWS, Google Cloud, Azure). This creates several fundamental problems:</p>
+                            
+                            <ul>
+                                <li><strong>Economic Inefficiency:</strong> Up to 72% of compute costs go to cloud provider profits rather than actual hardware costs</li>
+                                <li><strong>Resource Waste:</strong> Billions of GPUs sit idle globally while researchers queue for access</li>
+                                <li><strong>Access Inequality:</strong> Only well-funded organizations can afford large-scale ML training</li>
+                                <li><strong>Centralization Risk:</strong> Single points of failure and censorship concerns</li>
+                            </ul>
+                        </div>
+
+                        <h4>Why Traditional Solutions Don't Work</h4>
+                        <p>Previous attempts to decentralize compute faced fundamental challenges:</p>
+
+                        <div class="formula-box">
+<strong>The Verification Problem:</strong>
+
+Cost_verify(traditional) = Cost_compute × N_replications
+
+Where N_replications typically = 7-10 for Byzantine fault tolerance
+
+Result: 700-1000% overhead makes decentralization economically infeasible
+                        </div>
+
+                        <h4>Gensyn's Breakthrough</h4>
+                        <p>Gensyn solves this through a combination of innovations:</p>
+                        <ol>
+                            <li><strong>Probabilistic Proof-of-Learning:</strong> Statistical verification instead of replication</li>
+                            <li><strong>Graph-Based Pinpoint Protocol:</strong> Targeted verification of specific computational nodes</li>
+                            <li><strong>Economic Game Theory:</strong> Incentive structures that make honesty profitable</li>
+                        </ol>
+
+                        <div class="concept-box">
+                            <h4>Performance Metrics</h4>
+                            <p><strong>Verification Efficiency:</strong> 1,350% improvement vs traditional replication</p>
+                            <p><strong>Overhead:</strong> Only 46% vs 700-1000% for naive approaches</p>
+                            <p><strong>Cost Reduction:</strong> Up to 85% cheaper than AWS for equivalent compute</p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Blockchain & ML: Why Now?</h3>
+                        
+                        <h4>Convergence of Technologies</h4>
+                        <p>Gensyn becomes possible due to recent breakthroughs across multiple domains:</p>
+
+                        <div class="formula-box">
+<strong>Technology Stack:</strong>
+
+1. Ethereum Rollups (2021+)
+   → Scalable settlement layer
+   → Custom execution environments
+   → Reduced gas costs by 100x
+
+2. Zero-Knowledge Proofs (2020+)
+   → Efficient verification
+   → Privacy-preserving compute
+   → Succinct proofs
+
+3. P2P Networking (mature)
+   → libp2p protocols
+   → NAT traversal
+   → Gossip algorithms
+
+4. ML Standardization (2015+)
+   → ONNX format
+   → Deterministic operations
+   → Reproducible training
+                        </div>
+
+                        <h4>Why Blockchain for ML?</h4>
+                        <ul>
+                            <li><strong>Trustless Coordination:</strong> No central authority needed</li>
+                            <li><strong>Economic Primitives:</strong> Built-in payment and incentive rails</li>
+                            <li><strong>Transparency:</strong> All computations cryptographically verifiable</li>
+                            <li><strong>Composability:</strong> Integrate with DeFi, DAOs, other protocols</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>The Ethereum Rollup Choice</h4>
+                            <p>Gensyn is built as an Ethereum rollup (Layer 2) because:</p>
+                            <ul>
+                                <li>Inherits Ethereum's security and finality</li>
+                                <li>Custom execution layer optimized for ML</li>
+                                <li>Access to Ethereum's developer ecosystem</li>
+                                <li>Interoperable with other L2s and DApps</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Machine Learning Fundamentals</h3>
+                        
+                        <h4>Basics for Non-ML Readers</h4>
+                        <p>To understand Gensyn, you need to understand what it's computing. Here's ML training from first principles:</p>
+
+                        <h4>1. What is a Neural Network?</h4>
+                        <p>At its core, a neural network is a function with millions of adjustable parameters (weights):</p>
+
+                        <div class="formula-box">
+f(x; θ) = output
+
+Where:
+  x = input data (e.g., image, text)
+  θ = parameters (weights) of the network
+  output = prediction (e.g., "this is a cat")
+
+Goal of training: Find θ that makes predictions accurate
+                        </div>
+
+                        <h4>2. The Training Loop</h4>
+                        <div class="formula-box">
+For each training example:
+  1. Forward Pass: Compute prediction ŷ = f(x; θ)
+  2. Loss: Compare prediction to truth: L = loss(ŷ, y)
+  3. Backward Pass: Compute gradients ∇θ L
+  4. Update: θ ← θ - α∇θ L  (gradient descent)
+  
+Repeat millions of times until loss is minimized
+                        </div>
+
+                        <h4>3. Why Training is Expensive</h4>
+                        <p>Modern models like GPT-4 have 1.76 trillion parameters. Each training step requires:</p>
+                        <ul>
+                            <li>Billions of floating-point operations (FLOPs)</li>
+                            <li>Gigabytes of memory bandwidth</li>
+                            <li>Hours to days of compute time</li>
+                            <li>Specialized hardware (GPUs, TPUs)</li>
+                        </ul>
+
+                        <div class="formula-box">
+<strong>Example: Training a Language Model</strong>
+
+Model: LLaMA-2 70B (70 billion parameters)
+Dataset: 2 trillion tokens
+Compute: ~1.7e24 FLOPs
+Time: ~1 million GPU-hours
+Cost: $2-5 million at cloud prices
+                        </div>
+
+                        <h4>4. Distributed Training</h4>
+                        <p>Large models don't fit on one GPU, requiring distribution across devices:</p>
+
+                        <ul>
+                            <li><strong>Data Parallelism:</strong> Each device processes different data batches</li>
+                            <li><strong>Model Parallelism:</strong> Split model across devices</li>
+                            <li><strong>Pipeline Parallelism:</strong> Chain device computations</li>
+                            <li><strong>Zero Redundancy Optimizer:</strong> Shard optimizer state</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Gensyn's Role</h4>
+                            <p>Gensyn enables distributed training across trustless, geographically distributed, heterogeneous hardware - something impossible with traditional methods.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Papers Tab -->
+                <div id="papers" class="tab-content">
+                    <h2 style="margin-bottom: 30px;"><i class="fas fa-scroll"></i> Essential Research Papers</h2>
+
+                    <div class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">Gensyn Litepaper: A Protocol for Deep Learning Compute</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2022</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Team</span>
+                                    <span><i class="fas fa-file-pdf"></i> Whitepaper</span>
+                                </div>
+                                <span class="paper-badge badge-technical">Technical</span>
+                                <span class="paper-badge badge-theory">Theory</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>The foundational document describing Gensyn's protocol design. Introduces the core mechanisms for trustless verification of machine learning computation in a decentralized network.</p>
+
+                        <h4>Key Contributions</h4>
+                        <ul>
+                            <li><strong>Probabilistic Proof-of-Learning:</strong> Novel verification method using statistical properties of gradient descent</li>
+                            <li><strong>Graph-based Pinpoint Protocol:</strong> Efficient challenge-response game for computation verification</li>
+                            <li><strong>Economic Model:</strong> Token mechanics and incentive design</li>
+                            <li><strong>Architecture:</strong> Layer-2 rollup design for scalability</li>
+                        </ul>
+
+                        <h4>Core Mathematical Framework</h4>
+                        <div class="formula-box">
+<strong>Verification Probability</strong>
+
+P(correct | observed) = ∏ᵢ P(gradientᵢ | learning_occurred)
+
+If learning occurred honestly:
+  • Gradients should decrease over time
+  • Loss should converge to minimum
+  • Model performance should improve
+
+Statistical tests verify these properties without recomputation
+                        </div>
+
+                        <h4>Impact & Reception</h4>
+                        <p>This paper laid the theoretical groundwork for Gensyn's $43M Series A led by a16z. It demonstrated that decentralized ML compute is not just possible, but economically viable.</p>
+
+                        <div class="concept-box">
+                            <h4>Read the Paper</h4>
+                            <p><a href="https://www.gensyn.ai" target="_blank" style="color: var(--primary-color);">Available on Gensyn's official website →</a></p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">RL Swarm: Collaborative Reinforcement Learning</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-calendar"></i> Published 2024</span>
+                                    <span><i class="fas fa-users"></i> Gensyn Research Team</span>
+                                    <span><i class="fas fa-flask"></i> Experimental</span>
+                                </div>
+                                <span class="paper-badge badge-applied">Applied Research</span>
+                                <span class="paper-badge badge-theory">Theory</span>
+                            </div>
+                        </div>
+
+                        <h4>Abstract Summary</h4>
+                        <p>Introduces a peer-to-peer system where multiple AI models train collaboratively through shared feedback and collective learning. Demonstrates that swarm learning achieves better outcomes than isolated training.</p>
+
+                        <h4>Key Innovations</h4>
+                        <ul>
+                            <li><strong>Multi-Stage Game:</strong> Answer → Critique → Resolve framework</li>
+                            <li><strong>Peer Learning:</strong> Models learn from each other's successes and failures</li>
+                            <li><strong>Reward Shaping:</strong> Novel incentive structure for collaborative training</li>
+                            <li><strong>Open Participation:</strong> Permissionless swarm joining</li>
+                        </ul>
+
+                        <h4>Experimental Results</h4>
+                        <div class="formula-box">
+<strong>Performance Metrics (GSM8K Math Problems)</strong>
+
+Solo Training:        62% accuracy after 10 epochs
+RL Swarm (5 models):  78% accuracy after 10 epochs
+RL Swarm (20 models): 84% accuracy after 10 epochs
+
+Conclusion: Collaborative learning provides ~25% improvement
+Training time reduced by ~40% to reach same accuracy
+                        </div>
+
+                        <h4>Theoretical Foundations</h4>
+                        <p>RL Swarm builds on established research:</p>
+                        <ul>
+                            <li><strong>GRPO (Group Relative Policy Optimization):</strong> Compare policies across group</li>
+                            <li><strong>Constitutional AI:</strong> Self-critique and revision</li>
+                            <li><strong>Debate Framework:</strong> Multiple models argue to truth</li>
+                            <li><strong>Federated Learning:</strong> Decentralized training with privacy</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Access the Code</h4>
+                            <p><a href="https://github.com/gensyn-ai/rl-swarm" target="_blank" style="color: var(--primary-color);">Open source on GitHub →</a></p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-header">
+                            <div>
+                                <h3 class="paper-title">Related Work: Foundations in Literature</h3>
+                                <div class="paper-meta">
+                                    <span><i class="fas fa-book"></i> Curated Reading List</span>
+                                </div>
+                                <span class="paper-badge badge-theory">Theory</span>
+                            </div>
+                        </div>
+
+                        <h4>Verification & Proof Systems</h4>
+                        <p><strong>Truebit: A scalable verification solution for blockchains</strong></p>
+                        <ul>
+                            <li>Introduced verification game with economic incentives</li>
+                            <li>Challenge-response protocol for off-chain computation</li>
+                            <li>Gensyn adapts this for ML-specific computation</li>
+                        </ul>
+
+                        <p><strong>Probabilistic Proof-of-Learning (Jia et al.)</strong></p>
+                        <ul>
+                            <li>Statistical methods to verify training occurred</li>
+                            <li>No need to rerun entire computation</li>
+                            <li>Check properties of learned model instead</li>
+                        </ul>
+
+                        <h4>Distributed Machine Learning</h4>
+                        <p><strong>Federated Learning (Google)</strong></p>
+                        <ul>
+                            <li>Training on decentralized data</li>
+                            <li>Privacy-preserving aggregation</li>
+                            <li>Communication-efficient protocols</li>
+                        </ul>
+
+                        <p><strong>Decentralized SGD (Dean et al.)</strong></p>
+                        <ul>
+                            <li>Large-scale distributed training at Google</li>
+                            <li>Parameter server architecture</li>
+                            <li>Gradient synchronization strategies</li>
+                        </ul>
+
+                        <h4>Blockchain & Consensus</h4>
+                        <p><strong>Ethereum 2.0 & Rollups</strong></p>
+                        <ul>
+                            <li>Layer-2 scaling solutions</li>
+                            <li>Optimistic vs ZK rollups</li>
+                            <li>Settlement vs execution separation</li>
+                        </ul>
+
+                        <p><strong>Proof-of-Stake (Buterin et al.)</strong></p>
+                        <ul>
+                            <li>Economic security through staking</li>
+                            <li>Slashing for misbehavior</li>
+                            <li>Applied to compute provision in Gensyn</li>
+                        </ul>
+
+                        <h4>Cryptography & Zero-Knowledge</h4>
+                        <p><strong>SNARKs & STARKs</strong></p>
+                        <ul>
+                            <li>Succinct proofs of computation</li>
+                            <li>Potential future integration for Gensyn</li>
+                            <li>ZK-ML: Private machine learning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Core Concepts Tab -->
+                <div id="concepts" class="tab-content">
+                    <h2 style="margin-bottom: 30px;"><i class="fas fa-lightbulb"></i> Deep Dive: Core Concepts</h2>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Concept 1: Probabilistic Proof-of-Learning</h3>
+                        
+                        <h4>The Problem Being Solved</h4>
+                        <p>How do you verify that a remote worker actually trained your ML model correctly without redoing all the work yourself?</p>
+
+                        <h4>Traditional Approach (Doesn't Scale)</h4>
+                        <div class="formula-box">
+Traditional Verification:
+  1. Worker trains model (100 hours)
+  2. Multiple verifiers retrain independently (700 hours total)
+  3. Compare results via Byzantine consensus
+  
+Problem: 7x computational cost makes it economically impossible
+                        </div>
+
+                        <h4>Gensyn's Probabilistic Approach</h4>
+                        <p>Instead of checking if the computation was done correctly, check if learning occurred:</p>
+
+                        <div class="formula-box">
+<strong>Key Insight:</strong> If a model truly learned, it exhibits specific statistical properties
+
+Properties to Verify:
+  1. Loss Decrease: L(epoch_n) < L(epoch_0)
+  2. Gradient Convergence: ||∇L|| → 0 over time
+  3. Validation Performance: Accuracy on held-out data improves
+  4. Learning Curves: Match expected shape for algorithm
+                        </div>
+
+                        <h4>Mathematical Framework</h4>
+                        <p>The verification process uses hypothesis testing:</p>
+
+                        <div class="formula-box">
+H₀ (null hypothesis): No learning occurred (worker cheated)
+H₁ (alternative): Learning occurred honestly
+
+Test statistic: T = f(loss_trajectory, gradients, accuracy)
+
+If P(T | H₀) < α (significance level):
+  → Reject H₀, accept that learning occurred
+  → Worker gets paid
+
+Otherwise:
+  → Challenge and investigate further
+  → May require deeper verification
+                        </div>
+
+                        <h4>Why This Works</h4>
+                        <ul>
+                            <li><strong>Hard to Fake:</strong> Producing realistic learning curves without actually learning is computationally harder than just training</li>
+                            <li><strong>Statistical Security:</strong> Multiple independent checks compound security</li>
+                            <li><strong>Efficient:</strong> Verification takes ~1% of training time</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Practical Example</h4>
+                            <p><strong>Training ResNet-50 on ImageNet:</strong></p>
+                            <ul>
+                                <li>Training time: 8 hours on 8 GPUs</li>
+                                <li>Traditional verification: 56 GPU-hours</li>
+                                <li>Probabilistic verification: 0.5 GPU-hours</li>
+                                <li><strong>Efficiency gain: 112x</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Concept 2: Graph-Based Pinpoint Protocol</h3>
+                        
+                        <h4>Computational Graphs</h4>
+                        <p>Any ML training can be represented as a directed acyclic graph (DAG) of operations:</p>
+
+                        <div class="formula-box">
+Example: Simple Neural Network Forward Pass
+
+Input → Linear₁ → ReLU → Linear₂ → Softmax → Loss
+
+Each node = an operation
+Each edge = data flowing between operations
+Entire training = sequence of these graphs
+                        </div>
+
+                        <h4>The Pinpoint Idea</h4>
+                        <p>Instead of verifying the entire graph:</p>
+                        <ol>
+                            <li><strong>Random Sampling:</strong> Select random nodes in the graph</li>
+                            <li><strong>Local Verification:</strong> Verify just those operations</li>
+                            <li><strong>Cryptographic Commitments:</strong> Worker can't know which nodes will be checked</li>
+                            <li><strong>Statistical Guarantee:</strong> If enough samples pass, high probability entire computation is correct</li>
+                        </ol>
+
+                        <h4>Challenge-Response Game</h4>
+                        <div class="formula-box">
+<strong>Protocol Steps:</strong>
+
+1. Solver (Worker):
+   - Performs computation
+   - Creates Merkle tree of all intermediate results
+   - Submits root hash as commitment
+
+2. Verifier (Challenger):
+   - Requests specific computation nodes
+   - Solver provides values + Merkle proofs
+   - Verifier checks correctness locally
+
+3. Dispute Resolution:
+   - If discrepancy found, binary search on computation
+   - Narrow down to single operation
+   - Judge (smart contract) verifies that one operation
+   - Honest party wins stake
+                        </div>
+
+                        <h4>Game Theory</h4>
+                        <p>The protocol is secure because:</p>
+                        <ul>
+                            <li><strong>Unpredictability:</strong> Worker doesn't know which nodes will be checked</li>
+                            <li><strong>Cryptographic Binding:</strong> Can't change answers after commitment</li>
+                            <li><strong>Economic Security:</strong> Stake must exceed potential gain from cheating</li>
+                            <li><strong>Binary Search:</strong> Disputes resolve in O(log n) rounds</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Security Proof Sketch</h4>
+                            <p>Probability of cheating successfully:</p>
+                            <div class="formula-box">
+P(undetected_cheat) = (1 - p)ⁿ
+
+Where:
+  p = probability each node checked
+  n = number of samples taken
+
+Example: p=0.1, n=20
+  → P(undetected) = 0.9²⁰ = 0.12% (very low!)
+
+Cost of attack >> potential gain, making cheating irrational
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Concept 3: Incentive Mechanisms & Token Economics</h3>
+                        
+                        <h4>The Economic Layer</h4>
+                        <p>Gensyn's security ultimately comes from economic incentives. The protocol must ensure that honest behavior is always more profitable than cheating.</p>
+
+                        <h4>Stakeholder Roles</h4>
+                        <ul>
+                            <li><strong>Solvers (Compute Providers):</strong> Provide GPUs, execute training</li>
+                            <li><strong>Verifiers:</strong> Check work, challenge suspicious results</li>
+                            <li><strong>Users (ML Developers):</strong> Submit jobs, pay for compute</li>
+                            <li><strong>Protocol:</strong> Smart contracts coordinating everything</li>
+                        </ul>
+
+                        <h4>Stake-Based Security</h4>
+                        <div class="formula-box">
+<strong>Economic Security Condition:</strong>
+
+Stake(solver) ≥ Payment(job) × Risk_multiplier
+
+Where Risk_multiplier accounts for:
+  - Verification sampling rate
+  - Dispute resolution costs
+  - Expected value of attacks
+
+Example:
+  Job payment = 10 tokens
+  Risk multiplier = 2x
+  Required stake = 20 tokens
+  
+If solver cheats and is caught:
+  - Loses 20 token stake
+  - Gains at most 10 tokens from job
+  - Net: -10 tokens (unprofitable)
+                        </div>
+
+                        <h4>Reward Distribution</h4>
+                        <p>When a job completes successfully:</p>
+
+                        <div class="formula-box">
+Total_payment = User_payment + Protocol_subsidy
+
+Distribution:
+  • 85-90% → Compute provider (solver)
+  • 5-10% → Verifiers (pro-rata based on work)
+  • 3-5% → Protocol treasury
+  • 2% → Network operation (sequencers, etc.)
+
+Adjusts dynamically based on network utilization
+                        </div>
+
+                        <h4>Slashing Conditions</h4>
+                        <p>Solvers lose their stake if:</p>
+                        <ul>
+                            <li>Verification reveals incorrect computation</li>
+                            <li>Fail to respond to verification challenges</li>
+                            <li>Submit invalid proofs</li>
+                            <li>Go offline during assigned job</li>
+                        </ul>
+
+                        <p>Verifiers lose stake if:</p>
+                        <ul>
+                            <li>False accusations (unsuccessful challenges)</li>
+                            <li>Fail to complete verification duties</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Token Utility</h4>
+                            <p>The native token serves multiple functions:</p>
+                            <ul>
+                                <li><strong>Medium of Exchange:</strong> Pay for compute</li>
+                                <li><strong>Staking:</strong> Security deposit for compute providers</li>
+                                <li><strong>Governance:</strong> Vote on protocol parameters</li>
+                                <li><strong>Rewards:</strong> Earn for providing compute/verification</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 class="paper-title">Concept 4: Layer-2 Rollup Architecture</h3>
+                        
+                        <h4>Why a Rollup?</h4>
+                        <p>Gensyn needs high throughput (many ML jobs per second) but also security. Layer-2 rollups provide both:</p>
+
+                        <ul>
+                            <li><strong>Execution:</strong> Fast, cheap, custom logic on L2</li>
+                            <li><strong>Settlement:</strong> Final security from Ethereum L1</li>
+                            <li><strong>Data Availability:</strong> Transaction data published to L1</li>
+                        </ul>
+
+                        <h4>Optimistic vs ZK Rollups</h4>
+                        <p>Gensyn uses an optimistic approach with ML-specific optimizations:</p>
+
+                        <div class="formula-box">
+<strong>Optimistic Rollup:</strong>
+  - Assume computations are correct by default
+  - Allow challenges during dispute period
+  - Only verify if someone challenges
+  - L1 verifies challenges via fraud proofs
+
+<strong>Why Not ZK for ML?</strong>
+  - ZK proofs extremely expensive for ML operations
+  - Circuit complexity too high for neural networks
+  - Would negate cost savings
+  - May integrate ZK for specific sub-components in future
+                        </div>
+
+                        <h4>State Transitions</h4>
+                        <p>How jobs flow through the system:</p>
+
+                        <div class="formula-box">
+1. Job Submission (L2):
+   - User submits ML training request
+   - Pays fee, stakes collateral
+   - Job added to queue
+
+2. Task Distribution (L2):
+   - Protocol selects compute provider
+   - Provider stakes tokens, accepts job
+   - Training begins off-chain
+
+3. Proof Submission (L2):
+   - Provider submits results + proofs
+   - Probabilistic verification runs
+   - Enter challenge period (~7 days)
+
+4. Challenge Period (L1 + L2):
+   - Anyone can challenge with stake
+   - If challenged, pinpoint protocol activates
+   - L1 contract resolves disputes
+
+5. Finalization (L1):
+   - After challenge period, results final
+   - Payments distributed
+   - State committed to Ethereum
+                        </div>
+
+                        <h4>Sequencer & Block Production</h4>
+                        <p>Unlike general rollups, Gensyn's sequencer is optimized for ML workloads:</p>
+                        <ul>
+                            <li><strong>Long-Running Jobs:</strong> Handles tasks lasting hours/days</li>
+                            <li><strong>Heterogeneous Resources:</strong> Routes jobs to appropriate hardware</li>
+                            <li><strong>Partial Results:</strong> Checkpointing for failure recovery</li>
+                            <li><strong>Priority Scheduling:</strong> Based on payment and urgency</li>
+                        </ul>
+
+                        <div class="concept-box">
+                            <h4>Benefits of This Architecture</h4>
+                            <ul>
+                                <li>1000x cheaper gas costs vs L1</li>
+                                <li>Custom opcodes for ML operations</li>
+                                <li>Ethereum's security guarantees</li>
+                                <li>Interoperability with DeFi/other L2s</li>
+                                <li>Easy upgradability through governance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Tab -->
+                <div id="timeline" class="tab-content">
+                    <h2 style="margin-bottom: 30px;"><i class="fas fa-history"></i> Evolution of Gensyn</h2>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">2021: Founding & Vision</h3>
+                            <p><strong>The Genesis:</strong> Gensyn founded with mission to democratize ML compute infrastructure.</p>
+                            <ul>
+                                <li>Initial whitepaper concepts developed</li>
+                                <li>Core team assembled (AI/ML + crypto expertise)</li>
+                                <li>Early research on verification mechanisms</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">2022: Seed Funding & Litepaper</h3>
+                            <p><strong>Milestone:</strong> $6.5M seed round + litepaper publication</p>
+                            <ul>
+                                <li>Detailed protocol specification released</li>
+                                <li>Probabilistic proof-of-learning formalized</li>
+                                <li>Graph-based pinpoint protocol designed</li>
+                                <li>Early proof-of-concept implementations</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">2023: Series A & Protocol Development</h3>
+                            <p><strong>Major Milestone:</strong> $43M Series A led by a16z crypto</p>
+                            <ul>
+                                <li>Protocol implementation accelerates</li>
+                                <li>Layer-2 rollup architecture finalized</li>
+                                <li>Early testnet launches (private)</li>
+                                <li>Developer SDK released</li>
+                                <li>Academic partnerships established</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">2024: Public Testnet & RL Swarm</h3>
+                            <p><strong>Community Launch:</strong> Public testnet opens to everyone</p>
+                            <ul>
+                                <li>Thousands of nodes join network</li>
+                                <li>RL Swarm collaborative learning introduced</li>
+                                <li>First large-scale ML training completed</li>
+                                <li>Verification mechanisms battle-tested</li>
+                                <li>AI Prediction Market launches</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">2025: Scale & Optimization</h3>
+                            <p><strong>Current Phase:</strong> Network growth and protocol refinement</p>
+                            <ul>
+                                <li>Multi-model RL Swarm experiments</li>
+                                <li>Performance optimizations</li>
+                                <li>Additional verification methods researched</li>
+                                <li>Mainnet preparation underway</li>
+                                <li>Enterprise pilot programs</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h3 style="color: var(--primary-color);">Future: Mainnet & Beyond</h3>
+                            <p><strong>The Roadmap Ahead:</strong></p>
+                            <ul>
+                                <li><strong>Mainnet Launch:</strong> Production-ready network</li>
+                                <li><strong>Token Generation Event (TGE):</strong> Public token launch</li>
+                                <li><strong>Increased Decentralization:</strong> Progressive governance handoff</li>
+                                <li><strong>Cross-Chain Integration:</strong> Other L2s and chains</li>
+                                <li><strong>Advanced Features:</strong> ZK-ML, private training, etc.</li>
+                                <li><strong>Ecosystem Growth:</strong> Apps built on Gensyn</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="paper-card" style="margin-top: 40px;">
+                        <h3 class="paper-title">Research Milestones</h3>
+                        <p>Key technical achievements on the path to production:</p>
+
+                        <h4>Verification Efficiency Improvements</h4>
+                        <ul>
+                            <li><strong>2021:</strong> 10x better than naive replication</li>
+                            <li><strong>2022:</strong> 100x improvement through graph-based pinpoint</li>
+                            <li><strong>2023:</strong> 1,350x efficiency vs traditional methods (current)</li>
+                            <li><strong>Target:</strong> 5,000x+ with future ZK integration</li>
+                        </ul>
+
+                        <h4>Network Performance</h4>
+                        <ul>
+                            <li><strong>Early testnet (2023):</strong> 10-50 nodes, limited models</li>
+                            <li><strong>Public testnet (2024):</strong> 1,000+ nodes, multiple model types</li>
+                            <li><strong>Current (2025):</strong> Thousands of nodes, production-scale training</li>
+                            <li><strong>Mainnet goal:</strong> 100,000+ nodes, global coverage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Glossary Tab -->
+                <div id="glossary" class="tab-content">
+                    <h2 style="margin-bottom: 30px;"><i class="fas fa-spell-check"></i> Technical Glossary</h2>
+
+                    <div class="paper-card">
+                        <h3 style="margin-bottom: 25px;">Core Concepts</h3>
+
+                        <div class="glossary-term">
+                            <h4>Decentralized ML Compute</h4>
+                            <p>A network where machine learning training is performed across many independent computers rather than in a centralized data center. Gensyn coordinates this through blockchain smart contracts.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Trustless Verification</h4>
+                            <p>The ability to verify computational work was done correctly without trusting the entity that performed it. Uses cryptography and math instead of reputation or identity.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Probabilistic Proof-of-Learning</h4>
+                            <p>A verification method that uses statistical properties of machine learning (like decreasing loss and improving accuracy) to prove training occurred, without re-executing the entire computation.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Graph-Based Pinpoint Protocol</h4>
+                            <p>A challenge-response game where verifiers can selectively check specific operations in a computation graph. Uses binary search to efficiently locate any incorrect computation.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Layer-2 Rollup</h4>
+                            <p>A blockchain scaling solution that performs computation off the main chain (Ethereum) but inherits its security by posting transaction data and proofs back to the main chain. Reduces costs by ~100x.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>RL Swarm</h4>
+                            <p>Reinforcement Learning Swarm - a collaborative training system where multiple AI models learn together by sharing feedback and solutions, improving faster than solo training.</p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 style="margin-bottom: 25px;">Machine Learning Terms</h3>
+
+                        <div class="glossary-term">
+                            <h4>Training vs Inference</h4>
+                            <p><strong>Training:</strong> The process of teaching a model by showing it data and adjusting its parameters. Extremely computationally expensive.</p>
+                            <p><strong>Inference:</strong> Using an already-trained model to make predictions. Much cheaper than training.</p>
+                            <p><em>Gensyn focuses on training, the harder problem.</em></p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Gradient Descent</h4>
+                            <p>The fundamental algorithm for training neural networks. Iteratively adjusts model parameters in the direction that reduces prediction error. The "gradients" indicate which direction to adjust each parameter.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Loss Function</h4>
+                            <p>A mathematical function that measures how wrong a model's predictions are. Training aims to minimize this loss. Common losses include cross-entropy (classification) and MSE (regression).</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Epoch</h4>
+                            <p>One complete pass through the entire training dataset. Models typically train for many epochs (10-1000+) until they converge to good performance.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Distributed Training</h4>
+                            <p>Training a single model across multiple GPUs or computers. Required for large models that don't fit on one device. Methods include data parallelism, model parallelism, and pipeline parallelism.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>FLOP (Floating Point Operation)</h4>
+                            <p>A single arithmetic operation (addition, multiplication, etc.) on floating-point numbers. ML training requires trillions of FLOPs. Model size often measured in "FLOP-days" of compute.</p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 style="margin-bottom: 25px;">Blockchain & Crypto Terms</h3>
+
+                        <div class="glossary-term">
+                            <h4>Smart Contract</h4>
+                            <p>Self-executing code on a blockchain. When conditions are met, the contract automatically executes (e.g., "if training is verified correct, pay the compute provider"). No intermediary needed.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Staking</h4>
+                            <p>Locking up tokens as a security deposit. If you behave honestly, you get your stake back plus rewards. If you cheat, your stake is slashed (taken away). Aligns economic incentives with honest behavior.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Slashing</h4>
+                            <p>The penalty for provably dishonest behavior. Your staked tokens are taken away (burned or redistributed). Makes attacks economically irrational since you lose more than you could gain.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Gas Fees</h4>
+                            <p>The cost to execute operations on a blockchain. Ethereum L1 gas is expensive (~$1-50 per transaction). Layer-2 rollups reduce this by ~100x (~$0.01-0.50 per transaction).</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Merkle Tree</h4>
+                            <p>A cryptographic data structure that allows efficient verification of large datasets. Each leaf is a data point, each parent node is a hash of its children. Knowing the root hash, you can verify any leaf with a short proof.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Byzantine Fault Tolerance (BFT)</h4>
+                            <p>A system's ability to reach consensus even when some participants are malicious or faulty. Traditional requires 3f+1 replicas to tolerate f failures. Gensyn achieves this more efficiently through probabilistic methods.</p>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <h3 style="margin-bottom: 25px;">Gensyn-Specific Terms</h3>
+
+                        <div class="glossary-term">
+                            <h4>Solver</h4>
+                            <p>A compute provider in the Gensyn network. Solvers stake tokens, accept ML training jobs, perform the computation, and submit proofs. They earn rewards for honest work.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Verifier</h4>
+                            <p>A network participant who checks that solvers performed training correctly. Verifiers can challenge suspicious results and earn rewards if they catch cheaters.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Pinpoint Challenge</h4>
+                            <p>The process of narrowing down a disputed computation to a single operation through binary search. Allows efficient resolution of verification challenges.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>Swarm Participant</h4>
+                            <p>Someone running a model in the RL Swarm collaborative training system. Participants earn rewards based on their model's performance and contribution to the swarm's collective learning.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>AI Prediction Market</h4>
+                            <p>A component of RL Swarm where models "bet" on correct answers to reasoning problems. Models that bet correctly and early earn higher rewards, creating an incentive for both accuracy and confidence.</p>
+                        </div>
+
+                        <div class="glossary-term">
+                            <h4>GenRL (Gensyn Reinforcement Learning)</h4>
+                            <p>The framework powering RL Swarm. Implements collaborative RL training with peer feedback, reward shaping, and on-chain verification.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Comprehensive research and educational resources for the Gensyn Protocol.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.closest('.tab-btn').classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

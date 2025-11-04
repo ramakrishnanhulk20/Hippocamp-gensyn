@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Hippocamp Academy - Master the Gensyn Network</title>
+    <meta name="title" content="Hippocamp Academy - Master the Gensyn Network">
+    <meta name="description" content="Master the Gensyn Protocol. Learn machine intelligence networking, run nodes, earn badges. Join the revolution where compute meets consensus.">
+    <meta name="keywords" content="Gensyn, Hippocamp, machine intelligence, decentralized compute, RL Swarm, verifiable AI, distributed training, node operation">
+    <meta name="author" content="Hippocamp Academy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gensyn-academy.com/">
+    <meta property="og:title" content="Gensyn Academy - Master Decentralized AI">
+    <meta property="og:description" content="Learn Gensyn Protocol, run RL Swarm nodes, and join the decentralized AI revolution.">
+    <meta property="og:image" content="https://gensyn-academy.com/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gensyn-academy.com/">
+    <meta property="twitter:title" content="Gensyn Academy - Master Decentralized AI">
+    <meta property="twitter:description" content="Learn Gensyn Protocol, run RL Swarm nodes, and join the decentralized AI revolution.">
+    <meta property="twitter:image" content="https://gensyn-academy.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hippocamp">
+    
+    <!-- PWA Install Script -->
+        <!-- Scripts -->
+    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Gensyn Academy",
+        "description": "Educational platform for learning Gensyn Protocol and decentralized AI",
+        "url": "https://gensyn-academy.com",
+        "sameAs": [
+            "https://twitter.com/gensyn_ai",
+            "https://github.com/gensyn-ai",
+            "https://discord.gg/gensyn"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp - Smart Hippo Explorer" class="logo-icon">
+                <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+                <li role="none"><a href="#courses" class="nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="learning-paths.html" class="nav-link" role="menuitem">Learning Paths</a></li>
+                <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
+                <li role="none"><a href="network-dashboard.html" class="nav-link" role="menuitem">Dashboard</a></li>
+                <li role="none"><a href="#node-setup" class="nav-link" role="menuitem">Node Setup</a></li>
+                <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="badges.html" class="nav-link" role="menuitem">Badges</a></li>
+                <li role="none"><a href="#community" class="nav-link" role="menuitem">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-label="Hero section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glitch" data-text="MASTER GENSYN">MASTER GENSYN</h1>
+                <p class="hero-subtitle">THE NETWORK FOR MACHINE INTELLIGENCE</p>
+                <p class="hero-description">Learn the protocols that coordinate machine intelligence. Run nodes. Earn badges. Join the permissionless network where compute meets consensus.</p>
+                
+                <div class="hero-stats" role="region" aria-label="Platform statistics">
+                    <div class="stat-card">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <div class="stat-content">
+                            <h3 class="count-up" data-target="12000" aria-live="polite">0</h3>
+                            <p>Active Nodes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                        <div class="stat-content">
+                            <h3 class="count-up" data-target="150" aria-live="polite">0</h3>
+                            <p>Countries</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-server" aria-hidden="true"></i>
+                        <div class="stat-content">
+                            <h3 class="count-up" data-target="50" aria-live="polite">0</h3>
+                            <p>Million Raised</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#courses" class="btn btn-primary">
+                        <i class="fas fa-graduation-cap"></i> Start Learning
+                    </a>
+                    <a href="#node-setup" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i> Run a Node
+                    </a>
+                    <a href="https://dashboard.gensyn.ai" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="badge-showcase">
+                    <h4 class="badge-title">🏆 UNLOCK EXCLUSIVE BADGES</h4>
+                    <div class="badge-grid">
+                        <div class="badge-item locked">
+                            <div class="badge-icon">🎓</div>
+                            <div class="badge-name">Gensyn Scholar</div>
+                            <div class="badge-progress">Complete fundamentals</div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon">🐝</div>
+                            <div class="badge-name">Swarm Initiate</div>
+                            <div class="badge-progress">Master RL Swarm</div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon">⚙️</div>
+                            <div class="badge-name">Node Operator</div>
+                            <div class="badge-progress">Run a node</div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon">�️</div>
+                            <div class="badge-name">dApp Builder</div>
+                            <div class="badge-progress">Build on Gensyn</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 25px;">
+                        <a href="badges.html" class="btn-secondary" style="display: inline-block; padding: 12px 30px; background: rgba(255,201,212,0.1); border: 2px solid var(--primary-color); border-radius: 12px; color: var(--primary-color); text-decoration: none; font-weight: 700; transition: all 0.3s ease;">
+                            <i class="fas fa-award"></i> View All Badges
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="gensyn-brand">
+                    <p class="brand-text">POWERED BY</p>
+                    <div class="gensyn-logo-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="gensyn-logo-icon" width="60" height="60">
+                            <rect fill="#000000" width="100" height="100"/>
+                            <g fill="#FFC9D4">
+                                <rect x="38.75" y="17.5" width="22.5" height="7.5"/>
+                                <rect x="31.25" y="25" width="7.5" height="7.5"/>
+                                <rect x="61.25" y="25" width="7.5" height="7.5"/>
+                                <rect x="23.75" y="32.5" width="7.5" height="7.5"/>
+                                <rect x="68.75" y="32.5" width="7.5" height="7.5"/>
+                                <rect x="23.75" y="40" width="7.5" height="7.5"/>
+                                <rect x="68.75" y="40" width="7.5" height="7.5"/>
+                                <rect x="18.75" y="47.5" width="7.5" height="7.5"/>
+                                <rect x="73.75" y="47.5" width="7.5" height="7.5"/>
+                                <rect x="18.75" y="55" width="7.5" height="7.5"/>
+                                <rect x="73.75" y="55" width="7.5" height="7.5"/>
+                                <rect x="23.75" y="62.5" width="7.5" height="7.5"/>
+                                <rect x="68.75" y="62.5" width="7.5" height="7.5"/>
+                                <rect x="23.75" y="70" width="7.5" height="7.5"/>
+                                <rect x="68.75" y="70" width="7.5" height="7.5"/>
+                                <rect x="31.25" y="77.5" width="7.5" height="7.5"/>
+                                <rect x="61.25" y="77.5" width="7.5" height="7.5"/>
+                                <rect x="38.75" y="85" width="22.5" height="7.5"/>
+                            </g>
+                        </svg>
+                        <span class="gensyn-text">GENSYN</span>
+                    </div>
+                    <p class="brand-tagline">The network for machine intelligence</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator" aria-hidden="true">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Course Catalog -->
+    <section class="courses-section" id="courses" aria-labelledby="courses-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="courses-title" class="section-title">MASTER THE PROTOCOL</h2>
+                <p class="section-subtitle">Learn the infrastructure that coordinates machine intelligence across permissionless networks</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs" role="tablist" aria-label="Course difficulty filters">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="courses-grid">
+                    <i class="fas fa-th" aria-hidden="true"></i> All Courses
+                </button>
+                <button class="filter-btn" data-filter="beginner" role="tab" aria-selected="false" aria-controls="courses-grid">
+                    <i class="fas fa-seedling" aria-hidden="true"></i> Beginner
+                </button>
+                <button class="filter-btn" data-filter="intermediate" role="tab" aria-selected="false" aria-controls="courses-grid">
+                    <i class="fas fa-rocket" aria-hidden="true"></i> Intermediate
+                </button>
+                <button class="filter-btn" data-filter="advanced" role="tab" aria-selected="false" aria-controls="courses-grid">
+                    <i class="fas fa-fire" aria-hidden="true"></i> Advanced
+                </button>
+            </div>
+
+            <div id="courses-grid" class="courses-grid" role="tabpanel">
+                <!-- Course 1: Gensyn Basics -->
+                <article class="course-card" data-level="beginner" itemscope itemtype="https://schema.org/Course">
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">🎓</span>
+                        <span class="badge-label">UNLOCKS: Novice Badge</span>
+                    </div>
+                    <div class="course-icon" aria-hidden="true">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="course-badge beginner" aria-label="Difficulty: Beginner">Beginner</div>
+                    <h3 itemprop="name">Protocol Foundations</h3>
+                    <p itemprop="description">Understand how Gensyn networks machine intelligence resources. Learn the core protocols that coordinate verifiable compute.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 2 hours</span>
+                        <span><i class="fas fa-book"></i> 8 lessons</span>
+                        <span><i class="fas fa-certificate"></i> Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="gensyn-basics.html" class="course-btn" itemprop="url" aria-label="Start Gensyn Fundamentals course">
+                        Start Course <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+
+                <!-- Course 2: Protocol Deep Dive -->
+                <article class="course-card" data-level="intermediate" itemscope itemtype="https://schema.org/Course">
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">🔬</span>
+                        <span class="badge-label">UNLOCKS: Researcher Badge</span>
+                    </div>
+                    <div class="course-icon" aria-hidden="true">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="course-badge intermediate" aria-label="Difficulty: Intermediate">Intermediate</div>
+                    <h3 itemprop="name">Verifiable Compute Architecture</h3>
+                    <p>Deep dive into cryptographic verification, graph-based proofs, and trustless machine learning coordination.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 3 hours</span>
+                        <span><i class="fas fa-book"></i> 12 lessons</span>
+                        <span><i class="fas fa-certificate"></i> Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="protocol-architecture.html" class="course-btn" itemprop="url">
+                        Start Course <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+
+                <!-- Course 3: RL Swarm Basics -->
+                <article class="course-card featured" data-level="beginner" itemscope itemtype="https://schema.org/Course">
+                    <div class="featured-badge" aria-label="Most popular">
+                        <i class="fas fa-fire" aria-hidden="true"></i> MOST POPULAR
+                    </div>
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">⚡</span>
+                        <span class="badge-label">UNLOCKS: Node Runner Badge</span>
+                    </div>
+                    <div class="course-icon" aria-hidden="true">
+                        <i class="fas fa-swatchbook"></i>
+                    </div>
+                    <div class="course-badge beginner" aria-label="Difficulty: Beginner">Beginner</div>
+                    <h3 itemprop="name">RL Swarm: Distributed Intelligence</h3>
+                    <p>Join the testnet. Run collaborative RL training. Experience how Gensyn coordinates thousands of nodes in permissionless swarm learning.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 2.5 hours</span>
+                        <span><i class="fas fa-network-wired"></i> Live Network</span>
+                        <span><i class="fas fa-certificate"></i> Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="rl-swarm-basics.html" class="course-btn">
+                        Start Course <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Course 4: Running Nodes -->
+                <article class="course-card" data-level="intermediate" itemscope itemtype="https://schema.org/Course">
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">🖥️</span>
+                        <span class="badge-label">UNLOCKS: Operator Badge</span>
+                    </div>
+                    <div class="course-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="course-badge intermediate">Intermediate</div>
+                    <h3 itemprop="name">Testnet Node Operations</h3>
+                    <p itemprop="description">Deploy and maintain compute nodes on Gensyn testnet. Learn monitoring, optimization, and network contribution strategies.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 4 hours</span>
+                        <span><i class="fas fa-terminal"></i> Hands-on</span>
+                        <span><i class="fas fa-certificate"></i> Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="node-operation.html" class="course-btn" itemprop="url">
+                        Start Course <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Course 5: Advanced Optimization -->
+                <article class="course-card" data-level="advanced" itemscope itemtype="https://schema.org/Course">
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">🧠</span>
+                        <span class="badge-label">UNLOCKS: Protocol Master Badge</span>
+                    </div>
+                    <div class="course-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="course-badge advanced">Advanced</div>
+                    <h3 itemprop="name">Advanced Protocol Engineering</h3>
+                    <p itemprop="description">Master GenRL framework, proof generation, graph-based verification, and contribute to protocol research.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 5 hours</span>
+                        <span><i class="fas fa-brain"></i> Expert</span>
+                        <span><i class="fas fa-certificate"></i> Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="advanced-optimization.html" class="course-btn" itemprop="url">
+                        Start Course <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                <!-- Course 6: Building dApps -->
+                <article class="course-card" data-level="advanced" itemscope itemtype="https://schema.org/Course">
+                    <div class="course-reward-badge">
+                        <span class="badge-emoji">💎</span>
+                        <span class="badge-label">UNLOCKS: Gensyn Elite Badge</span>
+                    </div>
+                    <div class="course-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="course-badge advanced">Advanced</div>
+                    <h3 itemprop="name">Building on the Network</h3>
+                    <p itemprop="description">Create applications that leverage Gensyn's verifiable compute. Build the future of trustless machine intelligence coordination.</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> 6 hours</span>
+                        <span><i class="fas fa-rocket"></i> Builder Track</span>
+                        <span><i class="fas fa-certificate"></i> Elite Badge</span>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0% Complete</span>
+                    </div>
+                    <a href="building-dapps.html" class="course-btn" itemprop="url">
+                        Start Course <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Node Setup Section -->
+    <section class="node-setup-section" id="node-setup">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">CONTRIBUTE COMPUTE</h2>
+                <p class="section-subtitle">Join 12,000+ nodes coordinating machine intelligence on the testnet</p>
+            </div>
+
+            <div class="setup-options">
+                <div class="setup-card">
+                    <div class="setup-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Local PC/Mac</h3>
+                    <p>Run on your personal computer with GPU or CPU. Perfect for learning and contributing.</p>
+                    <div class="requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 32GB RAM (CPU) or 8GB+ GPU</li>
+                            <li><i class="fas fa-check"></i> Python 3.10+</li>
+                            <li><i class="fas fa-check"></i> 50GB disk space</li>
+                        </ul>
+                    </div>
+                    <a href="node-operation.html#local" class="setup-btn">
+                        <i class="fas fa-book"></i> Setup Guide
+                    </a>
+                </div>
+
+                <div class="setup-card featured-setup">
+                    <div class="best-badge">
+                        <i class="fas fa-crown"></i> Recommended
+                    </div>
+                    <div class="setup-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud GPU</h3>
+                    <p>Rent affordable GPUs from Vast.ai, QuickPod, or Hyperbolic. Best performance and uptime.</p>
+                    <div class="requirements">
+                        <h4>Providers:</h4>
+                        <ul>
+                            <li><i class="fas fa-star"></i> Vast.ai - From $0.30/hr</li>
+                            <li><i class="fas fa-star"></i> QuickPod - Easy setup</li>
+                            <li><i class="fas fa-star"></i> Hyperbolic - Fast GPUs</li>
+                        </ul>
+                    </div>
+                    <a href="node-operation.html#cloud" class="setup-btn">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+
+                <div class="setup-card">
+                    <div class="setup-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>VPS Server</h3>
+                    <p>24/7 uptime with CPU training. Budget-friendly option for continuous participation.</p>
+                    <div class="requirements">
+                        <h4>Specs:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 16 core CPU</li>
+                            <li><i class="fas fa-check"></i> 64GB RAM</li>
+                            <li><i class="fas fa-check"></i> Ubuntu 20.04+</li>
+                        </ul>
+                    </div>
+                    <a href="node-operation.html#vps" class="setup-btn">
+                        <i class="fas fa-book"></i> VPS Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Start Terminal -->
+            <div class="terminal-demo">
+                <div class="terminal-header">
+                    <span class="terminal-btn red"></span>
+                    <span class="terminal-btn yellow"></span>
+                    <span class="terminal-btn green"></span>
+                    <span class="terminal-title">Quick Start - One Command Setup</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">git clone https://github.com/gensyn-ai/rl-swarm && cd rl-swarm</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">python3 -m venv .venv && source .venv/bin/activate</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span class="command">./run_rl_swarm.sh</span>
+                    </div>
+                    <div class="terminal-line success">
+                        <span class="output">✓ Connected to swarm!</span>
+                    </div>
+                    <div class="terminal-line success">
+                        <span class="output">✓ Training started...</span>
+                    </div>
+                </div>
+                <button class="copy-btn" onclick="copyTerminalCommands()">
+                    <i class="fas fa-copy"></i> Copy Commands
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Papers Section -->
+    <section class="research-section" id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">PROTOCOL RESEARCH</h2>
+                <p class="section-subtitle">Pioneering the infrastructure for trustless machine intelligence coordination</p>
+            </div>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="paper-badge">New</div>
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>SAPO: Efficient LM Post-Training</h3>
+                    <p>A meta-algorithm that wraps around your preferred policy gradient algorithm for collective RL.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Reinforcement Learning</span>
+                        <span class="tag">Post-Training</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#sapo" class="paper-link">Read Summary</a>
+                        <a href="https://blog.gensyn.ai/" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Full Paper
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>BlockAssist: Assistance Learning</h3>
+                    <p>AI Minecraft assistant learning from human actions, demonstrating reinforcement learning in interactive environments.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Assistance Learning</span>
+                        <span class="tag">Gaming AI</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#blockassist" class="paper-link">Read Summary</a>
+                        <a href="https://www.gensyn.ai/articles/blockassist" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Article
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>GenRL Framework</h3>
+                    <p>New backend for RL Swarm, designed to simplify multi-agent, multi-stage RL environment creation.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Framework</span>
+                        <span class="tag">Multi-Agent</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#genrl" class="paper-link">Read Summary</a>
+                        <a href="https://www.gensyn.ai/articles/genrl" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Article
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>CheckFree: Fault Tolerance</h3>
+                    <p>Novel recovery method for distributed training failures without checkpointing or redundant computation.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Distributed Training</span>
+                        <span class="tag">Fault Tolerance</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#checkfree" class="paper-link">Read Summary</a>
+                        <a href="https://blog.gensyn.ai/" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Paper
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>NoLoCo: Training Without All-Reduce</h3>
+                    <p>Novel optimization replacing global synchronization with gossip method for distributed training.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Optimization</span>
+                        <span class="tag">Distributed</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#noloco" class="paper-link">Read Summary</a>
+                        <a href="https://blog.gensyn.ai/" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Paper
+                        </a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>SkipPipe: Communication Efficiency</h3>
+                    <p>Communication efficient method for decentralized training in heterogeneous networks.</p>
+                    <div class="paper-tags">
+                        <span class="tag">Pipeline</span>
+                        <span class="tag">Efficiency</span>
+                    </div>
+                    <div class="paper-actions">
+                        <a href="research.html#skippipe" class="paper-link">Read Summary</a>
+                        <a href="https://blog.gensyn.ai/" target="_blank" class="paper-link">
+                            <i class="fas fa-external-link-alt"></i> Paper
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section" id="community">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">JOIN THE NETWORK</h2>
+                <p class="section-subtitle">Connect with builders, researchers, and node operators shaping the future of machine intelligence</p>
+            </div>
+
+            <div class="community-grid">
+                <a href="https://discord.gg/gensyn" target="_blank" class="community-card discord">
+                    <i class="fab fa-discord"></i>
+                    <h3>Discord</h3>
+                    <p>Real-time chat, support, and announcements</p>
+                    <span class="join-btn">Join Server</span>
+                </a>
+
+                <a href="https://twitter.com/gensyn_ai" target="_blank" class="community-card twitter">
+                    <i class="fab fa-twitter"></i>
+                    <h3>Twitter/X</h3>
+                    <p>Latest updates and community highlights</p>
+                    <span class="join-btn">Follow Us</span>
+                </a>
+
+                <a href="https://github.com/gensyn-ai" target="_blank" class="community-card github">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>Contribute code and report issues</p>
+                    <span class="join-btn">Star Repo</span>
+                </a>
+
+                <a href="https://dashboard.gensyn.ai" target="_blank" class="community-card dashboard">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Dashboard</h3>
+                    <p>Monitor your nodes and track progress</p>
+                    <span class="join-btn">View Stats</span>
+                </a>
+
+                <a href="https://docs.gensyn.ai" target="_blank" class="community-card docs">
+                    <i class="fas fa-book"></i>
+                    <h3>Documentation</h3>
+                    <p>Official technical documentation</p>
+                    <span class="join-btn">Read Docs</span>
+                </a>
+
+                <a href="https://blog.gensyn.ai" target="_blank" class="community-card blog">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Blog</h3>
+                    <p>Research papers and deep dives</p>
+                    <span class="join-btn">Read Articles</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is Gensyn?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Gensyn is a decentralized protocol that creates a global marketplace for machine learning computation. It connects anyone with spare computing power to developers who need it for AI training, making ML infrastructure accessible and affordable for everyone.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need a powerful GPU to participate?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No! While GPUs provide better performance, you can participate with CPU-only systems (32GB RAM minimum), rent affordable cloud GPUs (from $0.30/hr), or use lower-end GPUs (8GB+ VRAM). Start with what you have!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I earn rewards?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>By running RL Swarm nodes, you contribute compute to train AI models collaboratively. Participants earn on-chain rewards tracked on the Gensyn testnet. Your contributions are recorded and rewarded based on your computational contribution.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is RL Swarm?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>RL Swarm is a peer-to-peer system where multiple AI models train collaboratively, sharing insights and learning from collective experiences. It's faster and more efficient than training models in isolation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is Gensyn live on mainnet?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Gensyn is currently running on testnet with over 12,000 active nodes. The mainnet launch will come after thorough testing. You can participate in the testnet now to learn and prepare for mainnet rewards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Where can I get help?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Join the Discord community for real-time support, check GitHub for technical issues, or use this website's comprehensive guides. The community is very helpful and active!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🦛 HIPPOCAMP ACADEMY</h3>
+                    <p>Educational platform for mastering the Gensyn Protocol. Learn how machine intelligence networks coordinate through open, permissionless protocols.</p>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">Powered by Gensyn - The network for machine intelligence</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/gensyn_ai" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gensyn" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="https://github.com/gensyn-ai" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="gensyn-basics.html">Gensyn Fundamentals</a></li>
+                        <li><a href="protocol-architecture.html">Protocol Architecture</a></li>
+                        <li><a href="rl-swarm-basics.html">RL Swarm Intro</a></li>
+                        <li><a href="advanced-optimization.html">Advanced Topics</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Run Nodes</h4>
+                    <ul>
+                        <li><a href="node-operation.html#local">Local Setup</a></li>
+                        <li><a href="node-operation.html#cloud">Cloud GPU</a></li>
+                        <li><a href="node-operation.html#vps">VPS Setup</a></li>
+                        <li><a href="node-operation.html#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://docs.gensyn.ai" target="_blank">Official Docs</a></li>
+                        <li><a href="https://dashboard.gensyn.ai" target="_blank">Dashboard</a></li>
+                        <li><a href="research.html">Research Papers</a></li>
+                        <li><a href="https://blog.gensyn.ai" target="_blank">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational resource for the Gensyn ecosystem.</p>
+                <p>Built for those who believe machine intelligence should flourish alongside human intelligence 🦛</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

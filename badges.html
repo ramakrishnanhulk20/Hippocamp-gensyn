@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Badges - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .badges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .badge-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 201, 212, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge-card.earned {
+            border-color: var(--primary-color);
+            background: rgba(255, 201, 212, 0.05);
+        }
+
+        .badge-card.locked {
+            opacity: 0.5;
+        }
+
+        .badge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 201, 212, 0.2);
+        }
+
+        .badge-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .badge-card.earned .badge-icon {
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .badge-card.locked .badge-icon {
+            filter: grayscale(100%);
+            opacity: 0.3;
+        }
+
+        .badge-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .badge-course {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .badge-description {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .badge-points {
+            display: inline-block;
+            background: rgba(255, 201, 212, 0.1);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .badge-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-card.locked .badge-status {
+            background: rgba(255, 255, 255, 0.1);
+            color: #64748b;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 201, 212, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .progress-ring {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .share-section {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 201, 212, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 201, 212, 0.2);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 201, 212, 0.3);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .share-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#courses" class="nav-link">Courses</a></li>
+                <li><a href="network-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="badges.html" class="nav-link active">Badges</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Your Badges">Your Badges</h1>
+                <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto;">
+                    Track your learning journey through the Hippocamp Academy
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-points">0</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="badges-earned">0</span>
+                    <span class="stat-label">Badges Earned</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="completion-percent">0%</span>
+                    <span class="stat-label">Completion</span>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Badge Collection</h2>
+                <p style="color: #94a3b8;">Complete courses to unlock badges and earn points!</p>
+            </div>
+
+            <div class="badges-container">
+                
+                <!-- Gensyn Scholar -->
+                <div class="badge-card" data-badge-id="badge_fundamentals">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">🎓</span>
+                    <h3 class="badge-name">Gensyn Scholar</h3>
+                    <p class="badge-course">Gensyn Fundamentals</p>
+                    <p class="badge-description">
+                        Master the basics of Gensyn Protocol. Understand decentralized AI training from the ground up.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 200 Points
+                    </div>
+                </div>
+
+                <!-- Swarm Initiate -->
+                <div class="badge-card" data-badge-id="badge_swarm_basic">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">🐝</span>
+                    <h3 class="badge-name">Swarm Initiate</h3>
+                    <p class="badge-course">RL Swarm Basics</p>
+                    <p class="badge-description">
+                        Learn how AI models train together in swarms. Understand collaborative machine learning.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 250 Points
+                    </div>
+                </div>
+
+                <!-- Protocol Master -->
+                <div class="badge-card" data-badge-id="badge_protocol">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">🏗️</span>
+                    <h3 class="badge-name">Protocol Master</h3>
+                    <p class="badge-course">Protocol Architecture</p>
+                    <p class="badge-description">
+                        Deep understanding of Gensyn's protocol architecture. Know how the system works under the hood.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 300 Points
+                    </div>
+                </div>
+
+                <!-- Node Operator -->
+                <div class="badge-card" data-badge-id="badge_node_operator">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">⚙️</span>
+                    <h3 class="badge-name">Node Operator</h3>
+                    <p class="badge-course">Node Operation</p>
+                    <p class="badge-description">
+                        Successfully set up and operate a Gensyn node. Contribute compute power to the network.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 350 Points
+                    </div>
+                </div>
+
+                <!-- Optimization Expert -->
+                <div class="badge-card" data-badge-id="badge_advanced">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">⚡</span>
+                    <h3 class="badge-name">Optimization Expert</h3>
+                    <p class="badge-course">Advanced Optimization</p>
+                    <p class="badge-description">
+                        Master advanced optimization techniques. Maximize node performance and earnings.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 400 Points
+                    </div>
+                </div>
+
+                <!-- dApp Builder -->
+                <div class="badge-card" data-badge-id="badge_builder">
+                    <div class="badge-status">Locked</div>
+                    <span class="badge-icon">🛠️</span>
+                    <h3 class="badge-name">dApp Builder</h3>
+                    <p class="badge-course">Building dApps</p>
+                    <p class="badge-description">
+                        Build decentralized applications using Gensyn. Create the future of AI-powered dApps.
+                    </p>
+                    <div class="badge-points">
+                        <i class="fas fa-star"></i> 500 Points
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Share Section -->
+            <div class="share-section">
+                <h2 style="margin-bottom: 15px; font-size: 2rem;">Share Your Progress</h2>
+                <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px;">
+                    Show off your achievements on social media!
+                </p>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" id="share-twitter">
+                        <i class="fab fa-twitter"></i> Share on Twitter
+                    </a>
+                    <a href="#" class="share-btn" id="share-discord">
+                        <i class="fab fa-discord"></i> Share on Discord
+                    </a>
+                    <a href="#" class="share-btn" id="share-linkedin">
+                        <i class="fab fa-linkedin"></i> Share on LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div style="text-align: center; margin-top: 60px;">
+                <h2 style="margin-bottom: 20px; font-size: 2rem;">Keep Learning!</h2>
+                <p style="color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem;">
+                    More badges to unlock, more skills to master
+                </p>
+                <a href="index.html#courses" class="btn-primary">
+                    <i class="fas fa-arrow-left"></i> Back to Courses
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through interactive courses and earn badges!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>
+    <script src="social-share.js"></script>
+    <script>
+        // Load badge page data
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseSystem = new CourseSystem();
+            
+            // Update stats
+            document.getElementById('total-points').textContent = courseSystem.points.toLocaleString();
+            document.getElementById('badges-earned').textContent = courseSystem.badges.length;
+            
+            const totalBadges = 6;
+            const completionPercent = Math.round((courseSystem.badges.length / totalBadges) * 100);
+            document.getElementById('completion-percent').textContent = completionPercent + '%';
+            
+            // Update badge cards
+            courseSystem.badges.forEach(badgeId => {
+                const badgeCard = document.querySelector(`[data-badge-id="${badgeId}"]`);
+                if (badgeCard) {
+                    badgeCard.classList.add('earned');
+                    badgeCard.classList.remove('locked');
+                    const status = badgeCard.querySelector('.badge-status');
+                    if (status) status.textContent = 'Earned ✓';
+                }
+            });
+            
+            // Share button handlers
+            document.getElementById('share-twitter').addEventListener('click', function(e) {
+                e.preventDefault();
+                const text = `I've earned ${courseSystem.badges.length} badges and ${courseSystem.points} points at Hippocamp Academy! 🎓 Learning the Gensyn Protocol 🚀`;
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${url}`, '_blank');
+            });
+            
+            document.getElementById('share-discord').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigator.clipboard.writeText(`I've earned ${courseSystem.badges.length} badges and ${courseSystem.points} points at Hippocamp Academy! 🎓`);
+                alert('Message copied to clipboard! Paste it in Discord.');
+            });
+            
+            document.getElementById('share-linkedin').addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

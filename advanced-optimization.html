@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Optimization - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-course-id="advanced-optimization">
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Advanced Optimization">Advanced Optimization</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Master advanced techniques to maximize your node's performance and earnings! Learn optimization strategies used by top performers.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="fas fa-award"></i> Complete all lessons to earn the <strong style="color: var(--primary-color);">Optimization Expert</strong> badge (400 points)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Course Progress -->
+                <div class="course-progress">
+                    <div class="course-progress-header">
+                        <span style="font-weight: 600; font-size: 1.1rem;">Course Progress</span>
+                        <span class="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-bar">
+                        <div class="course-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Lesson 1 -->
+                <div class="lesson" data-lesson-id="opt-lesson-1" data-lesson-title="Hardware Optimization" data-points="100">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-microchip"></i> Lesson 1: Maximize Your Hardware</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-star"></i> 100 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Getting Every Bit of Performance</h3>
+                        <p>Your hardware is your moneymaker. Let's optimize it!</p>
+
+                        <h3>GPU Optimization</h3>
+                        
+                        <p><strong>1. Overclocking (Carefully!)</strong></p>
+                        <ul>
+                            <li>Increase GPU clock speed by 5-10%</li>
+                            <li>Monitor temperatures (stay under 80°C)</li>
+                            <li>Test stability with benchmarks</li>
+                            <li>Can increase earnings by 10-15%</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Safety First:</strong> Only overclock if you understand the risks. Poor cooling + overclocking = damaged hardware!
+                        </div>
+
+                        <p><strong>2. Memory Optimization</strong></p>
+                        <ul>
+                            <li>Increase memory clock for AI workloads</li>
+                            <li>AI training is memory-intensive</li>
+                            <li>+200 MHz can boost performance 5-8%</li>
+                            <li>More stable than core overclocking</li>
+                        </ul>
+
+                        <p><strong>3. Power Limit Tuning</strong></p>
+                        <ul>
+                            <li>Find sweet spot: performance vs electricity</li>
+                            <li>Often 90% power = 95% performance</li>
+                            <li>Lower electricity costs increase profits</li>
+                            <li>Use tools like MSI Afterburner</li>
+                        </ul>
+
+                        <h3>Cooling is Critical</h3>
+                        
+                        <p><strong>Why Cooling Matters:</strong></p>
+                        <ul>
+                            <li>Hot GPUs throttle (slow down automatically)</li>
+                            <li>Reduced performance = less earnings</li>
+                            <li>Heat damages components over time</li>
+                            <li>Good cooling = consistent performance</li>
+                        </ul>
+
+                        <p><strong>Cooling Improvements:</strong></p>
+                        <ul>
+                            <li><strong>Clean dust regularly:</strong> Dust blocks airflow</li>
+                            <li><strong>Improve case airflow:</strong> Add fans if needed</li>
+                            <li><strong>Thermal paste replacement:</strong> Every 2 years</li>
+                            <li><strong>Undervolting:</strong> Less heat, same performance</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-snowflake"></i>
+                            <strong>Pro Tip:</strong> A GPU at 70°C outperforms one at 85°C, even with same specs!
+                        </div>
+
+                        <h3>System-Level Optimization</h3>
+
+                        <p><strong>1. Disable Unnecessary Services</strong></p>
+                        <ul>
+                            <li>Close background applications</li>
+                            <li>Disable Windows visual effects</li>
+                            <li>Stop unnecessary startup programs</li>
+                            <li>More resources for training</li>
+                        </ul>
+
+                        <p><strong>2. Driver Optimization</strong></p>
+                        <ul>
+                            <li>Always use latest GPU drivers</li>
+                            <li>Enable compute mode (not gaming mode)</li>
+                            <li>Disable driver overlays</li>
+                            <li>Can improve performance 3-5%</li>
+                        </ul>
+
+                        <p><strong>3. RAM Optimization</strong></p>
+                        <ul>
+                            <li>Enable XMP profiles for faster RAM</li>
+                            <li>Close memory-hungry programs</li>
+                            <li>32GB minimum, 64GB recommended</li>
+                            <li>Fast RAM = faster data loading</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="opt-q1">
+                            <div class="quiz-question">
+                                🤔 Quiz: What's the main benefit of running your GPU cooler?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    It uses less electricity
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    It prevents thermal throttling, maintaining consistent performance
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It makes the GPU last exactly twice as long
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It automatically overclocks itself
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson" data-lesson-id="opt-lesson-2" data-lesson-title="Network & Communication" data-points="100">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-network-wired"></i> Lesson 2: Network Optimization</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 9 min</span>
+                            <span><i class="fas fa-star"></i> 100 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Speed Up Communication</h3>
+                        <p>Fast networking = more work = higher earnings!</p>
+
+                        <h3>Internet Connection Optimization</h3>
+
+                        <p><strong>1. Connection Quality Matters</strong></p>
+                        <ul>
+                            <li><strong>Minimum:</strong> 50 Mbps down / 10 Mbps up</li>
+                            <li><strong>Recommended:</strong> 100+ Mbps down / 20+ Mbps up</li>
+                            <li><strong>Optimal:</strong> 1 Gbps fiber with low latency</li>
+                        </ul>
+
+                        <p><strong>2. Wired vs Wireless</strong></p>
+                        <ul>
+                            <li><strong>Always use ethernet cable!</strong></li>
+                            <li>WiFi adds latency and packet loss</li>
+                            <li>Wired = stable, predictable performance</li>
+                            <li>Worth running cable to your node</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-wifi"></i>
+                            <strong>WiFi Reality:</strong> Even great WiFi adds 5-20ms latency and occasional disconnects. For 24/7 nodes, ethernet is essential!
+                        </div>
+
+                        <p><strong>3. Router Optimization</strong></p>
+                        <ul>
+                            <li>Enable QoS (Quality of Service) for your node</li>
+                            <li>Forward necessary ports</li>
+                            <li>Use modern router (WiFi 6 / AX standard)</li>
+                            <li>Update router firmware regularly</li>
+                        </ul>
+
+                        <h3>Reducing Latency</h3>
+
+                        <p><strong>Why Latency Matters:</strong></p>
+                        <ul>
+                            <li>Lower latency = faster communication with swarm</li>
+                            <li>Faster updates = more synchronized training</li>
+                            <li>Better chance of getting work assignments</li>
+                            <li>Higher reputation score</li>
+                        </ul>
+
+                        <p><strong>Latency Optimization:</strong></p>
+                        <ul>
+                            <li><strong>Ping test:</strong> Test latency to Gensyn nodes</li>
+                            <li><strong>DNS optimization:</strong> Use fast DNS (1.1.1.1 or 8.8.8.8)</li>
+                            <li><strong>Close bandwidth hogs:</strong> No streaming while training</li>
+                            <li><strong>Geographic location:</strong> Closer to other nodes = lower latency</li>
+                        </ul>
+
+                        <h3>Bandwidth Management</h3>
+
+                        <p><strong>Understanding Bandwidth Usage:</strong></p>
+                        <ul>
+                            <li><strong>Initial sync:</strong> Large download (model + dataset)</li>
+                            <li><strong>During training:</strong> Regular small updates</li>
+                            <li><strong>Verification:</strong> Send proofs periodically</li>
+                            <li><strong>Model sync:</strong> Share parameters with swarm</li>
+                        </ul>
+
+                        <p><strong>Optimization Strategies:</strong></p>
+                        <ul>
+                            <li>Schedule heavy downloads during off-peak hours</li>
+                            <li>Use compression when available</li>
+                            <li>Cache frequently used data</li>
+                            <li>Prioritize training traffic</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <strong>Pro Tip:</strong> Run speedtest during different times of day. Avoid peak hours when your ISP throttles connections!
+                        </div>
+
+                        <h3>Uptime is Everything</h3>
+
+                        <p><strong>Why 24/7 Matters:</strong></p>
+                        <ul>
+                            <li>More uptime = more work opportunities</li>
+                            <li>Builds reputation for reliability</li>
+                            <li>Get priority for long-running jobs</li>
+                            <li>Compound effect on earnings</li>
+                        </ul>
+
+                        <p><strong>Maximizing Uptime:</strong></p>
+                        <ul>
+                            <li><strong>UPS (Uninterruptible Power Supply):</strong> Continue during outages</li>
+                            <li><strong>Stable internet:</strong> Business-grade if possible</li>
+                            <li><strong>Auto-restart:</strong> Configure node to restart after crashes</li>
+                            <li><strong>Monitoring:</strong> Get alerts if node goes down</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="opt-q2">
+                            <div class="quiz-question">
+                                🤔 Quiz: Why should you use ethernet instead of WiFi for your node?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Ethernet uses less electricity
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    WiFi is not secure enough
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Ethernet provides more stable connection with lower latency and no disconnects
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    The Gensyn protocol requires ethernet
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson" data-lesson-id="opt-lesson-3" data-lesson-title="Earning Strategies" data-points="100">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-coins"></i> Lesson 3: Maximize Your Earnings</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-star"></i> 100 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Smart Economics</h3>
+                        <p>Earning isn't just about hardware - it's about strategy!</p>
+
+                        <h3>Understanding the Economics</h3>
+
+                        <p><strong>Your Costs:</strong></p>
+                        <ul>
+                            <li><strong>Electricity:</strong> Biggest ongoing expense</li>
+                            <li><strong>Internet:</strong> Usually fixed cost</li>
+                            <li><strong>Hardware wear:</strong> Depreciation over time</li>
+                            <li><strong>Cooling:</strong> AC in hot climates</li>
+                        </ul>
+
+                        <p><strong>Calculate Your Profit:</strong></p>
+                        <ul>
+                            <li>Earnings per day</li>
+                            <li>- Electricity cost per day</li>
+                            <li>- Internet cost (if dedicated)</li>
+                            <li>= Net daily profit</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-calculator"></i>
+                            <strong>Example Calculation:</strong><br>
+                            RTX 4090: $50/day earnings<br>
+                            Electricity (400W × 24h × $0.12/kWh): -$1.15<br>
+                            Net profit: $48.85/day = $1,465/month
+                        </div>
+
+                        <h3>Pricing Strategy</h3>
+
+                        <p><strong>Dynamic Pricing:</strong></p>
+                        <ul>
+                            <li>Don't just accept default rates</li>
+                            <li>Monitor market rates for your GPU class</li>
+                            <li>Adjust based on demand</li>
+                            <li>Higher quality = justify higher prices</li>
+                        </ul>
+
+                        <p><strong>When to Charge More:</strong></p>
+                        <ul>
+                            <li>High demand periods</li>
+                            <li>Your node has high reputation</li>
+                            <li>You offer premium hardware</li>
+                            <li>Network needs more capacity</li>
+                        </ul>
+
+                        <p><strong>When to Lower Prices:</strong></p>
+                        <ul>
+                            <li>Building initial reputation</li>
+                            <li>Low demand periods</li>
+                            <li>Want to win long-term contracts</li>
+                            <li>Testing new optimizations</li>
+                        </ul>
+
+                        <h3>Reputation = Higher Earnings</h3>
+
+                        <p><strong>Building Reputation:</strong></p>
+                        <ul>
+                            <li><strong>Consistency:</strong> 99%+ uptime</li>
+                            <li><strong>Quality:</strong> Fast, accurate work</li>
+                            <li><strong>Reliability:</strong> Complete all accepted jobs</li>
+                            <li><strong>Time:</strong> Long track record of good service</li>
+                        </ul>
+
+                        <p><strong>Reputation Benefits:</strong></p>
+                        <ul>
+                            <li>Get assigned more work</li>
+                            <li>Earn 10-30% premium rates</li>
+                            <li>Selected for high-value jobs</li>
+                            <li>Less verification overhead</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-medal"></i>
+                            <strong>The Compound Effect:</strong> Good reputation → More work → More reputation → Even more work! It snowballs!
+                        </div>
+
+                        <h3>Multiple Node Strategy</h3>
+
+                        <p><strong>Scaling Up:</strong></p>
+                        <ul>
+                            <li>Once profitable, consider adding nodes</li>
+                            <li>Diversify across GPU types</li>
+                            <li>Bulk electricity rates at scale</li>
+                            <li>Manage as mini data center</li>
+                        </ul>
+
+                        <p><strong>Economics of Scale:</strong></p>
+                        <ul>
+                            <li><strong>1 GPU:</strong> Learning phase</li>
+                            <li><strong>2-4 GPUs:</strong> Serious income</li>
+                            <li><strong>6+ GPUs:</strong> Business operation</li>
+                            <li><strong>10+ GPUs:</strong> Professional setup</li>
+                        </ul>
+
+                        <p><strong>Smart Expansion:</strong></p>
+                        <ul>
+                            <li>Reinvest early profits into more hardware</li>
+                            <li>Buy during GPU price dips</li>
+                            <li>Consider used GPUs (if warrantied)</li>
+                            <li>Calculate ROI before expanding</li>
+                        </ul>
+
+                        <h3>Tax & Legal Considerations</h3>
+
+                        <div class="warning-box">
+                            <i class="fas fa-balance-scale"></i>
+                            <strong>Important:</strong> In most countries, node earnings are taxable income. Keep records of earnings and expenses. Consult a tax professional!
+                        </div>
+
+                        <p><strong>Deductible Expenses (Usually):</strong></p>
+                        <ul>
+                            <li>Hardware purchases (depreciate over time)</li>
+                            <li>Electricity for nodes</li>
+                            <li>Internet if dedicated</li>
+                            <li>Cooling and maintenance</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="opt-q3">
+                            <div class="quiz-question">
+                                🤔 Quiz: What's the most important factor for long-term earning potential?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Having the newest GPU
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Setting the lowest prices
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Building high reputation through consistent, reliable performance
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Running as many nodes as possible immediately
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson" data-lesson-id="opt-lesson-4" data-lesson-title="Monitoring & Maintenance" data-points="100">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-chart-line"></i> Lesson 4: Monitor & Maintain</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 8 min</span>
+                            <span><i class="fas fa-star"></i> 100 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Stay On Top of Performance</h3>
+                        <p>You can't improve what you don't measure!</p>
+
+                        <h3>Key Metrics to Monitor</h3>
+
+                        <p><strong>1. Performance Metrics:</strong></p>
+                        <ul>
+                            <li><strong>GPU utilization:</strong> Should be 95-100%</li>
+                            <li><strong>Memory usage:</strong> High but not maxed out</li>
+                            <li><strong>Training throughput:</strong> Iterations per second</li>
+                            <li><strong>Jobs completed:</strong> Daily/weekly totals</li>
+                        </ul>
+
+                        <p><strong>2. Health Metrics:</strong></p>
+                        <ul>
+                            <li><strong>GPU temperature:</strong> Below 80°C ideal</li>
+                            <li><strong>Power consumption:</strong> Stable and expected</li>
+                            <li><strong>Fan speeds:</strong> Responsive to load</li>
+                            <li><strong>Error rates:</strong> Should be near zero</li>
+                        </ul>
+
+                        <p><strong>3. Economic Metrics:</strong></p>
+                        <ul>
+                            <li><strong>Daily earnings:</strong> Track trends</li>
+                            <li><strong>Earnings per watt:</strong> Efficiency measure</li>
+                            <li><strong>Reputation score:</strong> Should increase over time</li>
+                            <li><strong>Job acceptance rate:</strong> % of offered jobs you get</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-chart-bar"></i>
+                            <strong>Dashboard Power:</strong> Set up a monitoring dashboard to see all metrics at a glance. Grafana is popular and free!
+                        </div>
+
+                        <h3>Monitoring Tools</h3>
+
+                        <p><strong>Essential Tools:</strong></p>
+                        <ul>
+                            <li><strong>GPU-Z:</strong> Real-time GPU stats</li>
+                            <li><strong>HWiNFO:</strong> Comprehensive system monitoring</li>
+                            <li><strong>Gensyn Dashboard:</strong> Built-in node statistics</li>
+                            <li><strong>Task Manager:</strong> Basic system resource view</li>
+                        </ul>
+
+                        <p><strong>Advanced Monitoring:</strong></p>
+                        <ul>
+                            <li><strong>Grafana:</strong> Beautiful dashboards</li>
+                            <li><strong>Prometheus:</strong> Time-series data collection</li>
+                            <li><strong>Uptime Kuma:</strong> Uptime monitoring with alerts</li>
+                            <li><strong>Custom scripts:</strong> Log specific metrics</li>
+                        </ul>
+
+                        <h3>Setting Up Alerts</h3>
+
+                        <p><strong>Critical Alerts (Immediate Action):</strong></p>
+                        <ul>
+                            <li>Node offline</li>
+                            <li>GPU temperature > 85°C</li>
+                            <li>Training errors</li>
+                            <li>Internet disconnected</li>
+                        </ul>
+
+                        <p><strong>Warning Alerts (Check Soon):</strong></p>
+                        <ul>
+                            <li>Temperature > 80°C</li>
+                            <li>Low GPU utilization</li>
+                            <li>Earnings drop significantly</li>
+                            <li>High error rates</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-mobile-alt"></i>
+                            <strong>Stay Connected:</strong> Set up phone notifications for critical alerts. Don't let hours of downtime cost you money!
+                        </div>
+
+                        <h3>Regular Maintenance Schedule</h3>
+
+                        <p><strong>Daily:</strong></p>
+                        <ul>
+                            <li>Quick dashboard check</li>
+                            <li>Verify node is running</li>
+                            <li>Check earnings match expectations</li>
+                        </ul>
+
+                        <p><strong>Weekly:</strong></p>
+                        <ul>
+                            <li>Review performance trends</li>
+                            <li>Check for driver updates</li>
+                            <li>Verify backups working</li>
+                            <li>Analyze error logs</li>
+                        </ul>
+
+                        <p><strong>Monthly:</strong></p>
+                        <ul>
+                            <li>Deep clean computer (remove dust)</li>
+                            <li>Check all cables and connections</li>
+                            <li>Update all software</li>
+                            <li>Review and adjust pricing strategy</li>
+                            <li>Calculate monthly profit</li>
+                        </ul>
+
+                        <p><strong>Quarterly:</strong></p>
+                        <ul>
+                            <li>Benchmark performance</li>
+                            <li>Consider hardware upgrades</li>
+                            <li>Evaluate expansion opportunities</li>
+                            <li>Tax preparation (if required)</li>
+                        </ul>
+
+                        <h3>Troubleshooting Common Issues</h3>
+
+                        <p><strong>Low Earnings:</strong></p>
+                        <ul>
+                            <li>Check if node is actually running</li>
+                            <li>Verify GPU utilization is high</li>
+                            <li>Compare your rates to market</li>
+                            <li>Check reputation score</li>
+                        </ul>
+
+                        <p><strong>High Temperatures:</strong></p>
+                        <ul>
+                            <li>Clean dust from GPU and case</li>
+                            <li>Improve case airflow</li>
+                            <li>Reduce overclock if present</li>
+                            <li>Check thermal paste</li>
+                        </ul>
+
+                        <p><strong>Frequent Disconnects:</strong></p>
+                        <ul>
+                            <li>Switch to wired ethernet</li>
+                            <li>Check router stability</li>
+                            <li>Contact ISP about connection quality</li>
+                            <li>Consider UPS for power stability</li>
+                        </ul>
+
+                        <div class="success-box" style="text-align: center; padding: 30px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Course Complete!</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Complete this lesson to earn your <strong>Optimization Expert</strong> badge!</p>
+                            <p style="font-size: 0.9rem; color: #cbd5e1;">+ 400 bonus points for course completion</p>
+                        </div>
+
+                        <div class="quiz-container" data-question-id="opt-q4">
+                            <div class="quiz-question">
+                                🤔 Final Quiz: Why is regular monitoring important?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    It's required by Gensyn protocol
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    It helps catch problems early, preventing downtime and lost earnings
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It makes your GPU run faster
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It's only needed for large setups
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-trophy"></i> Complete Course & Earn Badge!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Complete -->
+                <div style="text-align: center; padding: 40px 20px; margin-top: 40px; background: rgba(255, 201, 212, 0.05); border-radius: 16px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">🎉 You're Now an Expert!</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: #cbd5e1;">Ready to build applications on Gensyn?</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#courses" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-arrow-left"></i> Back to Courses
+                        </a>
+                        <a href="building-dapps.html" class="btn-primary" style="text-decoration: none;">
+                            Next: Building dApps <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through interactive courses and earn badges!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>`n    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

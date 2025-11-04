@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RL Swarm Basics - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-course-id="rl-swarm-basics">
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="RL Swarm Basics">RL Swarm Basics</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Learn how AI models train together in a swarm! Discover collaborative machine learning where multiple models share knowledge and improve as a team.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="fas fa-award"></i> Complete all lessons to earn the <strong style="color: var(--primary-color);">Swarm Initiate</strong> badge (250 points)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Course Progress -->
+                <div class="course-progress">
+                    <div class="course-progress-header">
+                        <span style="font-weight: 600; font-size: 1.1rem;">Course Progress</span>
+                        <span class="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-bar">
+                        <div class="course-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Lesson 1 -->
+                <div class="lesson" data-lesson-id="swarm-lesson-1" data-lesson-title="What is a Swarm?" data-points="60">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-bees"></i> Lesson 1: What is a Swarm?</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 6 min</span>
+                            <span><i class="fas fa-star"></i> 60 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Let's Learn from Nature!</h3>
+                        <p>To understand RL Swarm, let's first look at how real swarms work in nature.</p>
+
+                        <h3>Swarms in Nature</h3>
+                        <p>You've probably seen swarms before:</p>
+                        <ul>
+                            <li><strong>Bees</strong> 🐝 - Working together to find flowers and make honey</li>
+                            <li><strong>Birds</strong> 🐦 - Flying together in beautiful patterns</li>
+                            <li><strong>Fish</strong> 🐟 - Swimming together to avoid predators</li>
+                            <li><strong>Ants</strong> 🐜 - Building colonies and finding food as a team</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-heart"></i>
+                            <strong>The Magic of Swarms:</strong> Individual bees or ants aren't super smart, but together they can solve complex problems! The group is smarter than any single member.
+                        </div>
+
+                        <h3>How Swarms Are Smart</h3>
+                        <p>Swarms achieve intelligence through:</p>
+                        <ul>
+                            <li><strong>Communication:</strong> Members share information</li>
+                            <li><strong>Cooperation:</strong> Everyone works toward the same goal</li>
+                            <li><strong>Learning from others:</strong> Copy successful strategies</li>
+                            <li><strong>Distributed work:</strong> Many workers = faster progress</li>
+                        </ul>
+
+                        <h3>What is RL Swarm?</h3>
+                        <p><strong>RL Swarm</strong> applies this swarm intelligence to AI training!</p>
+                        
+                        <p>Instead of:</p>
+                        <ul>
+                            <li>One AI model training alone</li>
+                            <li>One computer doing all the work</li>
+                        </ul>
+
+                        <p>We have:</p>
+                        <ul>
+                            <li>Many AI models training together</li>
+                            <li>Many computers collaborating over the internet</li>
+                            <li>Models sharing what they learn with each other</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-users"></i>
+                            <strong>Think of it like:</strong> Instead of studying for a test alone, imagine if 100 students studied together, sharing notes and teaching each other! Everyone learns faster and better!
+                        </div>
+
+                        <h3>Why Swarm Training is Better</h3>
+                        <p>Training AI in a swarm has amazing benefits:</p>
+                        
+                        <p><strong>1. Faster Learning</strong></p>
+                        <ul>
+                            <li>Many models explore different approaches</li>
+                            <li>Best strategies spread quickly</li>
+                            <li>Everyone benefits from successful discoveries</li>
+                        </ul>
+
+                        <p><strong>2. More Robust (Stronger)</strong></p>
+                        <ul>
+                            <li>If one model makes a mistake, others help correct it</li>
+                            <li>Different perspectives lead to better solutions</li>
+                            <li>Less likely to get stuck in bad patterns</li>
+                        </ul>
+
+                        <p><strong>3. Distributed Power</strong></p>
+                        <ul>
+                            <li>Work is spread across many computers</li>
+                            <li>No single point of failure</li>
+                            <li>Can use computers anywhere in the world</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="swarm-q1">
+                            <div class="quiz-question">
+                                🤔 Quiz: What's the main advantage of swarm training?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    It uses less electricity
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Multiple models learn together and share knowledge, improving faster
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It requires fewer computers
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It only works with small AI models
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson" data-lesson-id="swarm-lesson-2" data-lesson-title="How Models Collaborate" data-points="60">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-handshake"></i> Lesson 2: How Models Work Together</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 7 min</span>
+                            <span><i class="fas fa-star"></i> 60 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Collaboration in Simple Terms</h3>
+                        <p>Let's understand exactly how AI models help each other in a swarm.</p>
+
+                        <h3>The Student Group Analogy</h3>
+                        <p>Imagine 10 students solving math problems together:</p>
+
+                        <p><strong>Step 1: Everyone Tries</strong></p>
+                        <ul>
+                            <li>Each student solves the problem their own way</li>
+                            <li>Some get it right, some wrong</li>
+                            <li>Some use clever shortcuts, others take longer</li>
+                        </ul>
+
+                        <p><strong>Step 2: Share and Compare</strong></p>
+                        <ul>
+                            <li>Students show their answers to the group</li>
+                            <li>They explain their thinking process</li>
+                            <li>Others can see what worked and what didn't</li>
+                        </ul>
+
+                        <p><strong>Step 3: Learn from the Best</strong></p>
+                        <ul>
+                            <li>Students see who got the correct answer</li>
+                            <li>They learn the clever shortcuts</li>
+                            <li>They avoid mistakes others made</li>
+                        </ul>
+
+                        <p><strong>Step 4: Next Problem</strong></p>
+                        <ul>
+                            <li>Everyone is a bit smarter now</li>
+                            <li>They use what they learned</li>
+                            <li>The whole group gets better together</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-brain"></i>
+                            <strong>AI swarms work exactly the same way!</strong> Models try solutions, share results, learn from each other, and improve together!
+                        </div>
+
+                        <h3>How AI Models Communicate</h3>
+                        <p>Models in a swarm share information through:</p>
+
+                        <p><strong>1. Model Updates</strong></p>
+                        <ul>
+                            <li>Each model makes improvements to itself</li>
+                            <li>These improvements are shared with neighbors</li>
+                            <li>Good improvements spread through the swarm</li>
+                        </ul>
+
+                        <p><strong>2. Performance Scores</strong></p>
+                        <ul>
+                            <li>Models report how well they're doing</li>
+                            <li>Others pay more attention to high-scoring models</li>
+                            <li>Successful strategies get copied more</li>
+                        </ul>
+
+                        <p><strong>3. Direct Sharing</strong></p>
+                        <ul>
+                            <li>Models exchange their "knowledge" (parameters)</li>
+                            <li>Like sharing notes in class</li>
+                            <li>Happens continuously during training</li>
+                        </ul>
+
+                        <h3>The RL Part: Reinforcement Learning</h3>
+                        <p><strong>RL</strong> stands for <strong>Reinforcement Learning</strong> - learning through rewards!</p>
+
+                        <p>Think of training a dog:</p>
+                        <ul>
+                            <li>Dog does something good → Gets a treat (reward)</li>
+                            <li>Dog learns: "That action gets treats!"</li>
+                            <li>Dog does that action more often</li>
+                        </ul>
+
+                        <p>In RL Swarm:</p>
+                        <ul>
+                            <li>Model finds good solution → Gets high score (reward)</li>
+                            <li>Model learns: "That approach works!"</li>
+                            <li>Model uses similar approaches more</li>
+                            <li>Other models see the success and learn too!</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-trophy"></i>
+                            <strong>Key Insight:</strong> In a swarm, successful strategies spread like wildfire because all models want those rewards!
+                        </div>
+
+                        <h3>Real Example: Math Problem Solving</h3>
+                        <p>Let's say the swarm is learning to solve math word problems:</p>
+
+                        <p><strong>Round 1:</strong></p>
+                        <ul>
+                            <li>Model A solves correctly (gets 10 points)</li>
+                            <li>Model B makes a mistake (gets 0 points)</li>
+                            <li>Model C solves correctly with a shortcut (gets 10 points)</li>
+                        </ul>
+
+                        <p><strong>Sharing Phase:</strong></p>
+                        <ul>
+                            <li>Model B sees what A and C did differently</li>
+                            <li>All models notice C's clever shortcut</li>
+                            <li>They adjust their approaches</li>
+                        </ul>
+
+                        <p><strong>Round 2:</strong></p>
+                        <ul>
+                            <li>More models use the shortcut</li>
+                            <li>More models get 10 points</li>
+                            <li>The whole swarm is now better at math!</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="swarm-q2">
+                            <div class="quiz-question">
+                                🤔 Quiz: How do models in a swarm learn from each other?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    They compete and the losers are deleted
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    They share their updates and successful strategies spread to others
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    One master model teaches all the others
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They work independently without communication
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson" data-lesson-id="swarm-lesson-3" data-lesson-title="Benefits of Swarm Training" data-points="65">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-chart-line"></i> Lesson 3: Why Swarms Are Amazing</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 6 min</span>
+                            <span><i class="fas fa-star"></i> 65 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>The Power of Many</h3>
+                        <p>Swarm training isn't just different - it's revolutionary! Here's why.</p>
+
+                        <h3>Benefit #1: Exploration & Exploitation</h3>
+                        <p>In AI, we need to balance two things:</p>
+
+                        <p><strong>Exploration:</strong> Try new approaches, experiment</p>
+                        <ul>
+                            <li>Might find amazing new solutions</li>
+                            <li>But wastes time if they don't work</li>
+                        </ul>
+
+                        <p><strong>Exploitation:</strong> Use what you know works</p>
+                        <ul>
+                            <li>Safe and reliable</li>
+                            <li>But might miss better solutions</li>
+                        </ul>
+
+                        <p><strong>Swarm Solution:</strong></p>
+                        <ul>
+                            <li>Some models explore (try new things)</li>
+                            <li>Some models exploit (use known solutions)</li>
+                            <li>Best of both worlds!</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-compass"></i>
+                            <strong>Smart Strategy:</strong> Like sending scouts ahead while the main group follows the safe path. If scouts find something better, everyone can follow!
+                        </div>
+
+                        <h3>Benefit #2: Robustness</h3>
+                        <p>Swarms are incredibly resilient:</p>
+
+                        <p><strong>If one model fails:</strong></p>
+                        <ul>
+                            <li>Others continue working</li>
+                            <li>No single point of failure</li>
+                            <li>The swarm adapts around the problem</li>
+                        </ul>
+
+                        <p><strong>If one computer goes offline:</strong></p>
+                        <ul>
+                            <li>Training doesn't stop</li>
+                            <li>Other computers pick up the work</li>
+                            <li>System is fault-tolerant</li>
+                        </ul>
+
+                        <h3>Benefit #3: Diversity = Better Solutions</h3>
+                        <p>Different models might:</p>
+                        <ul>
+                            <li>Start with different random settings</li>
+                            <li>Process data in different orders</li>
+                            <li>Discover different solution paths</li>
+                        </ul>
+
+                        <p>This diversity means:</p>
+                        <ul>
+                            <li>More creative solutions</li>
+                            <li>Better coverage of the problem space</li>
+                            <li>Less likely to get stuck in "local optima"</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <strong>Example:</strong> Imagine solving a maze. One person might miss a shortcut, but 10 people exploring different paths? Someone will find it!
+                        </div>
+
+                        <h3>Benefit #4: Scalability</h3>
+                        <p>Swarms scale beautifully:</p>
+                        <ul>
+                            <li><strong>Add more computers</strong> → Training gets faster</li>
+                            <li><strong>Add more models</strong> → Learning improves</li>
+                            <li><strong>Global network</strong> → Use resources worldwide</li>
+                        </ul>
+
+                        <p>Traditional training:</p>
+                        <ul>
+                            <li>Limited by one location's computers</li>
+                            <li>Expensive to scale up</li>
+                            <li>Requires massive infrastructure</li>
+                        </ul>
+
+                        <p>Swarm training:</p>
+                        <ul>
+                            <li>Uses distributed global resources</li>
+                            <li>Naturally scales with participation</li>
+                            <li>No massive data center needed</li>
+                        </ul>
+
+                        <h3>Benefit #5: Cost Efficiency</h3>
+                        <p>Remember the $100 million training costs?</p>
+
+                        <p>Swarm training reduces costs by:</p>
+                        <ul>
+                            <li>Using existing idle computers</li>
+                            <li>Distributing work efficiently</li>
+                            <li>Sharing the computational load</li>
+                            <li>No need for expensive data centers</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <strong>Cost Comparison:</strong><br>
+                            Traditional: $100,000,000 💰💰💰<br>
+                            Swarm: $1,000,000 💰<br>
+                            That's 100x cheaper!
+                        </div>
+
+                        <h3>Real-World Applications</h3>
+                        <p>Swarm training is perfect for:</p>
+                        <ul>
+                            <li><strong>Game AI:</strong> Learning strategies through self-play</li>
+                            <li><strong>Robotics:</strong> Multiple robots learning together</li>
+                            <li><strong>Language Models:</strong> Improving conversational AI</li>
+                            <li><strong>Scientific Research:</strong> Discovering new solutions</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="swarm-q3">
+                            <div class="quiz-question">
+                                🤔 Quiz: What happens if one computer in the swarm goes offline?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    The entire training stops and must restart
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    All progress is lost
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Other computers continue working; the swarm is fault-tolerant
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    The offline computer's model gets deleted
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson" data-lesson-id="swarm-lesson-4" data-lesson-title="Getting Started with RL Swarm" data-points="65">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-rocket"></i> Lesson 4: Join the Swarm!</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span><i class="fas fa-star"></i> 65 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Ready to Participate?</h3>
+                        <p>Now that you understand swarm training, let's see how YOU can join!</p>
+
+                        <h3>What You Can Do</h3>
+
+                        <p><strong>Option 1: Run a Node (Easiest Way to Earn)</strong></p>
+                        <ul>
+                            <li>Share your computer's power with the swarm</li>
+                            <li>Your computer becomes part of the training network</li>
+                            <li>Earn rewards for helping train AI</li>
+                            <li>Works even with modest hardware</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-gift"></i>
+                            <strong>Start Earning:</strong> Check out our <a href="node-operation.html" style="color: var(--primary-color); font-weight: 700;">complete Node Operation guide</a> to set up your node!
+                        </div>
+
+                        <p><strong>Option 2: Train Your Own Models</strong></p>
+                        <ul>
+                            <li>Use the swarm to train your AI projects</li>
+                            <li>Access distributed computing power</li>
+                            <li>Much cheaper than traditional methods</li>
+                            <li>Perfect for researchers and developers</li>
+                        </ul>
+
+                        <p><strong>Option 3: Learn More (What You're Doing Now!)</strong></p>
+                        <ul>
+                            <li>Understand the technology deeply</li>
+                            <li>Earn badges and points</li>
+                            <li>Prepare for advanced participation</li>
+                            <li>Join the community of learners</li>
+                        </ul>
+
+                        <h3>What Hardware Do You Need?</h3>
+                        
+                        <p><strong>Minimum (CPU Training):</strong></p>
+                        <ul>
+                            <li>Any modern computer</li>
+                            <li>32GB RAM</li>
+                            <li>Stable internet</li>
+                        </ul>
+
+                        <p><strong>Recommended (GPU Training):</strong></p>
+                        <ul>
+                            <li>Gaming PC with NVIDIA GPU</li>
+                            <li>8GB+ video memory</li>
+                            <li>Good internet connection</li>
+                        </ul>
+
+                        <p><strong>Optimal:</strong></p>
+                        <ul>
+                            <li>High-end GPU (RTX 3090, 4090, etc.)</li>
+                            <li>16GB+ video memory</li>
+                            <li>Fast, stable connection</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-laptop"></i>
+                            <strong>Good News:</strong> Even if you don't have powerful hardware, you can still participate! The swarm uses what you have available.
+                        </div>
+
+                        <h3>Your Learning Journey</h3>
+                        <p>You've now completed:</p>
+                        <ul>
+                            <li>✅ Gensyn Fundamentals</li>
+                            <li>✅ RL Swarm Basics</li>
+                        </ul>
+
+                        <p>Continue learning with:</p>
+                        <ul>
+                            <li><strong>Protocol Architecture:</strong> Deep dive into how Gensyn works</li>
+                            <li><strong>Node Operation:</strong> Set up and run your own node</li>
+                            <li><strong>Advanced Optimization:</strong> Maximize your earnings</li>
+                        </ul>
+
+                        <h3>Join the Community</h3>
+                        <p>Connect with other swarm participants:</p>
+                        <ul>
+                            <li><strong>Discord:</strong> Real-time chat and support</li>
+                            <li><strong>GitHub:</strong> View code and contribute</li>
+                            <li><strong>Dashboard:</strong> Monitor your node performance</li>
+                            <li><strong>Blog:</strong> Latest updates and research</li>
+                        </ul>
+
+                        <div class="success-box" style="text-align: center; padding: 30px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">🐝 Course Complete!</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Complete this lesson to earn your <strong>Swarm Initiate</strong> badge!</p>
+                            <p style="font-size: 0.9rem; color: #cbd5e1;">+ 250 bonus points for course completion</p>
+                        </div>
+
+                        <div class="quiz-container" data-question-id="swarm-q4">
+                            <div class="quiz-question">
+                                🤔 Final Quiz: What's the best first step to join Gensyn's RL Swarm?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Buy expensive GPU servers first
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Set up a node with your existing computer and start contributing
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Wait until you're an expert programmer
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    You must get permission from Gensyn first
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-trophy"></i> Complete Course & Earn Badge!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Complete -->
+                <div style="text-align: center; padding: 40px 20px; margin-top: 40px; background: rgba(255, 201, 212, 0.05); border-radius: 16px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">🎉 Ready for More?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: #cbd5e1;">Continue your journey through Hippocamp Academy</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#courses" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-arrow-left"></i> Back to Courses
+                        </a>
+                        <a href="node-operation.html" class="btn-primary" style="text-decoration: none;">
+                            Next: Node Setup <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through interactive courses and earn badges!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>`n    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gensyn Fundamentals - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-course-id="gensyn-basics">
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#courses" class="nav-link active">Courses</a></li>
+                <li><a href="network-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="badges.html" class="nav-link">Badges</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Course Header -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Gensyn Fundamentals">Gensyn Fundamentals</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Master the foundation of decentralized AI training from absolute basics. Learn how Gensyn is revolutionizing machine learning with verifiable compute at scale.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="fas fa-award"></i> Complete all lessons to earn the <strong style="color: var(--primary-color);">Gensyn Scholar</strong> badge (200 points)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Course Progress -->
+                <div class="course-progress">
+                    <div class="course-progress-header">
+                        <span style="font-weight: 600; font-size: 1.1rem;">Course Progress</span>
+                        <span class="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-bar">
+                        <div class="course-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Lesson 1 -->
+                <div class="lesson" data-lesson-id="basics-lesson-1" data-lesson-title="What is a Computer?" data-points="50">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-laptop"></i> Lesson 1: What is a Computer?</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span><i class="fas fa-star"></i> 50 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Let's Start from the Very Beginning!</h3>
+                        <p>Before we learn about Gensyn, let's understand what a computer actually is.</p>
+
+                        <h3>What is a Computer?</h3>
+                        <p>A <strong>computer</strong> is a machine that:</p>
+                        <ul>
+                            <li><strong>Takes input</strong> - Like when you type on a keyboard or click a mouse</li>
+                            <li><strong>Processes data</strong> - Does math, follows instructions, makes decisions</li>
+                            <li><strong>Gives output</strong> - Shows you results on screen, plays sounds, etc.</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Example:</strong> When you search on Google, you type (input), Google's computers find answers (processing), then show you results (output).
+                        </div>
+
+                        <h3>Why Do Computers Matter?</h3>
+                        <p>Computers are <strong>super fast calculators</strong> that can:</p>
+                        <ul>
+                            <li>Do millions of calculations per second</li>
+                            <li>Remember huge amounts of information</li>
+                            <li>Follow instructions perfectly every time</li>
+                            <li>Work 24/7 without getting tired</li>
+                        </ul>
+
+                        <h3>What Makes AI Special?</h3>
+                        <p><strong>AI (Artificial Intelligence)</strong> is when we teach computers to learn and make decisions, almost like humans do!</p>
+                        
+                        <p>Regular programs:</p>
+                        <ul>
+                            <li>Follow exact rules: "If this happens, do that"</li>
+                            <li>Can't learn from experience</li>
+                        </ul>
+
+                        <p>AI programs:</p>
+                        <ul>
+                            <li>Learn from examples and data</li>
+                            <li>Get better over time</li>
+                            <li>Can handle new situations they've never seen before</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-brain"></i>
+                            <strong>Real Example:</strong> Netflix learns what movies you like and recommends new ones. It gets better at recommendations the more you watch!
+                        </div>
+
+                        <div class="quiz-container" data-question-id="basics-q1">
+                            <div class="quiz-question">
+                                🤔 Quick Check: What's the main difference between regular programs and AI?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    AI is faster than regular programs
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    AI can learn from data and improve over time
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    AI doesn't need electricity to run
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    AI programs are always free to use
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson" data-lesson-id="basics-lesson-2" data-lesson-title="What is Machine Learning?" data-points="50">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-brain"></i> Lesson 2: What is Machine Learning?</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 6 min</span>
+                            <span><i class="fas fa-star"></i> 50 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Teaching Computers to Learn</h3>
+                        <p><strong>Machine Learning (ML)</strong> is teaching computers to learn from examples, just like how you learned!</p>
+
+                        <h3>How Humans Learn</h3>
+                        <p>Think about how you learned to recognize a cat:</p>
+                        <ol>
+                            <li>Someone showed you many pictures of cats</li>
+                            <li>They told you "this is a cat" each time</li>
+                            <li>Your brain learned what cats look like</li>
+                            <li>Now you can spot cats you've never seen before!</li>
+                        </ol>
+
+                        <h3>How Computers Learn (Machine Learning)</h3>
+                        <p>The same way! To teach a computer to recognize cats:</p>
+                        <ol>
+                            <li><strong>Show examples:</strong> Give it thousands of cat pictures</li>
+                            <li><strong>Label them:</strong> Tell it "these are cats"</li>
+                            <li><strong>Training:</strong> Computer adjusts itself to recognize patterns</li>
+                            <li><strong>Test:</strong> Show new cat pictures - can it recognize them?</li>
+                        </ol>
+
+                        <div class="info-box">
+                            <i class="fas fa-graduation-cap"></i>
+                            <strong>Training = Learning:</strong> When we say "training a model," we mean teaching the AI by showing it examples.
+                        </div>
+
+                        <h3>What is Training?</h3>
+                        <p><strong>Training</strong> is the process of teaching an AI model. It's like studying for an exam:</p>
+                        
+                        <p><strong>For humans:</strong></p>
+                        <ul>
+                            <li>Read textbooks</li>
+                            <li>Do practice problems</li>
+                            <li>Learn from mistakes</li>
+                            <li>Get better at the subject</li>
+                        </ul>
+
+                        <p><strong>For AI:</strong></p>
+                        <ul>
+                            <li>Process lots of data</li>
+                            <li>Make predictions</li>
+                            <li>Check if predictions were right</li>
+                            <li>Adjust to get better</li>
+                        </ul>
+
+                        <h3>Why Training Takes So Much Computing Power</h3>
+                        <p>Training AI models requires:</p>
+                        <ul>
+                            <li><strong>Massive amounts of data</strong> - Millions of examples</li>
+                            <li><strong>Billions of calculations</strong> - To find patterns</li>
+                            <li><strong>Lots of time</strong> - Can take days or weeks</li>
+                            <li><strong>Powerful computers</strong> - To do all this work</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>The Big Problem:</strong> Training advanced AI models can cost millions of dollars in computer time! This is why Gensyn is so important.
+                        </div>
+
+                        <div class="quiz-container" data-question-id="basics-q2">
+                            <div class="quiz-question">
+                                🤔 Quiz: What does "training" an AI model mean?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Making the computer run faster
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Teaching the AI by showing it many examples so it learns patterns
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Installing new software on the computer
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Connecting the computer to the internet
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson" data-lesson-id="basics-lesson-3" data-lesson-title="The Big Problem: AI Training is Too Expensive" data-points="50">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-exclamation-triangle"></i> Lesson 3: The Big Problem</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 7 min</span>
+                            <span><i class="fas fa-star"></i> 50 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Why AI Training is So Expensive</h3>
+                        <p>Remember how we said training AI takes a lot of computing power? Let's see just how much!</p>
+
+                        <h3>The Cost Problem</h3>
+                        <p>Training modern AI models (like ChatGPT) can cost:</p>
+                        <ul>
+                            <li><strong>$100 million to $1 billion</strong> - For a single training run!</li>
+                            <li><strong>Thousands of powerful computers</strong> - Running for weeks or months</li>
+                            <li><strong>Massive electricity bills</strong> - Enough to power a small city</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <strong>Shocking Fact:</strong> Some of the latest AI models cost over <strong>$100 BILLION</strong> to train! That's more than the GDP of many countries!
+                        </div>
+
+                        <h3>Why So Expensive?</h3>
+                        <p>Training AI is expensive because:</p>
+                        
+                        <p><strong>1. Special Computers Needed (GPUs)</strong></p>
+                        <ul>
+                            <li>Regular computers are too slow</li>
+                            <li>Need special "GPU" computers (Graphics Processing Units)</li>
+                            <li>One good GPU can cost $10,000 to $40,000!</li>
+                            <li>Top companies use thousands of them</li>
+                        </ul>
+
+                        <p><strong>2. Takes a Long Time</strong></p>
+                        <ul>
+                            <li>Training can take weeks or even months</li>
+                            <li>Computers must run 24/7 the entire time</li>
+                            <li>If training fails, have to start over</li>
+                        </ul>
+
+                        <p><strong>3. Needs Lots of Data</strong></p>
+                        <ul>
+                            <li>Must process millions or billions of examples</li>
+                            <li>Storing all this data costs money</li>
+                            <li>Moving data around uses bandwidth</li>
+                        </ul>
+
+                        <h3>Who Can Afford This?</h3>
+                        <p>Only big tech companies can afford to train advanced AI:</p>
+                        <ul>
+                            <li>Google, Microsoft, Meta (Facebook)</li>
+                            <li>OpenAI (makes ChatGPT)</li>
+                            <li>Anthropic, Amazon, etc.</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-sad-tear"></i>
+                            <strong>The Problem:</strong> Regular people, small companies, researchers, and students can't afford to train their own AI models. This means only a few big companies control AI development!
+                        </div>
+
+                        <h3>What This Means</h3>
+                        <p>Because training is so expensive:</p>
+                        <ul>
+                            <li><strong>Limited Innovation:</strong> Only a few companies can experiment</li>
+                            <li><strong>No Competition:</strong> Small companies can't compete</li>
+                            <li><strong>Centralized Control:</strong> Big tech controls AI development</li>
+                            <li><strong>Slow Progress:</strong> Less people working on AI problems</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Good News:</strong> This is exactly the problem that Gensyn solves! Keep learning to find out how!
+                        </div>
+
+                        <div class="quiz-container" data-question-id="basics-q3">
+                            <div class="quiz-question">
+                                🤔 Quiz: Why is AI training so expensive?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Because AI programmers charge high salaries
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Because training happens in expensive office buildings
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Because it requires thousands of expensive computers running for weeks
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Because AI training software is expensive to buy
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson" data-lesson-id="basics-lesson-4" data-lesson-title="What is Gensyn? The Solution!" data-points="50">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-rocket"></i> Lesson 4: What is Gensyn?</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 8 min</span>
+                            <span><i class="fas fa-star"></i> 50 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>The Solution to the Expensive AI Problem</h3>
+                        <p><strong>Gensyn</strong> is a way to train AI models by using computers from all over the world, instead of expensive data centers!</p>
+
+                        <h3>The Big Idea (Simple Version)</h3>
+                        <p>Instead of one company buying thousands of expensive computers:</p>
+                        <ul>
+                            <li>Anyone with a computer can help train AI</li>
+                            <li>All these computers work together over the internet</li>
+                            <li>Everyone who helps gets rewarded</li>
+                            <li>Training becomes much cheaper!</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-users"></i>
+                            <strong>Real-World Example:</strong> Think of it like Uber for AI training! Instead of companies owning all the cars (computers), regular people share their cars (computer power) and get paid!
+                        </div>
+
+                        <h3>How Gensyn Makes Training Cheaper</h3>
+                        
+                        <p><strong>Traditional Way (Expensive):</strong></p>
+                        <ul>
+                            <li>Buy thousands of expensive GPUs</li>
+                            <li>Build data centers to house them</li>
+                            <li>Pay for electricity 24/7</li>
+                            <li>Pay staff to maintain everything</li>
+                        </ul>
+
+                        <p><strong>Gensyn Way (Cheaper):</strong></p>
+                        <ul>
+                            <li>Use computers that already exist worldwide</li>
+                            <li>No need to buy new equipment</li>
+                            <li>Use computers when they're idle (not busy)</li>
+                            <li>Pay only for the computing time used</li>
+                        </ul>
+
+                        <h3>Who Can Help?</h3>
+                        <p>With Gensyn, anyone can contribute their computer:</p>
+                        <ul>
+                            <li><strong>Gamers:</strong> Share GPU power when not gaming</li>
+                            <li><strong>Researchers:</strong> Share university computers</li>
+                            <li><strong>Companies:</strong> Share idle servers</li>
+                            <li><strong>Regular people:</strong> Share laptop/desktop when not using it</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-star"></i>
+                            <strong>Cool Fact:</strong> There are billions of computers in the world. Most are idle (not being used) most of the time! Gensyn lets us use this wasted computing power!
+                        </div>
+
+                        <h3>How Does Gensyn Work? (Simple Explanation)</h3>
+                        
+                        <p><strong>Step 1: Someone Wants to Train AI</strong></p>
+                        <ul>
+                            <li>They submit a training job to Gensyn</li>
+                            <li>The job gets split into smaller pieces</li>
+                        </ul>
+
+                        <p><strong>Step 2: Computers Around the World Help</strong></p>
+                        <ul>
+                            <li>People share their computer power</li>
+                            <li>Each computer works on a small piece</li>
+                            <li>All pieces get combined together</li>
+                        </ul>
+
+                        <p><strong>Step 3: Everyone Gets Rewarded</strong></p>
+                        <ul>
+                            <li>Computers that helped get paid</li>
+                            <li>The AI model gets trained</li>
+                            <li>Training costs much less!</li>
+                        </ul>
+
+                        <h3>Why This is Revolutionary</h3>
+                        <p>Gensyn makes AI training:</p>
+                        <ul>
+                            <li><strong>Accessible:</strong> Anyone can train AI, not just big companies</li>
+                            <li><strong>Affordable:</strong> Costs a fraction of traditional methods</li>
+                            <li><strong>Decentralized:</strong> No single company controls it</li>
+                            <li><strong>Democratic:</strong> Everyone can participate and benefit</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-globe"></i>
+                            <strong>Gensyn's Mission:</strong> Make AI training accessible to everyone in the world, not just a few wealthy tech companies!
+                        </div>
+
+                        <h3>What You Can Do</h3>
+                        <p>With Gensyn, you can:</p>
+                        <ul>
+                            <li><strong>Share your computer:</strong> Earn rewards by helping train AI</li>
+                            <li><strong>Train your own models:</strong> Afford to train AI cheaply</li>
+                            <li><strong>Learn and experiment:</strong> Try AI without huge costs</li>
+                            <li><strong>Be part of the future:</strong> Help build decentralized AI</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="basics-q4">
+                            <div class="quiz-question">
+                                🤔 Final Quiz: What is the main benefit of Gensyn?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    It makes AI models run faster on your phone
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    It makes AI training affordable by using computers worldwide
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It teaches people how to program AI
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    It provides free computers to students
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 5 -->
+                <div class="lesson" data-lesson-id="basics-lesson-5" data-lesson-title="How Can You Start?" data-points="50">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-play-circle"></i> Lesson 5: Your Next Steps</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span><i class="fas fa-star"></i> 50 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Ready to Get Started with Gensyn?</h3>
+                        <p>You've learned the basics! Now let's see what you can do next.</p>
+
+                        <h3>Option 1: Share Your Computer (Easiest)</h3>
+                        <p>Help train AI and earn rewards:</p>
+                        <ul>
+                            <li><strong>What you need:</strong> A computer with internet</li>
+                            <li><strong>Best if you have:</strong> A gaming computer with GPU</li>
+                            <li><strong>What you get:</strong> Rewards for helping train AI</li>
+                            <li><strong>Time needed:</strong> Just run it in the background!</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-gift"></i>
+                            <strong>Start earning:</strong> Check out the <a href="node-operation.html" style="color: var(--primary-color); font-weight: 700;">Node Operation Guide</a> to set up your node!
+                        </div>
+
+                        <h3>Option 2: Keep Learning (Recommended)</h3>
+                        <p>Take more courses to become a Gensyn expert:</p>
+                        <ul>
+                            <li><strong>RL Swarm Basics:</strong> Learn how collaborative training works</li>
+                            <li><strong>Protocol Architecture:</strong> Understand how Gensyn works deeply</li>
+                            <li><strong>Building dApps:</strong> Create your own AI applications</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-graduation-cap"></i>
+                            <strong>Pro Tip:</strong> Complete all courses to unlock all badges and become a Hippocamp Academy Master!
+                        </div>
+
+                        <h3>Option 3: Join the Community</h3>
+                        <p>Connect with other Gensyn enthusiasts:</p>
+                        <ul>
+                            <li><strong>Discord:</strong> Ask questions, get help</li>
+                            <li><strong>GitHub:</strong> See the code, contribute</li>
+                            <li><strong>Twitter/X:</strong> Stay updated with news</li>
+                            <li><strong>Blog:</strong> Read deep-dive articles</li>
+                        </ul>
+
+                        <h3>What You've Accomplished! 🎉</h3>
+                        <p>Congratulations! You now understand:</p>
+                        <ul>
+                            <li>✅ What computers and AI are</li>
+                            <li>✅ How machine learning and training work</li>
+                            <li>✅ Why AI training is expensive</li>
+                            <li>✅ How Gensyn solves this problem</li>
+                            <li>✅ How you can get involved</li>
+                        </ul>
+
+                        <div class="success-box" style="text-align: center; padding: 30px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">🎓 Course Complete!</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Complete this lesson to earn your <strong>Gensyn Scholar</strong> badge!</p>
+                            <p style="font-size: 0.9rem; color: #cbd5e1;">+ 200 bonus points for course completion</p>
+                        </div>
+
+                        <h3>Recommended Next Course</h3>
+                        <p>Continue your learning journey:</p>
+                        <div style="background: rgba(255, 201, 212, 0.1); border: 2px solid var(--primary-color); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 10px;">🐝 RL Swarm Basics</h4>
+                            <p style="margin-bottom: 15px;">Learn how multiple AI models train together in a swarm, sharing knowledge and improving collectively.</p>
+                            <a href="rl-swarm-basics.html" class="btn-primary" style="display: inline-block; text-decoration: none;">
+                                Start RL Swarm Course <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="quiz-container" data-question-id="basics-q5">
+                            <div class="quiz-question">
+                                🤔 Bonus Quiz: What's the best way to contribute to Gensyn?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    You must be a programmer to contribute
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Only companies with data centers can help
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Anyone with a computer can share computing power and help
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    You need special government approval to participate
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-trophy"></i> Complete Course & Earn Badge!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Complete Section -->
+                <div style="text-align: center; padding: 40px 20px; margin-top: 40px; background: rgba(255, 201, 212, 0.05); border-radius: 16px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">🎉 Ready for More?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 30px; color: #cbd5e1;">Continue your journey through Hippocamp Academy</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#courses" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-arrow-left"></i> Back to Courses
+                        </a>
+                        <a href="rl-swarm-basics.html" class="btn-primary" style="text-decoration: none;">
+                            Next: RL Swarm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Placeholder for old module -->
+                <div class="course-module" style="display: none;">
+                    <div class="module-header">
+                        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                    </div>
+                    <div class="module-content">
+                        <h3>Join the Testnet</h3>
+                        <p>Ready to contribute compute and earn rewards? Here's what you need:</p>
+
+                        <ol>
+                            <li><strong>Setup Environment:</strong> Windows (WSL), Linux, or rent cloud GPU</li>
+                            <li><strong>Install Dependencies:</strong> Python 3, Node.js, Yarn</li>
+                            <li><strong>Get HuggingFace Token:</strong> Create account and access token</li>
+                            <li><strong>Clone RL Swarm:</strong> Download the official repository</li>
+                            <li><strong>Run Your Node:</strong> Start contributing to the swarm</li>
+                        </ol>
+
+                        <div class="cta-box">
+                            <h4>🎯 Next Steps</h4>
+                            <a href="node-operation.html" class="btn-primary" style="display: inline-block; margin: 10px;">
+                                <i class="fas fa-server"></i> Node Setup Guide
+                            </a>
+                            <a href="https://github.com/gensyn-ai/rl-swarm" class="btn-primary" style="display: inline-block; margin: 10px;">
+                                <i class="fab fa-github"></i> Official Repository
+                            </a>
+                            <a href="https://blog.gensyn.ai/" class="btn-primary" style="display: inline-block; margin: 10px;">
+                                <i class="fas fa-blog"></i> Gensyn Blog
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol. Learn, build, and contribute to the future of decentralized AI.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://blog.gensyn.ai/">Gensyn Blog</a></li>
+                        <li><a href="https://github.com/gensyn-ai/rl-swarm">GitHub</a></li>
+                        <li><a href="https://dashboard.gensyn.ai/">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>
+    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

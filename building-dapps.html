@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building dApps - Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-course-id="building-dapps">
+    <!-- Animated Background -->
+    <div class="animated-bg" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Points Header -->
+    <div class="points-header">
+        <i class="fas fa-star"></i>
+        <span class="points-display">0</span>
+        <span>Points</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center;">
+                <h1 class="glitch-text" data-text="Building dApps">Building dApps</h1>
+                <p class="hero-subtitle" style="max-width: 700px; margin: 0 auto;">
+                    Learn to build decentralized applications that use Gensyn for AI training! From simple integrations to full-scale AI-powered dApps.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="fas fa-award"></i> Complete all lessons to earn the <strong style="color: var(--primary-color);">dApp Builder</strong> badge (500 points)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                
+                <!-- Course Progress -->
+                <div class="course-progress">
+                    <div class="course-progress-header">
+                        <span style="font-weight: 600; font-size: 1.1rem;">Course Progress</span>
+                        <span class="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-bar">
+                        <div class="course-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Lesson 1 -->
+                <div class="lesson" data-lesson-id="dapp-lesson-1" data-lesson-title="What are dApps?" data-points="125">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-cube"></i> Lesson 1: Understanding dApps</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-star"></i> 125 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Decentralized Applications</h3>
+                        <p>What makes an app "decentralized" and why does it matter?</p>
+
+                        <h3>Traditional Apps vs dApps</h3>
+
+                        <p><strong>Traditional Apps:</strong></p>
+                        <ul>
+                            <li>Run on company's servers</li>
+                            <li>Company controls everything</li>
+                            <li>Can be shut down or censored</li>
+                            <li>Data stored in central database</li>
+                            <li>Examples: Facebook, Gmail, Uber</li>
+                        </ul>
+
+                        <p><strong>Decentralized Apps (dApps):</strong></p>
+                        <ul>
+                            <li>Run on blockchain network</li>
+                            <li>No single controller</li>
+                            <li>Censorship-resistant</li>
+                            <li>Data distributed across network</li>
+                            <li>Examples: Uniswap, Aave, Your future Gensyn dApp!</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <strong>Think of it like:</strong> Traditional app = owned building. dApp = public park. Anyone can use the park, no single owner controls it!
+                        </div>
+
+                        <h3>Why Build on Gensyn?</h3>
+
+                        <p><strong>Traditional AI Development Problems:</strong></p>
+                        <ul>
+                            <li>Need expensive servers ($100M+ for large models)</li>
+                            <li>Centralized = single point of failure</li>
+                            <li>High barriers to entry</li>
+                            <li>Only big companies can afford it</li>
+                        </ul>
+
+                        <p><strong>Building with Gensyn:</strong></p>
+                        <ul>
+                            <li>Access to distributed compute power</li>
+                            <li>Pay only for what you use</li>
+                            <li>No massive infrastructure needed</li>
+                            <li>Anyone can build AI applications</li>
+                            <li>Verifiable, trustless training</li>
+                        </ul>
+
+                        <h3>What Can You Build?</h3>
+
+                        <p><strong>AI-Powered Games:</strong></p>
+                        <ul>
+                            <li>NPCs that learn from players</li>
+                            <li>Dynamic difficulty adjustment</li>
+                            <li>Personalized game experiences</li>
+                            <li>Community-trained game AI</li>
+                        </ul>
+
+                        <p><strong>DeFi with AI:</strong></p>
+                        <ul>
+                            <li>Predictive trading bots</li>
+                            <li>Risk assessment models</li>
+                            <li>Automated market makers with ML</li>
+                            <li>Fraud detection systems</li>
+                        </ul>
+
+                        <p><strong>Creator Tools:</strong></p>
+                        <ul>
+                            <li>AI art generation platforms</li>
+                            <li>Music composition tools</li>
+                            <li>Video editing assistants</li>
+                            <li>Writing aids</li>
+                        </ul>
+
+                        <p><strong>Social & Communication:</strong></p>
+                        <ul>
+                            <li>Decentralized chatbots</li>
+                            <li>Translation services</li>
+                            <li>Content moderation AI</li>
+                            <li>Personalized recommendations</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-rocket"></i>
+                            <strong>The Opportunity:</strong> You can now build AI applications that would have cost millions with traditional infrastructure!
+                        </div>
+
+                        <h3>dApp Architecture with Gensyn</h3>
+
+                        <p><strong>Components:</strong></p>
+                        <ul>
+                            <li><strong>Frontend:</strong> User interface (web or mobile)</li>
+                            <li><strong>Smart Contracts:</strong> Business logic on blockchain</li>
+                            <li><strong>Gensyn Integration:</strong> AI training requests</li>
+                            <li><strong>Wallet Connection:</strong> User authentication</li>
+                            <li><strong>Storage:</strong> IPFS or Arweave for large data</li>
+                        </ul>
+
+                        <div class="quiz-container" data-question-id="dapp-q1">
+                            <div class="quiz-question">
+                                🤔 Quiz: What's the main advantage of building AI dApps on Gensyn?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    They're always faster than traditional apps
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Access to affordable distributed compute without needing expensive infrastructure
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They don't require any coding knowledge
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They're automatically profitable
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson" data-lesson-id="dapp-lesson-2" data-lesson-title="Getting Started" data-points="125">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-code"></i> Lesson 2: Your First Integration</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 12 min</span>
+                            <span><i class="fas fa-star"></i> 125 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Development Setup</h3>
+                        <p>Let's get your development environment ready!</p>
+
+                        <h3>Prerequisites</h3>
+
+                        <p><strong>You'll Need:</strong></p>
+                        <ul>
+                            <li><strong>Node.js & npm:</strong> JavaScript runtime</li>
+                            <li><strong>Code editor:</strong> VS Code recommended</li>
+                            <li><strong>Wallet:</strong> MetaMask or similar</li>
+                            <li><strong>Basic coding knowledge:</strong> JavaScript/Python</li>
+                            <li><strong>Gensyn SDK:</strong> We'll install this</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <i class="fas fa-download"></i>
+                            <strong>Installation:</strong><br>
+                            <code>npm install @gensyn/sdk</code><br>
+                            <code>npm install ethers</code> (for blockchain interactions)
+                        </div>
+
+                        <h3>Basic Integration Steps</h3>
+
+                        <p><strong>Step 1: Initialize Gensyn Client</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>import { GensynClient } from '@gensyn/sdk';
+
+const client = new GensynClient({
+  network: 'testnet', // or 'mainnet'
+  apiKey: 'your-api-key'
+});</code></pre>
+
+                        <p><strong>Step 2: Submit Training Job</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>const job = await client.submitTrainingJob({
+  modelType: 'transformer',
+  dataset: 'ipfs://your-dataset-hash',
+  epochs: 10,
+  budget: 100 // in tokens
+});
+
+console.log('Job ID:', job.id);</code></pre>
+
+                        <p><strong>Step 3: Monitor Progress</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>const status = await client.getJobStatus(job.id);
+console.log('Progress:', status.progress + '%');
+console.log('Current loss:', status.metrics.loss);</code></pre>
+
+                        <p><strong>Step 4: Retrieve Trained Model</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>if (status.completed) {
+  const model = await client.downloadModel(job.id);
+  // Use the trained model in your app!
+}</code></pre>
+
+                        <div class="success-box">
+                            <i class="fas fa-magic"></i>
+                            <strong>That's It!</strong> In just a few lines of code, you've submitted AI training to a decentralized network!
+                        </div>
+
+                        <h3>Simple Example: Sentiment Analyzer</h3>
+                        <p>Let's build a dApp that trains a sentiment analysis model!</p>
+
+                        <p><strong>What it does:</strong></p>
+                        <ul>
+                            <li>User uploads text reviews</li>
+                            <li>dApp submits training to Gensyn</li>
+                            <li>Model learns to detect sentiment (positive/negative)</li>
+                            <li>User can analyze new reviews</li>
+                        </ul>
+
+                        <p><strong>Frontend (React example):</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>function SentimentApp() {
+  const [training, setTraining] = useState(false);
+  
+  async function trainModel(dataset) {
+    setTraining(true);
+    const job = await gensynClient.submitTrainingJob({
+      modelType: 'text-classifier',
+      dataset: dataset,
+      classes: ['positive', 'negative']
+    });
+    
+    // Wait for completion...
+    const model = await waitForTraining(job.id);
+    setTraining(false);
+  }
+  
+  return (
+    <div>
+      {training ? 'Training...' : 'Ready!'}
+    </div>
+  );
+}</code></pre>
+
+                        <h3>Handling Payments</h3>
+
+                        <p><strong>Training Costs Tokens:</strong></p>
+                        <ul>
+                            <li>Estimate cost before submission</li>
+                            <li>User approves token spend</li>
+                            <li>Tokens held in escrow during training</li>
+                            <li>Released to nodes upon completion</li>
+                        </ul>
+
+                        <p><strong>Code Example:</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>// Estimate cost first
+const estimate = await client.estimateCost({
+  modelType: 'transformer',
+  epochs: 10
+});
+
+console.log('Estimated cost:', estimate.tokens);
+
+// User approves
+await approveTokenSpend(estimate.tokens);
+
+// Submit job
+const job = await client.submitTrainingJob(...);</code></pre>
+
+                        <div class="quiz-container" data-question-id="dapp-q2">
+                            <div class="quiz-question">
+                                🤔 Quiz: What happens to your tokens during training?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    They're sent directly to nodes immediately
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    They're held in escrow and released to nodes after verified completion
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They're burned and new tokens are minted
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They stay in your wallet until you manually send them
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson" data-lesson-id="dapp-lesson-3" data-lesson-title="Smart Contract Integration" data-points="125">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-file-contract"></i> Lesson 3: Smart Contracts</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 11 min</span>
+                            <span><i class="fas fa-star"></i> 125 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Integrating Blockchain Logic</h3>
+                        <p>Make your dApp truly decentralized with smart contracts!</p>
+
+                        <h3>Why Smart Contracts?</h3>
+
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li><strong>Trustless:</strong> Code executes automatically</li>
+                            <li><strong>Transparent:</strong> Anyone can verify the logic</li>
+                            <li><strong>Immutable:</strong> Can't be changed once deployed</li>
+                            <li><strong>Composable:</strong> Other apps can build on yours</li>
+                        </ul>
+
+                        <p><strong>What to Put in Smart Contracts:</strong></p>
+                        <ul>
+                            <li>Payment logic</li>
+                            <li>Access control</li>
+                            <li>Model ownership</li>
+                            <li>Revenue sharing</li>
+                            <li>Governance rules</li>
+                        </ul>
+
+                        <h3>Example: AI Model Marketplace</h3>
+                        <p>Let's build a marketplace where users can buy/sell trained models!</p>
+
+                        <p><strong>Smart Contract (Solidity):</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1; font-size: 0.85rem;"><code>contract AIModelMarketplace {
+    struct Model {
+        address owner;
+        string ipfsHash;
+        uint256 price;
+        bool forSale;
+    }
+    
+    mapping(uint256 => Model) public models;
+    uint256 public modelCount;
+    
+    // List trained model for sale
+    function listModel(
+        string memory ipfsHash, 
+        uint256 price
+    ) public {
+        modelCount++;
+        models[modelCount] = Model({
+            owner: msg.sender,
+            ipfsHash: ipfsHash,
+            price: price,
+            forSale: true
+        });
+    }
+    
+    // Buy a model
+    function buyModel(uint256 modelId) public payable {
+        Model storage model = models[modelId];
+        require(model.forSale, "Not for sale");
+        require(msg.value >= model.price, "Insufficient payment");
+        
+        // Transfer payment to owner
+        payable(model.owner).transfer(model.price);
+        
+        // Transfer ownership
+        model.owner = msg.sender;
+        model.forSale = false;
+    }
+}</code></pre>
+
+                        <div class="success-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>Security:</strong> Smart contracts handle money, so security is critical! Always get audits for production code.
+                        </div>
+
+                        <h3>Connecting Frontend to Contract</h3>
+
+                        <p><strong>Using ethers.js:</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>import { ethers } from 'ethers';
+
+// Connect to wallet
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+
+// Load contract
+const contract = new ethers.Contract(
+  contractAddress,
+  contractABI,
+  signer
+);
+
+// List model for sale
+async function listModel(ipfsHash, price) {
+  const tx = await contract.listModel(
+    ipfsHash,
+    ethers.parseEther(price)
+  );
+  await tx.wait(); // Wait for confirmation
+  console.log('Model listed!');
+}</code></pre>
+
+                        <h3>Advanced Pattern: Training Bounties</h3>
+                        <p>Create a system where users can request model training and offer bounties!</p>
+
+                        <p><strong>How it works:</strong></p>
+                        <ul>
+                            <li>User creates bounty with requirements + payment</li>
+                            <li>AI developers compete to fulfill it</li>
+                            <li>Best model wins the bounty</li>
+                            <li>All handled by smart contract</li>
+                        </ul>
+
+                        <p><strong>Smart Contract Logic:</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1; font-size: 0.85rem;"><code>contract TrainingBounty {
+    struct Bounty {
+        address creator;
+        string requirements;
+        uint256 reward;
+        uint256 deadline;
+        address winner;
+        bool completed;
+    }
+    
+    function createBounty(
+        string memory requirements,
+        uint256 deadline
+    ) public payable {
+        // Store bounty with attached payment
+        bounties[bountyCount++] = Bounty({
+            creator: msg.sender,
+            requirements: requirements,
+            reward: msg.value,
+            deadline: deadline,
+            winner: address(0),
+            completed: false
+        });
+    }
+    
+    function submitSolution(
+        uint256 bountyId,
+        string memory modelHash
+    ) public {
+        // Submit your trained model
+        // Creator reviews and picks winner
+    }
+    
+    function awardBounty(
+        uint256 bountyId,
+        address winner
+    ) public {
+        Bounty storage bounty = bounties[bountyId];
+        require(msg.sender == bounty.creator);
+        
+        // Send reward to winner
+        payable(winner).transfer(bounty.reward);
+        bounty.winner = winner;
+        bounty.completed = true;
+    }
+}</code></pre>
+
+                        <div class="info-box">
+                            <i class="fas fa-trophy"></i>
+                            <strong>Use Case:</strong> A game developer offers 10 ETH bounty for an NPC AI. Developers train models on Gensyn, best one wins!
+                        </div>
+
+                        <div class="quiz-container" data-question-id="dapp-q3">
+                            <div class="quiz-question">
+                                🤔 Quiz: Why use smart contracts in your AI dApp?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    They make the AI train faster
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    They provide trustless, automatic execution of payment and ownership logic
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They're required by Gensyn
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    They store the actual AI models
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson" data-lesson-id="dapp-lesson-4" data-lesson-title="Launch Your dApp" data-points="125">
+                    <span class="lesson-checkmark"><i class="fas fa-check"></i></span>
+                    <div class="lesson-header">
+                        <h2 class="lesson-title"><i class="fas fa-rocket"></i> Lesson 4: Deploy & Scale</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-star"></i> 125 pts</span>
+                        </div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Going to Production</h3>
+                        <p>You've built your dApp - now let's launch it!</p>
+
+                        <h3>Deployment Checklist</h3>
+
+                        <p><strong>1. Test Thoroughly</strong></p>
+                        <ul>
+                            <li>Test on testnet first</li>
+                            <li>Try edge cases and error scenarios</li>
+                            <li>Get beta users to test</li>
+                            <li>Fix all bugs before mainnet</li>
+                        </ul>
+
+                        <p><strong>2. Smart Contract Audit</strong></p>
+                        <ul>
+                            <li><strong>Critical if handling money!</strong></li>
+                            <li>Hire professional auditors</li>
+                            <li>Cost: $5k-$50k depending on complexity</li>
+                            <li>Worth it to prevent exploits</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <i class="fas fa-bug"></i>
+                            <strong>Security First:</strong> Bugs in smart contracts can't be fixed easily. One exploit could drain all funds. Always audit!
+                        </div>
+
+                        <p><strong>3. Deploy Smart Contracts</strong></p>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; overflow-x: auto; color: #cbd5e1;"><code>// Using Hardhat
+npx hardhat run scripts/deploy.js --network mainnet
+
+// Or with Foundry
+forge create --rpc-url $RPC_URL \
+  --private-key $PRIVATE_KEY \
+  src/MyContract.sol:MyContract</code></pre>
+
+                        <p><strong>4. Deploy Frontend</strong></p>
+                        <ul>
+                            <li><strong>Vercel:</strong> Easy, automatic deployments</li>
+                            <li><strong>IPFS:</strong> Fully decentralized hosting</li>
+                            <li><strong>Fleek:</strong> IPFS + CDN</li>
+                            <li><strong>Netlify:</strong> Simple web hosting</li>
+                        </ul>
+
+                        <h3>Scaling Your dApp</h3>
+
+                        <p><strong>Performance Optimization:</strong></p>
+                        <ul>
+                            <li>Cache Gensyn API responses</li>
+                            <li>Use indexers for blockchain data (The Graph)</li>
+                            <li>Optimize smart contract gas costs</li>
+                            <li>Load models lazily</li>
+                        </ul>
+
+                        <p><strong>Handling Many Users:</strong></p>
+                        <ul>
+                            <li>Rate limit API calls</li>
+                            <li>Queue training jobs</li>
+                            <li>Use CDN for static assets</li>
+                            <li>Implement proper error handling</li>
+                        </ul>
+
+                        <h3>Monetization Strategies</h3>
+
+                        <p><strong>How to Make Money:</strong></p>
+                        <ul>
+                            <li><strong>Usage fees:</strong> Charge per training job</li>
+                            <li><strong>Subscriptions:</strong> Monthly access tiers</li>
+                            <li><strong>Marketplace fees:</strong> % of model sales</li>
+                            <li><strong>Premium features:</strong> Basic free, advanced paid</li>
+                            <li><strong>NFT models:</strong> Sell unique trained models</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <i class="fas fa-chart-line"></i>
+                            <strong>Revenue Example:</strong> Charge $5 per training job. 100 users/day = $500/day = $15k/month!
+                        </div>
+
+                        <h3>Marketing Your dApp</h3>
+
+                        <p><strong>Build Community:</strong></p>
+                        <ul>
+                            <li>Create Discord server</li>
+                            <li>Active Twitter presence</li>
+                            <li>Write technical blog posts</li>
+                            <li>Demo videos on YouTube</li>
+                        </ul>
+
+                        <p><strong>Launch Strategy:</strong></p>
+                        <ul>
+                            <li>Beta test with early adopters</li>
+                            <li>Launch on ProductHunt</li>
+                            <li>Share in crypto communities</li>
+                            <li>Partner with influencers</li>
+                            <li>Run launch contests/giveaways</li>
+                        </ul>
+
+                        <h3>Continuous Improvement</h3>
+
+                        <p><strong>Collect Feedback:</strong></p>
+                        <ul>
+                            <li>User surveys</li>
+                            <li>Analytics (privacy-respecting)</li>
+                            <li>Discord feedback channel</li>
+                            <li>Monitor error rates</li>
+                        </ul>
+
+                        <p><strong>Iterate Fast:</strong></p>
+                        <ul>
+                            <li>Ship updates regularly</li>
+                            <li>Fix bugs quickly</li>
+                            <li>Add requested features</li>
+                            <li>Stay ahead of competitors</li>
+                        </ul>
+
+                        <h3>Your Builder Journey</h3>
+
+                        <p>You've learned:</p>
+                        <ul>
+                            <li>✅ What dApps are and why they matter</li>
+                            <li>✅ How to integrate Gensyn SDK</li>
+                            <li>✅ Smart contract development</li>
+                            <li>✅ Deployment and scaling strategies</li>
+                        </ul>
+
+                        <div class="success-box" style="text-align: center; padding: 30px;">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">🛠️ You're Now a Builder!</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 20px;">Complete this lesson to earn your <strong>dApp Builder</strong> badge!</p>
+                            <p style="font-size: 0.9rem; color: #cbd5e1;">+ 500 bonus points for course completion</p>
+                            <p style="margin-top: 20px; font-size: 1rem;">Go build something amazing! 🚀</p>
+                        </div>
+
+                        <div class="quiz-container" data-question-id="dapp-q4">
+                            <div class="quiz-question">
+                                🤔 Final Quiz: What's the most important step before deploying to mainnet?
+                            </div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="false">
+                                    Make the UI look perfect
+                                </div>
+                                <div class="quiz-option" data-correct="true">
+                                    Thoroughly test on testnet and audit smart contracts for security
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Build a large social media following first
+                                </div>
+                                <div class="quiz-option" data-correct="false">
+                                    Deploy as quickly as possible to beat competitors
+                                </div>
+                            </div>
+                            <div class="quiz-feedback"></div>
+                        </div>
+
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-trophy"></i> Complete Course & Earn Badge!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Complete -->
+                <div style="text-align: center; padding: 40px 20px; margin-top: 40px; background: rgba(255, 201, 212, 0.05); border-radius: 16px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 20px;">🎉 Academy Complete!</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 15px; color: #cbd5e1;">You've mastered the Gensyn ecosystem!</p>
+                    <p style="font-size: 1rem; margin-bottom: 30px; color: #94a3b8;">Now go build the future of decentralized AI</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#courses" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-home"></i> Back to Academy
+                        </a>
+                        <a href="index.html#badges" class="btn-primary" style="text-decoration: none;">
+                            View My Badges <i class="fas fa-award"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hippocamp Academy</h3>
+                    <p>Master the Gensyn Protocol through interactive courses and earn badges!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hippocamp Academy. Educational project for Gensyn Protocol.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="course-system.js"></script>`n    <script src="social-share.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

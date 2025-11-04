@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Learning Path | Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .paths-hero {
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .path-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .path-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .path-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 60px rgba(255, 201, 212, 0.3);
+        }
+
+        .path-card.selected {
+            border-color: var(--primary-color);
+            background: rgba(255, 201, 212, 0.08);
+            box-shadow: 0 0 40px rgba(255, 201, 212, 0.4);
+        }
+
+        .path-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(255, 201, 212, 0.3));
+        }
+
+        .path-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .path-badge.easy {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .path-badge.intermediate {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .path-badge.advanced {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .path-badge.expert {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        .path-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .path-description {
+            color: #94a3b8;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .path-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .path-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .path-meta-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .path-meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .course-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .course-item.required {
+            border-left-color: #FFC9D4;
+        }
+
+        .course-item.optional {
+            border-left-color: #64748b;
+        }
+
+        .course-item i {
+            color: var(--primary-color);
+        }
+
+        .course-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .select-path-btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+            border: none;
+            border-radius: 12px;
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .select-path-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 201, 212, 0.5);
+        }
+
+        .select-path-btn:active {
+            transform: translateY(0);
+        }
+
+        .recommendation-banner {
+            background: linear-gradient(135deg, rgba(255, 201, 212, 0.1), rgba(82, 212, 212, 0.1));
+            border: 2px solid rgba(255, 201, 212, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .recommendation-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .progress-indicator {
+            margin: 30px 0;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .skip-selection {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .skip-selection a {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .skip-selection a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 50px 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .comparison-table td {
+            color: #94a3b8;
+        }
+
+        .feature-check {
+            color: #22c55e;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .paths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .path-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🦛 Hippocamp Academy</a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#courses">Courses</a>
+                <a href="network-dashboard.html">Dashboard</a>
+                <a href="learning-paths.html" class="active">Learning Paths</a>
+                <a href="badges.html">Badges</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="paths-hero">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 3.5rem; margin-bottom: 20px;">Choose Your Learning Path</h1>
+            <p style="font-size: 1.3rem; color: #94a3b8; max-width: 800px; margin: 0 auto;">
+                Personalized learning journeys designed for your goals. Select a path that matches your interests and skill level.
+            </p>
+        </div>
+    </section>
+
+    <!-- Recommendation Banner -->
+    <section class="container" id="recommendation-section" style="display: none;">
+        <div class="recommendation-banner">
+            <div class="recommendation-icon">🎯</div>
+            <h2 style="color: #fff; margin-bottom: 15px;">Recommended for You</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem;" id="recommendation-text"></p>
+        </div>
+    </section>
+
+    <!-- Learning Paths Grid -->
+    <section class="container">
+        <div class="paths-grid">
+            <!-- Beginner Path -->
+            <div class="path-card" data-path="beginner">
+                <span class="path-icon">🌱</span>
+                <span class="path-badge easy">Easy</span>
+                <h2 class="path-name">Beginner Path</h2>
+                <p class="path-description">
+                    Perfect for newcomers to Web3 and machine learning. Start with the fundamentals and build a solid foundation.
+                </p>
+                <div class="path-meta">
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Duration</span>
+                        <span class="path-meta-value">6-8 hrs</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Courses</span>
+                        <span class="path-meta-value">3</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Points</span>
+                        <span class="path-meta-value">1,200</span>
+                    </div>
+                </div>
+                <div class="course-list">
+                    <div class="course-item required">
+                        <i class="fas fa-book"></i>
+                        <span>Gensyn Protocol Basics</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-brain"></i>
+                        <span>RL Swarm Intelligence</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item optional">
+                        <i class="fas fa-server"></i>
+                        <span>Node Operations</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #64748b;">Optional</span>
+                    </div>
+                </div>
+                <button class="select-path-btn" onclick="selectPath('beginner')">
+                    <i class="fas fa-check-circle"></i> Select This Path
+                </button>
+            </div>
+
+            <!-- Developer Path -->
+            <div class="path-card" data-path="developer">
+                <span class="path-icon">💻</span>
+                <span class="path-badge intermediate">Intermediate</span>
+                <h2 class="path-name">Developer Path</h2>
+                <p class="path-description">
+                    Build decentralized applications on Gensyn network. Master smart contracts, APIs, and integration patterns.
+                </p>
+                <div class="path-meta">
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Duration</span>
+                        <span class="path-meta-value">10-12 hrs</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Courses</span>
+                        <span class="path-meta-value">4</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Points</span>
+                        <span class="path-meta-value">2,000</span>
+                    </div>
+                </div>
+                <div class="course-list">
+                    <div class="course-item required">
+                        <i class="fas fa-book"></i>
+                        <span>Gensyn Protocol Basics</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Protocol Architecture</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-code"></i>
+                        <span>Building dApps</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item optional">
+                        <i class="fas fa-rocket"></i>
+                        <span>Advanced Optimization</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #64748b;">Optional</span>
+                    </div>
+                </div>
+                <button class="select-path-btn" onclick="selectPath('developer')">
+                    <i class="fas fa-check-circle"></i> Select This Path
+                </button>
+            </div>
+
+            <!-- Node Operator Path -->
+            <div class="path-card" data-path="operator">
+                <span class="path-icon">⚙️</span>
+                <span class="path-badge advanced">Advanced</span>
+                <h2 class="path-name">Node Operator Path</h2>
+                <p class="path-description">
+                    Run and maintain Gensyn network nodes. Learn deployment, monitoring, optimization, and troubleshooting.
+                </p>
+                <div class="path-meta">
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Duration</span>
+                        <span class="path-meta-value">12-15 hrs</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Courses</span>
+                        <span class="path-meta-value">4</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Points</span>
+                        <span class="path-meta-value">2,400</span>
+                    </div>
+                </div>
+                <div class="course-list">
+                    <div class="course-item required">
+                        <i class="fas fa-book"></i>
+                        <span>Gensyn Protocol Basics</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-brain"></i>
+                        <span>RL Swarm Intelligence</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-server"></i>
+                        <span>Node Operations</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-rocket"></i>
+                        <span>Advanced Optimization</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                </div>
+                <button class="select-path-btn" onclick="selectPath('operator')">
+                    <i class="fas fa-check-circle"></i> Select This Path
+                </button>
+            </div>
+
+            <!-- Researcher Path -->
+            <div class="path-card" data-path="researcher">
+                <span class="path-icon">🔬</span>
+                <span class="path-badge advanced">Advanced</span>
+                <h2 class="path-name">Researcher Path</h2>
+                <p class="path-description">
+                    Deep dive into ML theory, cryptographic proofs, and protocol design. Explore academic papers and research.
+                </p>
+                <div class="path-meta">
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Duration</span>
+                        <span class="path-meta-value">15-20 hrs</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Courses</span>
+                        <span class="path-meta-value">5</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Points</span>
+                        <span class="path-meta-value">3,000</span>
+                    </div>
+                </div>
+                <div class="course-list">
+                    <div class="course-item required">
+                        <i class="fas fa-book"></i>
+                        <span>Gensyn Protocol Basics</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Protocol Architecture</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-brain"></i>
+                        <span>RL Swarm Intelligence</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-flask"></i>
+                        <span>Research Hub</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Required</span>
+                    </div>
+                    <div class="course-item optional">
+                        <i class="fas fa-rocket"></i>
+                        <span>Advanced Optimization</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #64748b;">Optional</span>
+                    </div>
+                </div>
+                <button class="select-path-btn" onclick="selectPath('researcher')">
+                    <i class="fas fa-check-circle"></i> Select This Path
+                </button>
+            </div>
+
+            <!-- Full-Stack Path -->
+            <div class="path-card" data-path="fullstack">
+                <span class="path-icon">🚀</span>
+                <span class="path-badge expert">Expert</span>
+                <h2 class="path-name">Full-Stack Path</h2>
+                <p class="path-description">
+                    Master everything from basics to advanced topics. Complete all courses and become a Gensyn expert.
+                </p>
+                <div class="path-meta">
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Duration</span>
+                        <span class="path-meta-value">25-30 hrs</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Courses</span>
+                        <span class="path-meta-value">7</span>
+                    </div>
+                    <div class="path-meta-item">
+                        <span class="path-meta-label">Points</span>
+                        <span class="path-meta-value">4,300+</span>
+                    </div>
+                </div>
+                <div class="course-list">
+                    <div class="course-item required">
+                        <i class="fas fa-book"></i>
+                        <span>All Courses Included</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">Complete All</span>
+                    </div>
+                    <div class="course-item required">
+                        <i class="fas fa-trophy"></i>
+                        <span>Unlock All Badges</span>
+                        <span style="margin-left: auto; font-size: 0.75rem; color: #FFC9D4;">6 Badges</span>
+                    </div>
+                </div>
+                <button class="select-path-btn" onclick="selectPath('fullstack')">
+                    <i class="fas fa-check-circle"></i> Select This Path
+                </button>
+            </div>
+        </div>
+
+        <!-- Skip Selection -->
+        <div class="skip-selection">
+            <p style="color: #64748b; margin-bottom: 15px;">Not sure yet? You can always choose a path later.</p>
+            <a href="index.html#courses">
+                <i class="fas fa-arrow-right"></i> Browse All Courses
+            </a>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="container">
+        <h2 style="text-align: center; color: #fff; font-size: 2.5rem; margin-bottom: 40px;">Compare Learning Paths</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Beginner</th>
+                        <th>Developer</th>
+                        <th>Operator</th>
+                        <th>Researcher</th>
+                        <th>Full-Stack</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gensyn Basics</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>RL Swarm</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Protocol Architecture</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Node Operations</td>
+                        <td>Optional</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Building dApps</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Optimization</td>
+                        <td>—</td>
+                        <td>Optional</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td>Optional</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Research Hub</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                        <td><i class="fas fa-check feature-check"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="learning-paths.js"></script>
+    <script>
+        // Path selection logic
+        function selectPath(pathId) {
+            // Save selected path
+            localStorage.setItem('hippocamp_learning_path', pathId);
+            
+            // Visual feedback
+            document.querySelectorAll('.path-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-path="${pathId}"]`).classList.add('selected');
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = 'position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #FFC9D4, #52D4D4); padding: 20px 40px; border-radius: 12px; color: #1e293b; font-weight: 700; z-index: 10000; box-shadow: 0 10px 40px rgba(255, 201, 212, 0.5); animation: slideDown 0.5s ease;';
+            successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${getPathName(pathId)} Selected!`;
+            document.body.appendChild(successMsg);
+            
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                successMsg.style.animation = 'slideUp 0.5s ease';
+                setTimeout(() => {
+                    window.location.href = 'index.html#courses';
+                }, 500);
+            }, 2000);
+        }
+
+        function getPathName(pathId) {
+            const names = {
+                'beginner': 'Beginner Path',
+                'developer': 'Developer Path',
+                'operator': 'Node Operator Path',
+                'researcher': 'Researcher Path',
+                'fullstack': 'Full-Stack Path'
+            };
+            return names[pathId] || pathId;
+        }
+
+        // Load recommendation on page load
+        window.addEventListener('load', () => {
+            const currentPath = localStorage.getItem('hippocamp_learning_path');
+            const completedLessons = JSON.parse(localStorage.getItem('hippocamp_completed_lessons') || '[]');
+            const points = parseInt(localStorage.getItem('hippocamp_points') || '0');
+            
+            // Highlight current path if already selected
+            if (currentPath) {
+                document.querySelector(`[data-path="${currentPath}"]`)?.classList.add('selected');
+            }
+            
+            // Show recommendation based on progress
+            if (completedLessons.length === 0 && points === 0) {
+                showRecommendation('beginner', "You're new here! Start with the Beginner Path to build your foundation.");
+            } else if (completedLessons.length >= 5 && points >= 500 && !currentPath) {
+                showRecommendation('developer', "You've made great progress! Consider the Developer Path to build real applications.");
+            } else if (points >= 1000 && !currentPath) {
+                showRecommendation('fullstack', "You're doing amazing! Challenge yourself with the Full-Stack Path.");
+            }
+        });
+
+        function showRecommendation(pathId, message) {
+            const section = document.getElementById('recommendation-section');
+            const text = document.getElementById('recommendation-text');
+            text.textContent = message;
+            section.style.display = 'block';
+            
+            // Highlight recommended path
+            const card = document.querySelector(`[data-path="${pathId}"]`);
+            if (card) {
+                card.style.border = '2px solid #fbbf24';
+                card.style.boxShadow = '0 0 30px rgba(251, 191, 36, 0.3)';
+            }
+        }
+
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    transform: translate(-50%, -100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideUp {
+                from {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translate(-50%, -100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

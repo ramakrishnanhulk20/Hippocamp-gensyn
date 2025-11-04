@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Playground | Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Monaco Editor (VS Code's editor) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/editor/editor.main.min.css">
+    <style>
+        .playground-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 120px 20px 40px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .editor-panel, .output-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+            border: none;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 201, 212, 0.4);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #editor-container {
+            flex: 1;
+            min-height: 400px;
+        }
+
+        .output-content {
+            flex: 1;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            overflow-y: auto;
+            color: #94a3b8;
+        }
+
+        .output-line {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .output-line.stdout {
+            color: #fff;
+        }
+
+        .output-line.stderr {
+            color: #ef4444;
+        }
+
+        .output-line.success {
+            color: #22c55e;
+        }
+
+        .output-line.info {
+            color: #52D4D4;
+        }
+
+        .examples-sidebar {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .examples-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .example-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #94a3b8;
+        }
+
+        .example-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .example-item.active {
+            background: rgba(255, 201, 212, 0.1);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-indicator {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-indicator.ready {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .status-indicator.running {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .status-indicator.loading {
+            background: rgba(82, 212, 212, 0.2);
+            color: #52D4D4;
+        }
+
+        @media (max-width: 1024px) {
+            .playground-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .playground-hero {
+            padding: 120px 20px 40px;
+            text-align: center;
+        }
+
+        .info-banner {
+            background: rgba(82, 212, 212, 0.1);
+            border: 1px solid rgba(82, 212, 212, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #52D4D4;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🦛 Hippocamp Academy</a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#courses">Courses</a>
+                <a href="learning-paths.html">Learning Paths</a>
+                <a href="code-playground.html" class="active">Playground</a>
+                <a href="badges.html">Badges</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="playground-hero" style="padding-bottom: 20px;">
+        <div class="container">
+            <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 15px;">Interactive Code Playground</h1>
+            <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">
+                Test Python code directly in your browser. Experiment with Gensyn examples and learn by doing.
+            </p>
+            <div class="info-banner" style="max-width: 700px; margin: 20px auto;">
+                <i class="fas fa-info-circle"></i> Powered by Pyodide - Python running in WebAssembly
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Sidebar (Mobile: Above, Desktop: Inline) -->
+    <section class="container" style="padding: 0 20px;">
+        <div class="examples-sidebar">
+            <div class="examples-title">
+                <i class="fas fa-code"></i>
+                Example Scripts
+            </div>
+            <div class="example-item active" data-example="hello">
+                <strong>Hello Gensyn</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">Basic print statement</div>
+            </div>
+            <div class="example-item" data-example="math">
+                <strong>Math Operations</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">Calculate training costs</div>
+            </div>
+            <div class="example-item" data-example="list">
+                <strong>Node List</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">Work with node arrays</div>
+            </div>
+            <div class="example-item" data-example="function">
+                <strong>Reward Calculator</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">Calculate staking rewards</div>
+            </div>
+            <div class="example-item" data-example="class">
+                <strong>Node Class</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">OOP: Create a node class</div>
+            </div>
+            <div class="example-item" data-example="api">
+                <strong>Mock API Call</strong>
+                <div style="font-size: 0.85rem; color: #64748b;">Simulate network requests</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playground -->
+    <section class="container">
+        <div class="playground-container">
+            <!-- Editor Panel -->
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <i class="fas fa-edit"></i>
+                        Python Editor
+                    </div>
+                    <div class="panel-actions">
+                        <button class="action-btn" onclick="clearEditor()">
+                            <i class="fas fa-eraser"></i>
+                            Clear
+                        </button>
+                        <button class="action-btn primary" id="run-btn" onclick="runCode()">
+                            <i class="fas fa-play"></i>
+                            Run Code
+                        </button>
+                    </div>
+                </div>
+                <div id="editor-container"></div>
+            </div>
+
+            <!-- Output Panel -->
+            <div class="output-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <i class="fas fa-terminal"></i>
+                        Output
+                        <span class="status-indicator loading" id="status-indicator">
+                            <span class="loading-spinner"></span>
+                            Loading Python...
+                        </span>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="action-btn" onclick="clearOutput()">
+                            <i class="fas fa-trash"></i>
+                            Clear Output
+                        </button>
+                    </div>
+                </div>
+                <div class="output-content" id="output-content">
+                    <div class="output-line info">⚡ Initializing Python environment...</div>
+                    <div class="output-line info">📦 Loading Pyodide (this may take a moment)...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pyodide Script -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let pyodide = null;
+        let editor = null;
+
+        // Code examples
+        const examples = {
+            hello: `# Welcome to Gensyn Python Playground!
+print("🦛 Hello from Hippocamp Academy!")
+print("Learn Gensyn Protocol with interactive code")
+
+# Calculate network stats
+active_nodes = 1247
+models_trained = 89432
+
+print(f"\\nActive Nodes: {active_nodes:,}")
+print(f"Models Trained: {models_trained:,}")`,
+
+            math: `# Calculate Gensyn Training Costs
+
+# Define parameters
+model_size_mb = 500
+cost_per_mb = 0.0001
+training_hours = 10
+hourly_rate = 0.05
+
+# Calculate total cost
+storage_cost = model_size_mb * cost_per_mb
+compute_cost = training_hours * hourly_rate
+total_cost = storage_cost + compute_cost
+
+print("🧮 Training Cost Calculator")
+print("=" * 40)
+print(f"Model Size: {model_size_mb} MB")
+print(f"Training Duration: {training_hours} hours")
+print(f"\\nStorage Cost: ${storage_cost:.4f}")
+print(f"Compute Cost: ${compute_cost:.2f}")
+print(f"\\n💰 Total Cost: ${total_cost:.2f}")`,
+
+            list: `# Working with Node Lists
+
+nodes = [
+    {"id": "node-001", "status": "active", "uptime": 99.8},
+    {"id": "node-002", "status": "active", "uptime": 98.5},
+    {"id": "node-003", "status": "inactive", "uptime": 45.2},
+    {"id": "node-004", "status": "active", "uptime": 99.9},
+]
+
+print("📊 Node Network Status\\n")
+
+# Filter active nodes
+active_nodes = [n for n in nodes if n["status"] == "active"]
+print(f"Active Nodes: {len(active_nodes)}/{len(nodes)}")
+
+# Calculate average uptime
+avg_uptime = sum(n["uptime"] for n in active_nodes) / len(active_nodes)
+print(f"Average Uptime: {avg_uptime:.1f}%\\n")
+
+# Display each node
+for node in nodes:
+    status_icon = "✅" if node["status"] == "active" else "❌"
+    print(f"{status_icon} {node['id']}: {node['uptime']}% uptime")`,
+
+            function: `# Staking Rewards Calculator
+
+def calculate_rewards(stake_amount, apy, days):
+    """
+    Calculate staking rewards for Gensyn tokens
+    
+    Args:
+        stake_amount: Amount of tokens staked
+        apy: Annual Percentage Yield (as decimal)
+        days: Number of days staked
+    
+    Returns:
+        Total rewards earned
+    """
+    daily_rate = apy / 365
+    rewards = stake_amount * daily_rate * days
+    return rewards
+
+# Example calculations
+stake = 10000  # 10,000 GENSYN tokens
+apy = 0.12     # 12% APY
+periods = [30, 90, 180, 365]
+
+print("💎 Gensyn Staking Rewards\\n")
+print(f"Stake Amount: {stake:,} GENSYN")
+print(f"APY: {apy * 100}%\\n")
+
+for days in periods:
+    rewards = calculate_rewards(stake, apy, days)
+    total = stake + rewards
+    print(f"{days:3d} days: +{rewards:,.2f} GENSYN (Total: {total:,.2f})")`,
+
+            class: `# Gensyn Node Class
+
+class GensynNode:
+    def __init__(self, node_id, region, compute_power):
+        self.node_id = node_id
+        self.region = region
+        self.compute_power = compute_power  # TFLOPs
+        self.tasks_completed = 0
+        self.status = "active"
+    
+    def complete_task(self, task_flops):
+        """Complete a training task"""
+        if self.status != "active":
+            return False
+        
+        self.tasks_completed += 1
+        return True
+    
+    def get_info(self):
+        """Display node information"""
+        return f"""
+Node ID: {self.node_id}
+Region: {self.region}
+Compute: {self.compute_power} TFLOPs
+Tasks: {self.tasks_completed}
+Status: {self.status}
+        """.strip()
+
+# Create nodes
+node1 = GensynNode("GN-001", "US-East", 50.5)
+node2 = GensynNode("GN-002", "EU-West", 75.2)
+
+# Complete tasks
+node1.complete_task(100)
+node1.complete_task(150)
+node2.complete_task(200)
+
+print("🖥️  Gensyn Network Nodes\\n")
+print(node1.get_info())
+print("\\n" + "="*30 + "\\n")
+print(node2.get_info())`,
+
+            api: `# Simulate Gensyn API Call
+
+import json
+
+def mock_api_call(endpoint):
+    """Simulate API response"""
+    api_data = {
+        "/network/stats": {
+            "active_nodes": 1247,
+            "total_compute": "342 TFLOPs",
+            "models_trained": 89432,
+            "network_uptime": "99.7%"
+        },
+        "/node/rewards": {
+            "address": "0x7a2b...9f3c",
+            "earned_today": 12.5,
+            "total_earned": 1847.3,
+            "pending": 3.2
+        }
+    }
+    return api_data.get(endpoint, {"error": "Endpoint not found"})
+
+# Make API calls
+print("🌐 Gensyn API Mock Examples\\n")
+
+# Get network stats
+stats = mock_api_call("/network/stats")
+print("Network Statistics:")
+print(json.dumps(stats, indent=2))
+
+print("\\n" + "="*40 + "\\n")
+
+# Get rewards
+rewards = mock_api_call("/node/rewards")
+print("Node Rewards:")
+print(json.dumps(rewards, indent=2))`
+        };
+
+        // Initialize Pyodide
+        async function initPyodide() {
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+                });
+                
+                updateStatus('ready', 'Python Ready');
+                addOutput('✅ Python environment loaded successfully!', 'success');
+                addOutput('💡 Select an example or write your own code, then click "Run Code"', 'info');
+                
+                document.getElementById('run-btn').disabled = false;
+            } catch (error) {
+                updateStatus('error', 'Error');
+                addOutput('❌ Failed to load Python environment: ' + error.message, 'stderr');
+            }
+        }
+
+        // Initialize Monaco Editor
+        require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function() {
+            editor = monaco.editor.create(document.getElementById('editor-container'), {
+                value: examples.hello,
+                language: 'python',
+                theme: 'vs-dark',
+                fontSize: 14,
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                automaticLayout: true,
+                padding: { top: 10, bottom: 10 }
+            });
+        });
+
+        // Run Python code
+        async function runCode() {
+            if (!pyodide) {
+                addOutput('⚠️ Python environment not ready yet...', 'stderr');
+                return;
+            }
+
+            const code = editor.getValue();
+            if (!code.trim()) {
+                addOutput('⚠️ No code to run', 'stderr');
+                return;
+            }
+
+            clearOutput();
+            updateStatus('running', 'Running...');
+            addOutput('▶️ Executing code...\\n', 'info');
+
+            try {
+                // Capture stdout
+                pyodide.runPython(`
+                    import sys
+                    from io import StringIO
+                    sys.stdout = StringIO()
+                `);
+
+                // Run user code
+                await pyodide.runPythonAsync(code);
+
+                // Get output
+                const stdout = pyodide.runPython('sys.stdout.getvalue()');
+                
+                if (stdout) {
+                    stdout.split('\\n').forEach(line => {
+                        if (line.trim()) addOutput(line, 'stdout');
+                    });
+                }
+
+                addOutput('\\n✅ Code executed successfully!', 'success');
+                updateStatus('ready', 'Python Ready');
+            } catch (error) {
+                addOutput('❌ Error: ' + error.message, 'stderr');
+                updateStatus('ready', 'Python Ready');
+            }
+        }
+
+        // Helper functions
+        function addOutput(text, type = 'stdout') {
+            const output = document.getElementById('output-content');
+            const line = document.createElement('div');
+            line.className = `output-line ${type}`;
+            line.textContent = text;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearOutput() {
+            document.getElementById('output-content').innerHTML = '';
+        }
+
+        function clearEditor() {
+            editor.setValue('# Write your Python code here\\n');
+        }
+
+        function updateStatus(status, text) {
+            const indicator = document.getElementById('status-indicator');
+            indicator.className = `status-indicator ${status}`;
+            indicator.innerHTML = status === 'loading' ? 
+                '<span class="loading-spinner"></span>' + text : 
+                (status === 'running' ? '<span class="loading-spinner"></span>' : '') + text;
+        }
+
+        // Example selection
+        document.querySelectorAll('.example-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.example-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                const example = item.dataset.example;
+                editor.setValue(examples[example]);
+            });
+        });
+
+        // Initialize on load
+        window.addEventListener('load', initPyodide);
+
+        // Keyboard shortcut: Ctrl+Enter to run
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Network Dashboard | Hippocamp Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 201, 212, 0.3);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .stat-trend.up {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .stat-trend.down {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #22c55e;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-live 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-live {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .activity-feed {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.2s ease;
+        }
+
+        .activity-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.training {
+            background: rgba(255, 201, 212, 0.2);
+            color: #FFC9D4;
+        }
+
+        .activity-icon.verification {
+            background: rgba(82, 212, 212, 0.2);
+            color: #52D4D4;
+        }
+
+        .activity-icon.reward {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .network-map {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .node-cluster {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+        }
+
+        .node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #52D4D4;
+            border-radius: 50%;
+            animation: node-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes node-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .refresh-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+            border: none;
+            border-radius: 8px;
+            color: #1e293b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 201, 212, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (reuse from index.html) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🦛 Hippocamp Academy</a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="network-dashboard.html" class="active">Dashboard</a>
+                <a href="badges.html">Badges</a>
+                <a href="research.html">Research</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 80px 20px 40px;">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="live-indicator">
+                    <span class="live-dot"></span>
+                    Live Data
+                </span>
+                <h1 class="gradient-text" style="font-size: 3rem; margin: 20px 0;">Network Dashboard</h1>
+                <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">
+                    Real-time insights into the Gensyn decentralized compute network
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Grid -->
+    <section class="container" style="padding: 40px 20px;">
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <i class="fas fa-server" style="font-size: 2rem; color: #FFC9D4;"></i>
+                <div class="stat-value" id="active-nodes">1,247</div>
+                <div class="stat-label">Active Nodes</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>12.3%</span>
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-brain" style="font-size: 2rem; color: #52D4D4;"></i>
+                <div class="stat-value" id="models-trained">89,432</div>
+                <div class="stat-label">Models Trained</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>8.7%</span>
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-check-circle" style="font-size: 2rem; color: #22c55e;"></i>
+                <div class="stat-value" id="verifications">234.5K</div>
+                <div class="stat-label">Verifications</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>15.2%</span>
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-bolt" style="font-size: 2rem; color: #fbbf24;"></i>
+                <div class="stat-value" id="compute-power">342 TFLOPs</div>
+                <div class="stat-label">Compute Power</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>22.1%</span>
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-coins" style="font-size: 2rem; color: #a78bfa;"></i>
+                <div class="stat-value" id="rewards-distributed">$2.4M</div>
+                <div class="stat-label">Rewards Distributed</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>18.5%</span>
+                </span>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-globe" style="font-size: 2rem; color: #f472b6;"></i>
+                <div class="stat-value" id="countries">67</div>
+                <div class="stat-label">Countries</div>
+                <span class="stat-trend up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>5.2%</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Network Map -->
+        <div class="network-map" style="margin-top: 40px;">
+            <h2 style="color: #fff; margin-bottom: 20px;">Global Node Distribution</h2>
+            <p style="color: #94a3b8; margin-bottom: 30px;">Interactive visualization coming soon</p>
+            <div class="node-cluster">
+                <div class="node" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="node" style="top: 20%; left: 30%; animation-delay: 0.5s;"></div>
+                <div class="node" style="top: 70%; left: 70%; animation-delay: 1s;"></div>
+                <div class="node" style="top: 40%; left: 80%; animation-delay: 1.5s;"></div>
+                <div class="node" style="top: 60%; left: 20%; animation-delay: 2s;"></div>
+            </div>
+            <button class="refresh-button" onclick="refreshData()">
+                <i class="fas fa-sync-alt"></i> Refresh Data
+            </button>
+        </div>
+
+        <!-- Activity Feed -->
+        <div style="margin-top: 40px;">
+            <h2 style="color: #fff; margin-bottom: 20px;">Recent Network Activity</h2>
+            <div class="activity-feed">
+                <div class="activity-item">
+                    <div class="activity-icon training">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="color: #fff; font-weight: 600;">ResNet-50 Training Completed</div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">Node: 0x7a2b...9f3c • 1,000 epochs</div>
+                        <div class="activity-time">2 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon verification">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="color: #fff; font-weight: 600;">Proof Verified Successfully</div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">Validator: 0x4d8e...2b7a</div>
+                        <div class="activity-time">5 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon reward">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="color: #fff; font-weight: 600;">Reward Claimed: 250 GENSYN</div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">Address: 0x9c1f...5e4d</div>
+                        <div class="activity-time">8 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon training">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="color: #fff; font-weight: 600;">New Training Job Started</div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">Model: GPT-2 • Node: 0x2f7a...8d1c</div>
+                        <div class="activity-time">12 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon verification">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="color: #fff; font-weight: 600;">Batch Verification Complete</div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">45 proofs verified</div>
+                        <div class="activity-time">15 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Animate numbers on load
+        function animateValue(id, start, end, duration) {
+            const element = document.getElementById(id);
+            const range = end - start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (element.textContent.includes('K') || element.textContent.includes('M')) {
+                    element.textContent = formatNumber(current);
+                } else {
+                    element.textContent = current.toLocaleString();
+                }
+                
+                if (current === end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+
+        function refreshData() {
+            // Simulate data refresh
+            const button = event.target.closest('button');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+            
+            setTimeout(() => {
+                // Add random variations
+                const nodes = Math.floor(1247 + Math.random() * 50);
+                const models = Math.floor(89432 + Math.random() * 1000);
+                
+                document.getElementById('active-nodes').textContent = nodes.toLocaleString();
+                document.getElementById('models-trained').textContent = formatNumber(models);
+                
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh Data';
+            }, 1500);
+        }
+
+        // Initial animation
+        window.addEventListener('load', () => {
+            animateValue('active-nodes', 1000, 1247, 1000);
+            animateValue('models-trained', 85000, 89432, 1500);
+        });
+    </script>
+</body>
+</html>
