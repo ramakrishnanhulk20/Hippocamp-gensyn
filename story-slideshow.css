@@ -565,7 +565,193 @@
     }
 }
 
+/* Final Card Styling */
+.story-slide-final {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-slide-final .slide-caption {
+    display: none; /* Hide default caption for final card */
+}
+
+.final-card-content {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    animation: fadeInUp 1s ease-out;
+}
+
+.gensyn-logo-container-final {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+.gensyn-logo-final {
+    filter: drop-shadow(0 0 20px rgba(255, 201, 212, 0.6)) 
+            drop-shadow(0 0 40px rgba(255, 201, 212, 0.4));
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.gensyn-logo-final .logo-blocks {
+    animation: blockGlow 2s ease-in-out infinite;
+}
+
+.final-card-title {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    animation: gradientShift 3s ease infinite;
+    text-shadow: 0 0 30px rgba(255, 201, 212, 0.3);
+}
+
+.final-card-tagline {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.final-card-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1s forwards;
+}
+
+.final-card-cta {
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+.final-card-message {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-style: italic;
+}
+
 /* Animation keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes logoGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 201, 212, 0.6)) 
+                drop-shadow(0 0 40px rgba(255, 201, 212, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(255, 201, 212, 0.8)) 
+                drop-shadow(0 0 60px rgba(255, 201, 212, 0.6));
+    }
+}
+
+@keyframes blockGlow {
+    0%, 100% {
+        fill: #FFC9D4;
+    }
+    50% {
+        fill: #FFD6DE;
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsive adjustments for final card */
+@media (max-width: 768px) {
+    .gensyn-logo-final {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .final-card-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.3rem;
+    }
+    
+    .final-card-tagline {
+        font-size: 1.25rem;
+    }
+    
+    .final-card-subtitle {
+        font-size: 1rem;
+    }
+    
+    .final-card-message {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gensyn-logo-final {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .final-card-title {
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .final-card-tagline {
+        font-size: 1.1rem;
+    }
+    
+    .final-card-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
 @keyframes slideInRight {
     from {
         opacity: 0;
