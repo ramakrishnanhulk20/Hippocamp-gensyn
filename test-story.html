@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gensyn Story Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #000;
+            color: white;
+        }
+        .test-buttons {
+            margin: 20px 0;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #FFC9D4;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #FFB3C1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gensyn Story Slideshow Test</h1>
+    
+    <div class="test-buttons">
+        <button onclick="clearLocalStorage()">Clear Local Storage (Reset First Visit)</button>
+        <button onclick="triggerGensynStory()">Trigger Story Manually</button>
+        <button onclick="showEntryModal()">Show Entry Modal</button>
+        <button onclick="checkStoryStatus()">Check Story Status</button>
+    </div>
+    
+    <div id="status"></div>
+    
+    <script>
+        function clearLocalStorage() {
+            localStorage.removeItem('gensynStoryViewed');
+            document.getElementById('status').innerHTML = '<p style="color: #90EE90;">✓ Local storage cleared! Refresh page to see entry modal.</p>';
+        }
+        
+        function checkStoryStatus() {
+            const status = localStorage.getItem('gensynStoryViewed');
+            document.getElementById('status').innerHTML = `<p>Story status: ${status || 'not viewed'}</p>`;
+        }
+        
+        function showEntryModal() {
+            if (window.gensynStorySlideshow) {
+                window.gensynStorySlideshow.showEntryModal();
+            }
+        }
+        
+        // Load the main page components for testing
+        function loadMainPage() {
+            fetch('/')
+                .then(response => response.text())
+                .then(html => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+                    
+                    // Extract and append story modals
+                    const storyEntryModal = tempDiv.querySelector('#storyEntryModal');
+                    const storyModal = tempDiv.querySelector('#storyModal');
+                    
+                    if (storyEntryModal) document.body.appendChild(storyEntryModal);
+                    if (storyModal) document.body.appendChild(storyModal);
+                    
+                    // Load CSS
+                    const css = document.createElement('link');
+                    css.rel = 'stylesheet';
+                    css.href = 'story-slideshow.css';
+                    document.head.appendChild(css);
+                    
+                    // Load JavaScript
+                    const js = document.createElement('script');
+                    js.src = 'story-slideshow.js';
+                    document.head.appendChild(js);
+                });
+        }
+        
+        // Initialize test page
+        window.addEventListener('load', loadMainPage);
+        
+        // Global function for testing
+        window.triggerGensynStory = function() {
+            if (typeof GensynthStorySlideshow !== 'undefined') {
+                GensynthStorySlideshow.triggerStory();
+            } else {
+                document.getElementById('status').innerHTML = '<p style="color: #FF6B6B;">Story slideshow not loaded yet. Please wait...</p>';
+            }
+        };
+    </script>
+</body>
+</html>

@@ -39,6 +39,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home-enhanced.css">
+    <link rel="stylesheet" href="story-slideshow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
     <!-- Fonts -->
@@ -60,6 +61,7 @@
     <!-- PWA Install Script -->
         <!-- Scripts -->
     <script src="social-share.js"></script>
+    <script src="story-slideshow.js"></script>
     <script src="script.js"></script>
     
     <!-- Structured Data / JSON-LD -->
@@ -79,6 +81,180 @@
     </script>
 </head>
 <body>
+    <!-- Gensyn Story Slideshow Modal -->
+    <div id="storyModal" class="story-modal" aria-labelledby="story-modal-title" role="dialog" aria-modal="true">
+        <div class="story-overlay"></div>
+        <div class="story-container">
+            <div class="story-header">
+                <h2 id="story-modal-title">The Genesis of Gensyn</h2>
+                <button class="story-close" id="storyClose" aria-label="Close story">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-slideshow">
+                    <div class="story-slide active" data-slide="0">
+                        <img src="images/story/Phoenix_10_NarrationOnce_upon_a_time_humans_had_BIG_ideasVisua_3.jpg" alt="Once upon a time, humans had big ideas" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Once Upon a Time...</h3>
+                            <p>Humans had BIG ideas and the vision to create truly intelligent machines.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="1">
+                        <img src="images/story/1.png" alt="The beginning of machine intelligence" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>The Dawn of AI</h3>
+                            <p>But training these machines required enormous computational power.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="2">
+                        <img src="images/story/1.1.png" alt="Centralized compute limitations" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>The Centralization Problem</h3>
+                            <p>Only a few big companies could afford the massive data centers needed.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="3">
+                        <img src="images/story/1.2.png" alt="Barriers to AI development" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Innovation Bottlenecked</h3>
+                            <p>Brilliant minds were locked out by computational barriers.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="4">
+                        <img src="images/story/1.3.png" alt="The vision for distributed compute" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>A New Vision</h3>
+                            <p>What if we could harness the world's distributed computing power?</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="5">
+                        <img src="images/story/1.4.png" alt="Gensyn protocol concept" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>The Gensyn Protocol</h3>
+                            <p>A trustless network where anyone can contribute compute and verify results.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="6">
+                        <img src="images/story/1.5.png" alt="Decentralized machine learning" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Democratizing AI</h3>
+                            <p>Making machine intelligence accessible to everyone, everywhere.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="7">
+                        <img src="images/story/1.6.png" alt="Global network of nodes" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>The Global Network</h3>
+                            <p>Thousands of nodes working together in perfect harmony.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="8">
+                        <img src="images/story/1.7.png" alt="Verifiable compute proofs" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Trustless Verification</h3>
+                            <p>Cryptographic proofs ensure every computation is valid and secure.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="9">
+                        <img src="images/story/1.8.png" alt="RL Swarm collaborative training" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>RL Swarm Intelligence</h3>
+                            <p>Collaborative reinforcement learning across the distributed network.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="10">
+                        <img src="images/story/1.9.png" alt="The future of machine intelligence" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>The Future is Here</h3>
+                            <p>Welcome to the network for machine intelligence. Your journey begins now.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="11">
+                        <img src="images/story/2.0.png" alt="Join the revolution" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Join the Revolution</h3>
+                            <p>Be part of the movement that's reshaping how AI is built and shared.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="12">
+                        <img src="images/story/2.1.png" alt="Hippocamp Academy welcome" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Welcome to Hippocamp</h3>
+                            <p>Your gateway to mastering the Gensyn Protocol and joining the network.</p>
+                        </div>
+                    </div>
+                    <div class="story-slide" data-slide="13">
+                        <img src="images/story/2.2.png" alt="Start your journey" loading="lazy">
+                        <div class="slide-caption">
+                            <h3>Your Journey Awaits</h3>
+                            <p>Ready to learn, contribute, and shape the future of machine intelligence?</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-controls">
+                    <button class="story-nav-btn prev" id="storyPrev" aria-label="Previous slide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="story-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="storyProgress"></div>
+                        </div>
+                        <span class="slide-counter">
+                            <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
+                        </span>
+                    </div>
+                    <button class="story-nav-btn next" id="storyNext" aria-label="Next slide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="story-playback">
+                    <button class="play-pause-btn" id="storyPlayPause" aria-label="Play/Pause slideshow">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <span class="autoplay-status">Auto-playing</span>
+                </div>
+            </div>
+            
+            <div class="story-footer">
+                <button class="btn-skip" id="storySkip">
+                    <i class="fas fa-forward"></i> Skip Story
+                </button>
+                <button class="btn-start-learning" id="storyStartLearning" style="display: none;">
+                    <i class="fas fa-graduation-cap"></i> Start Learning
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Entry Modal -->
+    <div id="storyEntryModal" class="story-entry-modal" role="dialog" aria-modal="true">
+        <div class="story-entry-overlay"></div>
+        <div class="story-entry-container">
+            <div class="story-entry-content">
+                <div class="story-entry-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2>Welcome to Hippocamp Academy!</h2>
+                <p>Would you like to discover the story of Gensyn before you begin your learning journey?</p>
+                <div class="story-entry-buttons">
+                    <button class="btn btn-primary" id="watchStoryBtn">
+                        <i class="fas fa-play"></i> Watch Story
+                    </button>
+                    <button class="btn btn-outline" id="skipStoryBtn">
+                        <i class="fas fa-forward"></i> Skip & Start Learning
+                    </button>
+                </div>
+                <div class="story-entry-note">
+                    <small>You can always watch the story later from the menu</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Animated Background -->
     <div class="animated-bg" aria-hidden="true">
         <div class="particle"></div>
@@ -102,6 +278,11 @@
             </button>
             <ul class="nav-links" id="navLinks" role="menubar">
                 <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+                <li role="none" class="story-menu-item">
+                    <a href="#" class="nav-link story-rewatch" role="menuitem" onclick="triggerGensynStory(); return false;">
+                        <i class="fas fa-book-open"></i> Gensyn Story
+                    </a>
+                </li>
                 <li role="none"><a href="#courses" class="nav-link" role="menuitem">Courses</a></li>
                 <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
                 <li role="none"><a href="#node-setup" class="nav-link" role="menuitem">Node Setup</a></li>
@@ -203,6 +384,9 @@
                     <a href="#node-setup" class="btn btn-secondary">
                         <i class="fas fa-rocket"></i> Deploy Node
                     </a>
+                    <button class="btn btn-outline story-trigger" onclick="triggerGensynStory()">
+                        <i class="fas fa-book-open"></i> Watch Story
+                    </button>
                     <a href="code-playground.html" class="btn btn-outline">
                         <i class="fas fa-code"></i> Try Playground
                     </a>
@@ -867,6 +1051,7 @@
                 <div class="footer-section">
                     <h4>Learn</h4>
                     <ul>
+                        <li><a href="#" onclick="triggerGensynStory(); return false;">Gensyn Story</a></li>
                         <li><a href="gensyn-basics.html">Gensyn Fundamentals</a></li>
                         <li><a href="protocol-architecture.html">Protocol Architecture</a></li>
                         <li><a href="rl-swarm-basics.html">RL Swarm Intro</a></li>
