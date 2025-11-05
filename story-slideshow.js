@@ -9,7 +9,8 @@ class GensynthStorySlideshow {
         this.totalSlides = 14;
         this.isPlaying = true;
         this.autoPlayInterval = null;
-        this.autoPlayDuration = 5000; // 5 seconds per slide
+        this.autoPlayDuration = 5000; // Default 5 seconds per slide
+        this.autoPlayTimeout = null; // For variable duration timing
         this.hasSeenStory = this.checkStoryStatus();
         
         this.init();
@@ -170,6 +171,12 @@ class GensynthStorySlideshow {
         const currentSlideEl = this.slides[this.currentSlide];
         const nextSlideEl = this.slides[slideIndex];
         
+        // Stop current autoplay timing
+        if (this.autoPlayTimeout) {
+            clearTimeout(this.autoPlayTimeout);
+            this.autoPlayTimeout = null;
+        }
+        
         // Remove active class from current slide
         currentSlideEl?.classList.remove('active');
         
@@ -201,6 +208,9 @@ class GensynthStorySlideshow {
             if (this.currentSlide === this.totalSlides - 1) {
                 this.showStartLearningButton();
                 this.stopAutoPlay();
+            } else if (this.isPlaying) {
+                // Resume autoplay with new slide's duration
+                this.scheduleNextSlide();
             }
         }, 600);
     }
@@ -230,15 +240,32 @@ class GensynthStorySlideshow {
         if (this.currentSlide >= this.totalSlides - 1) return;
         
         this.isPlaying = true;
-        this.autoPlayInterval = setInterval(() => {
-            if (this.currentSlide < this.totalSlides - 1) {
+        this.scheduleNextSlide();
+        this.updatePlayPauseButton();
+    }
+
+    scheduleNextSlide() {
+        if (!this.isPlaying || this.currentSlide >= this.totalSlides - 1) return;
+        
+        // Get duration for current slide from data-duration attribute (in seconds)
+        const currentSlideEl = this.slides[this.currentSlide];
+        const duration = currentSlideEl?.getAttribute('data-duration') || 5;
+        const durationMs = parseInt(duration) * 1000;
+        
+        // Clear any existing timeout
+        if (this.autoPlayTimeout) {
+            clearTimeout(this.autoPlayTimeout);
+        }
+        
+        // Schedule next slide transition
+        this.autoPlayTimeout = setTimeout(() => {
+            if (this.isPlaying && this.currentSlide < this.totalSlides - 1) {
                 this.nextSlide();
+                this.scheduleNextSlide(); // Schedule the next one
             } else {
                 this.stopAutoPlay();
             }
-        }, this.autoPlayDuration);
-        
-        this.updatePlayPauseButton();
+        }, durationMs);
     }
 
     stopAutoPlay() {
@@ -246,6 +273,10 @@ class GensynthStorySlideshow {
         if (this.autoPlayInterval) {
             clearInterval(this.autoPlayInterval);
             this.autoPlayInterval = null;
+        }
+        if (this.autoPlayTimeout) {
+            clearTimeout(this.autoPlayTimeout);
+            this.autoPlayTimeout = null;
         }
         this.updatePlayPauseButton();
     }
