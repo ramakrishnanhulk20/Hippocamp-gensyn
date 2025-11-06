@@ -26,7 +26,7 @@
 /* Hero Improvements */
 .hero-tagline {
     font-size: 1.4rem;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-weight: 600;
     margin: 1rem 0 0.5rem 0;
     letter-spacing: 0.5px;
@@ -154,7 +154,7 @@
 
 .stat-card .stat-icon {
     font-size: 2.5rem;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 
@@ -366,7 +366,7 @@
 .particle:nth-child(3) {
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 175, 191, 0.1), transparent 70%);
     bottom: 20%;
     left: 20%;
     animation-duration: 28s;
@@ -1117,7 +1117,7 @@
 }
 
 .app-title i {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     -webkit-text-fill-color: initial;
 }
 
@@ -1152,7 +1152,7 @@
 
 .app-tag i {
     font-size: 0.7rem;
-    color: var(--secondary-color);
+    color: var(--primary-dark);
 }
 
 .application-card:hover .app-tag {

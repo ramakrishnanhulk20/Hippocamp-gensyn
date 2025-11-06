@@ -638,8 +638,8 @@
        Initialize All Features
        ============================================ */
     function init() {
-        console.log('%c Gensyn Academy ', 'background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 8px 16px; border-radius: 8px; font-size: 16px; font-weight: bold;');
-        console.log('%c Professional Edition Loaded ✨', 'color: #8b5cf6; font-size: 12px;');
+    console.log('%c Gensyn Academy ', 'background: linear-gradient(135deg, #FF9DB5, #FFC9D4); color: #1e293b; padding: 8px 16px; border-radius: 8px; font-size: 16px; font-weight: bold;');
+    console.log('%c Professional Edition Loaded ✨', 'color: #FF9DB5; font-size: 12px;');
         
         // Core functionality
         initNavbar();

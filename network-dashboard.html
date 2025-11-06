@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Network Dashboard | Hippocamp Academy</title>
+    <meta name="theme-color" content="#FFC9D4">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-enhanced.css">
     <link rel="stylesheet" href="enhancements.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -228,19 +230,28 @@
     </style>
 </head>
 <body>
-    <!-- Navigation (reuse from index.html) -->
-    <nav class="navbar">
+    <nav class="navbar sticky-nav" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="index.html" class="logo">🦛 Hippocamp Academy</a>
-            <button class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="network-dashboard.html" class="active">Dashboard</a>
-                <a href="badges.html">Badges</a>
-                <a href="research.html">Research</a>
+            <div class="logo">
+                <a href="index.html" class="logo-link" aria-label="Hippocamp Academy Home">
+                    <img src="Hippocamp logo.png" alt="Hippocamp Academy" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
             </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none" class="story-menu-item"><a href="#" class="nav-link story-rewatch" role="menuitem" onclick="triggerGensynStory(); return false;"><i class="fas fa-book-open"></i> Story</a></li>
+                <li role="none"><a href="index.html#node-setup" class="nav-link nav-highlight" role="menuitem">Deploy Node</a></li>
+                <li role="none"><a href="index.html#applications" class="nav-link" role="menuitem">Applications</a></li>
+                <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
+                <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="index.html#community" class="nav-link" role="menuitem">Community</a></li>
+            </ul>
         </div>
     </nav>
 

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Your Learning Path | Hippocamp Academy</title>
+    <meta name="theme-color" content="#FFC9D4">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-enhanced.css">
     <link rel="stylesheet" href="enhancements.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -40,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -177,7 +179,7 @@
         .select-path-btn {
             width: 100%;
             padding: 16px 32px;
-            background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             border: none;
             border-radius: 12px;
             color: #1e293b;
@@ -228,7 +230,7 @@
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #FFC9D4, #52D4D4);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             border-radius: 4px;
             transition: width 0.5s ease;
         }
@@ -305,19 +307,28 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar sticky-nav" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="index.html" class="logo">🦛 Hippocamp Academy</a>
-            <button class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#courses">Courses</a>
-                <a href="network-dashboard.html">Dashboard</a>
-                <a href="learning-paths.html" class="active">Learning Paths</a>
-                <a href="badges.html">Badges</a>
+            <div class="logo">
+                <a href="index.html" class="logo-link" aria-label="Hippocamp Academy Home">
+                    <img src="Hippocamp logo.png" alt="Hippocamp Academy" class="logo-icon">
+                    <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
+                </a>
             </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none" class="story-menu-item"><a href="#" class="nav-link story-rewatch" role="menuitem" onclick="triggerGensynStory(); return false;"><i class="fas fa-book-open"></i> Story</a></li>
+                <li role="none"><a href="index.html#node-setup" class="nav-link nav-highlight" role="menuitem">Deploy Node</a></li>
+                <li role="none"><a href="index.html#applications" class="nav-link" role="menuitem">Applications</a></li>
+                <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
+                <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="index.html#community" class="nav-link" role="menuitem">Community</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -681,7 +692,7 @@
             
             // Show success message
             const successMsg = document.createElement('div');
-            successMsg.style.cssText = 'position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #FFC9D4, #52D4D4); padding: 20px 40px; border-radius: 12px; color: #1e293b; font-weight: 700; z-index: 10000; box-shadow: 0 10px 40px rgba(255, 201, 212, 0.5); animation: slideDown 0.5s ease;';
+            successMsg.style.cssText = 'position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); padding: 20px 40px; border-radius: 12px; color: #1e293b; font-weight: 700; z-index: 10000; box-shadow: 0 10px 40px rgba(255, 201, 212, 0.5); animation: slideDown 0.5s ease;';
             successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${getPathName(pathId)} Selected!`;
             document.body.appendChild(successMsg);
             
