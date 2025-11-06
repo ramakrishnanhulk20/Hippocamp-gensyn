@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node Operation Guide - Hippocamp Academy</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home-enhanced.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -69,18 +70,18 @@
             transform: scale(1.05);
         }
         .copy-btn.copied {
-            background: #52D4D4;
+            background: var(--primary-dark);
         }
         .expected-output {
-            background: rgba(82, 212, 212, 0.1);
-            border-left: 4px solid #52D4D4;
+            background: rgba(255, 201, 212, 0.12);
+            border-left: 4px solid var(--primary-dark);
             padding: 15px;
             margin: 15px 0;
             border-radius: 8px;
         }
         .expected-output-title {
             font-weight: 700;
-            color: #52D4D4;
+            color: var(--primary-color);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -103,8 +104,8 @@
             border-left: 4px solid;
         }
         .info-box {
-            background: rgba(82, 212, 212, 0.1);
-            border-color: #52D4D4;
+            background: rgba(255, 201, 212, 0.12);
+            border-color: var(--primary-dark);
         }
         .warning-box {
             background: rgba(255, 201, 212, 0.1);
@@ -150,7 +151,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar sticky-nav" id="navbar">
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
@@ -158,12 +159,12 @@
                     <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="index.html#courses" class="nav-link">Courses</a></li>
-                <li><a href="network-dashboard.html" class="nav-link">Dashboard</a></li>
-                <li><a href="badges.html" class="nav-link">Badges</a></li>
-                <li><a href="research.html" class="nav-link">Research</a></li>
+            <ul class="nav-links" role="menubar" aria-label="Primary">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="index.html#node-setup" class="nav-link nav-highlight" role="menuitem">Deploy Node</a></li>
+                <li role="none"><a href="index.html#applications" class="nav-link" role="menuitem">Applications</a></li>
+                <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="index.html#community" class="nav-link" role="menuitem">Community</a></li>
             </ul>
         </div>
     </nav>
