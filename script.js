@@ -695,6 +695,21 @@
                 }
             });
             
+            // Keyboard support (Enter/Space)
+            container.addEventListener('keydown', function(e) {
+                const key = e.key || e.code;
+                if (key === 'Enter' || key === ' ' || key === 'Spacebar' || key === 'Space') {
+                    e.preventDefault();
+                    if (video.paused) {
+                        video.play();
+                        container.classList.add('playing');
+                    } else {
+                        video.pause();
+                        container.classList.remove('playing');
+                    }
+                }
+            });
+
             // Remove playing class when video ends
             video.addEventListener('ended', function() {
                 container.classList.remove('playing');

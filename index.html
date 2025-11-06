@@ -48,7 +48,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#6366f1">
+    <meta name="theme-color" content="#FFC9D4">
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -407,6 +407,8 @@
         </div>
     </section>
 
+    <!-- Node Setup Section moved above -->
+
     <!-- Gensyn Applications Section -->
     <section class="applications-section" id="applications">
         <div class="container">
@@ -418,8 +420,8 @@
             <div class="applications-grid">
                 <!-- BlockAssist -->
                 <div class="application-card">
-                    <div class="app-video-container">
-                        <video loop muted playsinline class="app-video">
+                    <div class="app-video-container" role="button" tabindex="0" aria-label="Play BlockAssist demo">
+                        <video loop muted preload="metadata" playsinline class="app-video">
                             <source src="Application Video/video-BlockAssist.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -441,8 +443,8 @@
 
                 <!-- RL Swarm -->
                 <div class="application-card">
-                    <div class="app-video-container">
-                        <video loop muted playsinline class="app-video">
+                    <div class="app-video-container" role="button" tabindex="0" aria-label="Play RL Swarm demo">
+                        <video loop muted preload="metadata" playsinline class="app-video">
                             <source src="Application Video/video-RL Swarm.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -464,8 +466,8 @@
 
                 <!-- Judge -->
                 <div class="application-card">
-                    <div class="app-video-container">
-                        <video loop muted playsinline class="app-video">
+                    <div class="app-video-container" role="button" tabindex="0" aria-label="Play Judge demo">
+                        <video loop muted preload="metadata" playsinline class="app-video">
                             <source src="Application Video/video-Judge.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -487,8 +489,8 @@
 
                 <!-- CodeAssist -->
                 <div class="application-card">
-                    <div class="app-video-container">
-                        <video loop muted playsinline class="app-video">
+                    <div class="app-video-container" role="button" tabindex="0" aria-label="Play CodeAssist demo">
+                        <video loop muted preload="metadata" playsinline class="app-video">
                             <source src="Application Video/video-codeassist.mp4" type="video/mp4">
                         </video>
                     </div>
