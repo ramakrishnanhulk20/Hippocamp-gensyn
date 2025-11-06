@@ -266,7 +266,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar sticky-nav" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">
                 <img src="Hippocamp logo.png" alt="Hippocamp Academy" class="logo-icon">
@@ -281,11 +281,11 @@
                 <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
                 <li role="none" class="story-menu-item">
                     <a href="#" class="nav-link story-rewatch" role="menuitem" onclick="triggerGensynStory(); return false;">
-                        <i class="fas fa-book-open"></i> Gensyn Story
+                        <i class="fas fa-book-open"></i> Story
                     </a>
                 </li>
+                <li role="none"><a href="#node-setup" class="nav-link nav-highlight" role="menuitem">Deploy Node</a></li>
                 <li role="none"><a href="#applications" class="nav-link" role="menuitem">Applications</a></li>
-                <li role="none"><a href="#node-setup" class="nav-link" role="menuitem">Node Setup</a></li>
                 <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
                 <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
                 <li role="none"><a href="#community" class="nav-link" role="menuitem">Community</a></li>
@@ -304,18 +304,19 @@
                 <h1 class="main-title pixel-glitch" data-text="THE NETWORK FOR MACHINE INTELLIGENCE">
                     THE NETWORK FOR MACHINE INTELLIGENCE
                 </h1>
-                <p class="hero-description">Master Gensyn Protocol through interactive learning. Deploy nodes, earn achievements, and join the permissionless compute network revolutionizing machine intelligence.</p>
+                <p class="hero-tagline">Decentralized compute for the AI era</p>
+                <p class="hero-description">Learn, deploy, and earn on the permissionless machine intelligence network</p>
                 
                 <div class="cta-buttons">
-                    <a href="#applications" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Explore Applications
+                    <a href="#node-setup" class="btn btn-primary">
+                        <i class="fas fa-server"></i> Deploy Node
                         <span class="btn-shine"></span>
                     </a>
-                    <a href="#node-setup" class="btn btn-secondary">
-                        <i class="fas fa-server"></i> Deploy Node
+                    <a href="#applications" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i> Explore Apps
                     </a>
                     <button class="btn btn-outline story-trigger" onclick="triggerGensynStory()">
-                        <i class="fas fa-book-open"></i> Watch Story
+                        <i class="fas fa-play-circle"></i> Watch Story
                     </button>
                 </div>
             </div>
@@ -323,6 +324,18 @@
             <div class="hero-visual">
                 <!-- Animated background particles -->
                 <div class="particles-container" id="particlesContainer"></div>
+                <!-- Hero Illustration -->
+                <div class="hero-illustration">
+                    <div class="network-nodes">
+                        <div class="node node-1"></div>
+                        <div class="node node-2"></div>
+                        <div class="node node-3"></div>
+                        <div class="node node-4"></div>
+                        <div class="connection-line line-1"></div>
+                        <div class="connection-line line-2"></div>
+                        <div class="connection-line line-3"></div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -337,74 +350,59 @@
             <div class="section-header">
                 <div class="live-indicator-badge">
                     <span class="live-pulse"></span>
-                    <span>LIVE NETWORK STATS</span>
+                    <span>LIVE NETWORK</span>
                 </div>
-                <h2 class="section-title">Real-Time Network Metrics</h2>
-                <p class="section-subtitle">Watch the Gensyn network grow in real-time across the globe</p>
+                <h2 class="section-title">Real-Time Metrics</h2>
             </div>
 
-            <div class="network-stats-grid">
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+            <div class="stats-grid-modern">
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-server"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-nodes">1,272</div>
-                        <div class="stat-label">ACTIVE NODES</div>
-                    </div>
+                    <div class="stat-value" id="live-nodes">1,272</div>
+                    <div class="stat-label">Active Nodes</div>
                 </div>
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-models">90.3K</div>
-                        <div class="stat-label">MODELS TRAINED</div>
-                    </div>
+                    <div class="stat-value" id="live-models">90.3K</div>
+                    <div class="stat-label">Models Trained</div>
                 </div>
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-verifications">234.5K</div>
-                        <div class="stat-label">VERIFICATIONS</div>
-                    </div>
+                    <div class="stat-value" id="live-verifications">234.5K</div>
+                    <div class="stat-label">Verifications</div>
                 </div>
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-compute">342</div>
-                        <div class="stat-label">TFLOPS</div>
-                    </div>
+                    <div class="stat-value" id="live-compute">342</div>
+                    <div class="stat-label">TFLOPS</div>
                 </div>
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-coins"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-rewards">$2.4M</div>
-                        <div class="stat-label">REWARDS</div>
-                    </div>
+                    <div class="stat-value" id="live-rewards">$2.4M</div>
+                    <div class="stat-label">Rewards</div>
                 </div>
-                <div class="network-stat-item">
-                    <div class="stat-icon-box">
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <div class="stat-details">
-                        <div class="stat-number" id="live-countries">67</div>
-                        <div class="stat-label">COUNTRIES</div>
-                    </div>
+                    <div class="stat-value" id="live-countries">67</div>
+                    <div class="stat-label">Countries</div>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="network-dashboard.html" class="dashboard-link">
-                    <i class="fas fa-chart-line"></i> View Full Dashboard
-                    <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                </a>
             </div>
         </div>
     </section>
@@ -421,7 +419,7 @@
                 <!-- BlockAssist -->
                 <div class="application-card">
                     <div class="app-video-container">
-                        <video autoplay loop muted playsinline class="app-video">
+                        <video loop muted playsinline class="app-video">
                             <source src="Application Video/video-BlockAssist.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -444,7 +442,7 @@
                 <!-- RL Swarm -->
                 <div class="application-card">
                     <div class="app-video-container">
-                        <video autoplay loop muted playsinline class="app-video">
+                        <video loop muted playsinline class="app-video">
                             <source src="Application Video/video-RL Swarm.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -467,7 +465,7 @@
                 <!-- Judge -->
                 <div class="application-card">
                     <div class="app-video-container">
-                        <video autoplay loop muted playsinline class="app-video">
+                        <video loop muted playsinline class="app-video">
                             <source src="Application Video/video-Judge.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -490,7 +488,7 @@
                 <!-- CodeAssist -->
                 <div class="application-card">
                     <div class="app-video-container">
-                        <video autoplay loop muted playsinline class="app-video">
+                        <video loop muted playsinline class="app-video">
                             <source src="Application Video/video-codeassist.mp4" type="video/mp4">
                         </video>
                     </div>

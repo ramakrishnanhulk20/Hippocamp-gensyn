@@ -664,6 +664,7 @@
         initCourseProgress();
         initDarkMode();
         initAnalytics();
+        initApplicationVideos();
         
         // Performance
         logPerformance();
@@ -672,6 +673,33 @@
         if (window.innerWidth > 1024) {
             // initParallaxEffect();
         }
+    }
+
+    /* ============================================
+       Application Videos - Play on Click
+       ============================================ */
+    function initApplicationVideos() {
+        const videoContainers = document.querySelectorAll('.app-video-container');
+        
+        videoContainers.forEach(container => {
+            const video = container.querySelector('.app-video');
+            if (!video) return;
+            
+            container.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                    container.classList.add('playing');
+                } else {
+                    video.pause();
+                    container.classList.remove('playing');
+                }
+            });
+            
+            // Remove playing class when video ends
+            video.addEventListener('ended', function() {
+                container.classList.remove('playing');
+            });
+        });
     }
 
     /* ============================================

@@ -7,12 +7,12 @@
    CSS Variables & Design Tokens
    ============================================ */
 :root {
-    /* Color Palette - Gensyn Light Pink Theme */
-    --primary-color: #FFC9D4;
-    --primary-dark: #FFB3C1;
-    --primary-light: #FFD6DE;
-    --secondary-color: #FF9FB5;
-    --accent-color: #FFAFBF;
+    /* Color Palette - Gensyn Professional Theme */
+    --primary-color: #52D4D4; /* Teal - Primary brand color */
+    --primary-dark: #3fb8b8;
+    --primary-light: #6ee0e0;
+    --secondary-color: #8B5CF6; /* Purple - Secondary brand color */
+    --accent-color: #FFC9D4; /* Pink - Accent only */
     
     /* Neutrals */
     --bg-primary: #000000;
