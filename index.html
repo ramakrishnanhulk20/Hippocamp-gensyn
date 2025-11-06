@@ -60,6 +60,8 @@
     
     <!-- PWA Install Script -->
         <!-- Scripts -->
+    <script src="particles.js"></script>
+    <script src="live-stats.js"></script>
     <script src="social-share.js"></script>
     <script src="story-slideshow.js"></script>
     <script src="script.js"></script>
@@ -86,8 +88,7 @@
         <div class="story-overlay"></div>
         <div class="story-container">
             <div class="story-header">
-                <h2 id="story-modal-title">The Great Compute Heist</h2>
-                <p class="story-subtitle">A Quirky Journey Through Computing History</p>
+                <h2 id="story-modal-title">The Gensyn Origin Story</h2>
                 <button class="story-close" id="storyClose" aria-label="Close story">
                     <i class="fas fa-times"></i>
                 </button>
@@ -248,37 +249,9 @@
             </div>
             
             <div class="story-footer">
-                <button class="btn-skip" id="storySkip">
-                    <i class="fas fa-forward"></i> Skip Story
-                </button>
-                <button class="btn-start-learning" id="storyStartLearning" style="display: none;">
+                <button class="btn-start-learning" id="storyStartLearning">
                     <i class="fas fa-graduation-cap"></i> Start Learning
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Story Entry Modal -->
-    <div id="storyEntryModal" class="story-entry-modal" role="dialog" aria-modal="true">
-        <div class="story-entry-overlay"></div>
-        <div class="story-entry-container">
-            <div class="story-entry-content">
-                <div class="story-entry-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h2>Welcome to Hippocamp Academy!</h2>
-                <p>Would you like to discover the story of Gensyn before you begin your learning journey?</p>
-                <div class="story-entry-buttons">
-                    <button class="btn btn-primary" id="watchStoryBtn">
-                        <i class="fas fa-play"></i> Watch Story
-                    </button>
-                    <button class="btn btn-outline" id="skipStoryBtn">
-                        <i class="fas fa-forward"></i> Skip & Start Learning
-                    </button>
-                </div>
-                <div class="story-entry-note">
-                    <small>You can always watch the story later from the menu</small>
-                </div>
             </div>
         </div>
     </div>
@@ -296,7 +269,7 @@
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200' width='48' height='40'%3E%3Cdefs%3E%3Cstyle%3E.body%7Bfill:%2352D4D4;stroke:%23203864;stroke-width:4;stroke-linejoin:round;%7D.head%7Bfill:%23E8F5F5;stroke:%23203864;stroke-width:3.5;stroke-linejoin:round;%7D.cap%7Bfill:%23203864;%7D.brain%7Bfill:%23203864;%7D.eye%7Bfill:%23203864;%7D.mountain%7Bfill:%23FFFFFF;%7D.path%7Bfill:none;stroke:%23FFFFFF;stroke-width:3;stroke-linecap:round;%7D%3C/style%3E%3C/defs%3E%3C!-- Body --%3E%3Cpath class='body' d='M 50 120 Q 40 100 50 85 L 60 85 Q 55 95 60 105 L 60 115 Q 50 115 50 120 M 50 120 Q 45 130 50 145 Q 55 155 65 155 L 65 145 Q 60 140 60 130 L 60 120 Z M 180 120 Q 190 100 180 85 L 170 85 Q 175 95 170 105 L 170 115 Q 180 115 180 120 M 180 120 Q 185 130 180 145 Q 175 155 165 155 L 165 145 Q 170 140 170 130 L 170 120 Z M 60 105 Q 65 90 80 85 Q 100 80 120 80 Q 140 80 160 85 Q 175 90 170 105 Q 175 125 170 140 Q 165 155 150 160 Q 130 165 115 165 Q 100 165 80 160 Q 65 155 60 140 Q 55 125 60 105 Z'/%3E%3C!-- Mountain on body --%3E%3Cpath class='mountain' d='M 90 110 L 105 95 L 115 105 L 120 100 L 135 120 L 90 120 Z'/%3E%3Cpath class='mountain' d='M 100 125 L 115 110 L 125 118 L 140 135 L 100 135 Z'/%3E%3C!-- Winding path --%3E%3Cpath class='path' d='M 145 135 Q 135 130 125 125 Q 115 120 105 122 Q 95 124 92 118'/%3E%3C!-- Head and snout --%3E%3Cellipse class='head' cx='115' cy='65' rx='38' ry='32'/%3E%3Cellipse class='head' cx='80' cy='75' rx='22' ry='18'/%3E%3C!-- Ears with turquoise inner --%3E%3Cellipse class='body' cx='95' cy='42' rx='10' ry='14'/%3E%3Cellipse class='body' cx='135' cy='42' rx='10' ry='14'/%3E%3Cellipse cx='95' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3Cellipse cx='135' cy='44' rx='5' ry='8' fill='%2352D4D4'/%3E%3C!-- Eyes --%3E%3Ccircle class='eye' cx='105' cy='60' r='4'/%3E%3Ccircle class='eye' cx='125' cy='60' r='4'/%3E%3Ccircle cx='106' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='126' cy='59' r='1.5' fill='%23FFFFFF'/%3E%3C!-- Nostrils --%3E%3Cellipse class='eye' cx='72' cy='75' rx='3' ry='4'/%3E%3Cellipse class='eye' cx='82' cy='75' rx='3' ry='4'/%3E%3C!-- Happy smile --%3E%3Cpath d='M 98 70 Q 105 74 112 70' fill='none' stroke='%23203864' stroke-width='2.5' stroke-linecap='round'/%3E%3C!-- Brain symbol on forehead --%3E%3Cg class='brain' transform='translate(115, 50)'%3E%3Cpath d='M -6 -3 Q -7 -6 -4 -7 Q -2 -8 0 -6 Q 2 -8 4 -7 Q 7 -6 6 -3 Q 7 0 6 3 Q 7 6 4 7 Q 2 8 0 6 Q -2 8 -4 7 Q -7 6 -6 3 Q -7 0 -6 -3 M -3 -5 Q -1 -6 1 -5 M -3 5 Q -1 6 1 5 M -5 0 L 5 0' fill='none' stroke='%23203864' stroke-width='1.2'/%3E%3C/g%3E%3C!-- Graduation Cap --%3E%3Cpath class='cap' d='M 85 32 L 115 22 L 145 32 L 140 38 L 115 30 L 90 38 Z'/%3E%3Crect class='cap' x='95' y='32' width='40' height='6' rx='1'/%3E%3C!-- Tassel --%3E%3Cline x1='145' y1='35' x2='152' y2='45' stroke='%23203864' stroke-width='2'/%3E%3Ccircle cx='152' cy='48' r='3' fill='%23203864'/%3E%3Cline x1='152' y1='48' x2='149' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='155' y2='52' stroke='%23203864' stroke-width='1'/%3E%3Cline x1='152' y1='48' x2='152' y2='53' stroke='%23203864' stroke-width='1'/%3E%3C/svg%3E" alt="Hippocamp - Smart Hippo Explorer" class="logo-icon">
+                <img src="Hippocamp logo.png" alt="Hippocamp Academy" class="logo-icon">
                 <span>HIPPOCAMP<span class="logo-sub">academy</span></span>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -442,67 +415,8 @@
             </div>
             
             <div class="hero-visual">
-                <div class="badge-showcase">
-                    <h4 class="badge-title">🏆 UNLOCK EXCLUSIVE BADGES</h4>
-                    <div class="badge-grid">
-                        <div class="badge-item locked">
-                            <div class="badge-icon">🎓</div>
-                            <div class="badge-name">Gensyn Scholar</div>
-                            <div class="badge-progress">Complete fundamentals</div>
-                        </div>
-                        <div class="badge-item locked">
-                            <div class="badge-icon">🐝</div>
-                            <div class="badge-name">Swarm Initiate</div>
-                            <div class="badge-progress">Master RL Swarm</div>
-                        </div>
-                        <div class="badge-item locked">
-                            <div class="badge-icon">⚙️</div>
-                            <div class="badge-name">Node Operator</div>
-                            <div class="badge-progress">Run a node</div>
-                        </div>
-                        <div class="badge-item locked">
-                            <div class="badge-icon">�️</div>
-                            <div class="badge-name">dApp Builder</div>
-                            <div class="badge-progress">Build on Gensyn</div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 25px;">
-                        <a href="badges.html" class="btn-secondary" style="display: inline-block; padding: 12px 30px; background: rgba(255,201,212,0.1); border: 2px solid var(--primary-color); border-radius: 12px; color: var(--primary-color); text-decoration: none; font-weight: 700; transition: all 0.3s ease;">
-                            <i class="fas fa-award"></i> View All Badges
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="gensyn-brand">
-                    <p class="brand-text">POWERED BY</p>
-                    <div class="gensyn-logo-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="gensyn-logo-icon" width="60" height="60">
-                            <rect fill="#000000" width="100" height="100"/>
-                            <g fill="#FFC9D4">
-                                <rect x="38.75" y="17.5" width="22.5" height="7.5"/>
-                                <rect x="31.25" y="25" width="7.5" height="7.5"/>
-                                <rect x="61.25" y="25" width="7.5" height="7.5"/>
-                                <rect x="23.75" y="32.5" width="7.5" height="7.5"/>
-                                <rect x="68.75" y="32.5" width="7.5" height="7.5"/>
-                                <rect x="23.75" y="40" width="7.5" height="7.5"/>
-                                <rect x="68.75" y="40" width="7.5" height="7.5"/>
-                                <rect x="18.75" y="47.5" width="7.5" height="7.5"/>
-                                <rect x="73.75" y="47.5" width="7.5" height="7.5"/>
-                                <rect x="18.75" y="55" width="7.5" height="7.5"/>
-                                <rect x="73.75" y="55" width="7.5" height="7.5"/>
-                                <rect x="23.75" y="62.5" width="7.5" height="7.5"/>
-                                <rect x="68.75" y="62.5" width="7.5" height="7.5"/>
-                                <rect x="23.75" y="70" width="7.5" height="7.5"/>
-                                <rect x="68.75" y="70" width="7.5" height="7.5"/>
-                                <rect x="31.25" y="77.5" width="7.5" height="7.5"/>
-                                <rect x="61.25" y="77.5" width="7.5" height="7.5"/>
-                                <rect x="38.75" y="85" width="22.5" height="7.5"/>
-                            </g>
-                        </svg>
-                        <span class="gensyn-text">GENSYN</span>
-                    </div>
-                    <p class="brand-tagline">The network for machine intelligence</p>
-                </div>
+                <!-- Animated background particles -->
+                <div class="particles-container" id="particlesContainer"></div>
             </div>
         </div>
         
@@ -511,201 +425,106 @@
         </div>
     </section>
 
-    <!-- Course Catalog -->
-    <section class="courses-section" id="courses" aria-labelledby="courses-title">
+    <!-- Gensyn Applications Section -->
+    <section class="applications-section" id="applications">
         <div class="container">
             <div class="section-header">
-                <h2 id="courses-title" class="section-title">MASTER THE PROTOCOL</h2>
-                <p class="section-subtitle">Learn the infrastructure that coordinates machine intelligence across permissionless networks</p>
+                <h2 class="section-title">GENSYN APPLICATIONS</h2>
+                <p class="section-subtitle">Explore the ecosystem of decentralized AI applications powered by Gensyn</p>
             </div>
 
-            <!-- Filter Tabs -->
-            <div class="filter-tabs" role="tablist" aria-label="Course difficulty filters">
-                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="courses-grid">
-                    <i class="fas fa-th" aria-hidden="true"></i> All Courses
-                </button>
-                <button class="filter-btn" data-filter="beginner" role="tab" aria-selected="false" aria-controls="courses-grid">
-                    <i class="fas fa-seedling" aria-hidden="true"></i> Beginner
-                </button>
-                <button class="filter-btn" data-filter="intermediate" role="tab" aria-selected="false" aria-controls="courses-grid">
-                    <i class="fas fa-rocket" aria-hidden="true"></i> Intermediate
-                </button>
-                <button class="filter-btn" data-filter="advanced" role="tab" aria-selected="false" aria-controls="courses-grid">
-                    <i class="fas fa-fire" aria-hidden="true"></i> Advanced
-                </button>
-            </div>
-
-            <div id="courses-grid" class="courses-grid" role="tabpanel">
-                <!-- Course 1: Gensyn Basics -->
-                <article class="course-card" data-level="beginner" itemscope itemtype="https://schema.org/Course">
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">🎓</span>
-                        <span class="badge-label">UNLOCKS: Novice Badge</span>
+            <div class="applications-grid">
+                <!-- BlockAssist -->
+                <div class="application-card">
+                    <div class="app-video-container">
+                        <video autoplay loop muted playsinline class="app-video">
+                            <source src="Application Video/video-BlockAssist.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="course-icon" aria-hidden="true">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="course-badge beginner" aria-label="Difficulty: Beginner">Beginner</div>
-                    <h3 itemprop="name">Protocol Foundations</h3>
-                    <p itemprop="description">Understand how Gensyn networks machine intelligence resources. Learn the core protocols that coordinate verifiable compute.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 2 hours</span>
-                        <span><i class="fas fa-book"></i> 8 lessons</span>
-                        <span><i class="fas fa-certificate"></i> Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                    <div class="app-content">
+                        <h3 class="app-title">
+                            <i class="fas fa-cube"></i> BlockAssist
+                        </h3>
+                        <p class="app-description">AI-powered blockchain development assistant. Get smart contract suggestions, security analysis, and code optimization powered by decentralized compute.</p>
+                        <div class="app-features">
+                            <span class="app-tag"><i class="fas fa-code"></i> Smart Contracts</span>
+                            <span class="app-tag"><i class="fas fa-shield-alt"></i> Security Analysis</span>
+                            <span class="app-tag"><i class="fas fa-brain"></i> AI-Powered</span>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <a href="https://github.com/ramakrishnanhulk20/blockassist" target="_blank" class="app-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
-                    <a href="gensyn-basics.html" class="course-btn" itemprop="url" aria-label="Start Gensyn Fundamentals course">
-                        Start Course <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </article>
-
-                <!-- Course 2: Protocol Deep Dive -->
-                <article class="course-card" data-level="intermediate" itemscope itemtype="https://schema.org/Course">
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">🔬</span>
-                        <span class="badge-label">UNLOCKS: Researcher Badge</span>
-                    </div>
-                    <div class="course-icon" aria-hidden="true">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="course-badge intermediate" aria-label="Difficulty: Intermediate">Intermediate</div>
-                    <h3 itemprop="name">Verifiable Compute Architecture</h3>
-                    <p>Deep dive into cryptographic verification, graph-based proofs, and trustless machine learning coordination.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 3 hours</span>
-                        <span><i class="fas fa-book"></i> 12 lessons</span>
-                        <span><i class="fas fa-certificate"></i> Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">0% Complete</span>
-                    </div>
-                    <a href="protocol-architecture.html" class="course-btn" itemprop="url">
-                        Start Course <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </article>
-
-                <!-- Course 3: RL Swarm Basics -->
-                <article class="course-card featured" data-level="beginner" itemscope itemtype="https://schema.org/Course">
-                    <div class="featured-badge" aria-label="Most popular">
-                        <i class="fas fa-fire" aria-hidden="true"></i> MOST POPULAR
-                    </div>
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">⚡</span>
-                        <span class="badge-label">UNLOCKS: Node Runner Badge</span>
-                    </div>
-                    <div class="course-icon" aria-hidden="true">
-                        <i class="fas fa-swatchbook"></i>
-                    </div>
-                    <div class="course-badge beginner" aria-label="Difficulty: Beginner">Beginner</div>
-                    <h3 itemprop="name">RL Swarm: Distributed Intelligence</h3>
-                    <p>Join the testnet. Run collaborative RL training. Experience how Gensyn coordinates thousands of nodes in permissionless swarm learning.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 2.5 hours</span>
-                        <span><i class="fas fa-network-wired"></i> Live Network</span>
-                        <span><i class="fas fa-certificate"></i> Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                        <span class="progress-text">0% Complete</span>
-                    </div>
-                    <a href="rl-swarm-basics.html" class="course-btn">
-                        Start Course <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
 
-                <!-- Course 4: Running Nodes -->
-                <article class="course-card" data-level="intermediate" itemscope itemtype="https://schema.org/Course">
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">🖥️</span>
-                        <span class="badge-label">UNLOCKS: Operator Badge</span>
+                <!-- RL Swarm -->
+                <div class="application-card">
+                    <div class="app-video-container">
+                        <video autoplay loop muted playsinline class="app-video">
+                            <source src="Application Video/video-RL Swarm.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="course-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="course-badge intermediate">Intermediate</div>
-                    <h3 itemprop="name">Testnet Node Operations</h3>
-                    <p itemprop="description">Deploy and maintain compute nodes on Gensyn testnet. Learn monitoring, optimization, and network contribution strategies.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 4 hours</span>
-                        <span><i class="fas fa-terminal"></i> Hands-on</span>
-                        <span><i class="fas fa-certificate"></i> Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                    <div class="app-content">
+                        <h3 class="app-title">
+                            <i class="fas fa-project-diagram"></i> RL Swarm
+                        </h3>
+                        <p class="app-description">Reinforcement learning swarm intelligence platform. Train multi-agent RL models across distributed nodes for complex problem solving.</p>
+                        <div class="app-features">
+                            <span class="app-tag"><i class="fas fa-robot"></i> Multi-Agent RL</span>
+                            <span class="app-tag"><i class="fas fa-network-wired"></i> Distributed</span>
+                            <span class="app-tag"><i class="fas fa-chart-line"></i> Scalable</span>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <a href="https://github.com/ramakrishnanhulk20/rl-swarm" target="_blank" class="app-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
-                    <a href="node-operation.html" class="course-btn" itemprop="url">
-                        Start Course <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
+                </div>
 
-                <!-- Course 5: Advanced Optimization -->
-                <article class="course-card" data-level="advanced" itemscope itemtype="https://schema.org/Course">
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">🧠</span>
-                        <span class="badge-label">UNLOCKS: Protocol Master Badge</span>
+                <!-- Judge -->
+                <div class="application-card">
+                    <div class="app-video-container">
+                        <video autoplay loop muted playsinline class="app-video">
+                            <source src="Application Video/video-Judge.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="course-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="course-badge advanced">Advanced</div>
-                    <h3 itemprop="name">Advanced Protocol Engineering</h3>
-                    <p itemprop="description">Master GenRL framework, proof generation, graph-based verification, and contribute to protocol research.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 5 hours</span>
-                        <span><i class="fas fa-brain"></i> Expert</span>
-                        <span><i class="fas fa-certificate"></i> Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                    <div class="app-content">
+                        <h3 class="app-title">
+                            <i class="fas fa-gavel"></i> Judge
+                        </h3>
+                        <p class="app-description">Autonomous model verification system. Runs automatically with RL Swarm nodes to ensure computation integrity and consensus.</p>
+                        <div class="app-features">
+                            <span class="app-tag"><i class="fas fa-check-circle"></i> Auto-Verification</span>
+                            <span class="app-tag"><i class="fas fa-sync"></i> Automatic</span>
+                            <span class="app-tag"><i class="fas fa-lock"></i> Trustless</span>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <div class="app-note">
+                            <i class="fas fa-info-circle"></i> Runs automatically when you run an RL Swarm node
+                        </div>
                     </div>
-                    <a href="advanced-optimization.html" class="course-btn" itemprop="url">
-                        Start Course <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
+                </div>
 
-                <!-- Course 6: Building dApps -->
-                <article class="course-card" data-level="advanced" itemscope itemtype="https://schema.org/Course">
-                    <div class="course-reward-badge">
-                        <span class="badge-emoji">💎</span>
-                        <span class="badge-label">UNLOCKS: Gensyn Elite Badge</span>
+                <!-- CodeAssist -->
+                <div class="application-card">
+                    <div class="app-video-container">
+                        <video autoplay loop muted playsinline class="app-video">
+                            <source src="Application Video/video-codeassist.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <div class="course-icon">
-                        <i class="fas fa-code-branch"></i>
-                    </div>
-                    <div class="course-badge advanced">Advanced</div>
-                    <h3 itemprop="name">Building on the Network</h3>
-                    <p itemprop="description">Create applications that leverage Gensyn's verifiable compute. Build the future of trustless machine intelligence coordination.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-clock"></i> 6 hours</span>
-                        <span><i class="fas fa-rocket"></i> Builder Track</span>
-                        <span><i class="fas fa-certificate"></i> Elite Badge</span>
-                    </div>
-                    <div class="course-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                    <div class="app-content">
+                        <h3 class="app-title">
+                            <i class="fas fa-terminal"></i> CodeAssist
+                        </h3>
+                        <p class="app-description">Intelligent coding companion powered by decentralized AI. Get context-aware code completions, refactoring suggestions, and bug detection.</p>
+                        <div class="app-features">
+                            <span class="app-tag"><i class="fas fa-lightbulb"></i> Smart Completions</span>
+                            <span class="app-tag"><i class="fas fa-bug"></i> Bug Detection</span>
+                            <span class="app-tag"><i class="fas fa-magic"></i> Refactoring</span>
                         </div>
-                        <span class="progress-text">0% Complete</span>
+                        <a href="https://github.com/ramakrishnanhulk20/codeassist" target="_blank" class="app-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
-                    <a href="building-dapps.html" class="course-btn" itemprop="url">
-                        Start Course <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
+                </div>
             </div>
         </div>
     </section>
@@ -1068,7 +887,6 @@
                 <div class="footer-section">
                     <h3>🦛 HIPPOCAMP ACADEMY</h3>
                     <p>Educational platform for mastering the Gensyn Protocol. Learn how machine intelligence networks coordinate through open, permissionless protocols.</p>
-                    <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.7;">Powered by Gensyn - The network for machine intelligence</p>
                     <div class="social-links">
                         <a href="https://twitter.com/gensyn_ai" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://discord.gg/gensyn" target="_blank"><i class="fab fa-discord"></i></a>

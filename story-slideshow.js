@@ -21,11 +21,10 @@ class GensynthStorySlideshow {
         this.bindEvents();
         this.updateUI();
         
-        // Show entry modal for first-time visitors
+        // Auto-open story for first-time visitors immediately
         if (!this.hasSeenStory) {
-            setTimeout(() => {
-                this.showEntryModal();
-            }, 2000); // Show after 2 seconds
+            this.showStoryModal();
+            this.startAutoPlay();
         } else {
             // If story has been seen, show the menu item
             this.showStoryMenuItem();
@@ -33,15 +32,9 @@ class GensynthStorySlideshow {
     }
 
     bindElements() {
-        // Entry modal elements
-        this.entryModal = document.getElementById('storyEntryModal');
-        this.watchStoryBtn = document.getElementById('watchStoryBtn');
-        this.skipStoryBtn = document.getElementById('skipStoryBtn');
-        
         // Story modal elements
         this.storyModal = document.getElementById('storyModal');
         this.storyClose = document.getElementById('storyClose');
-        this.storySkip = document.getElementById('storySkip');
         this.storyStartLearning = document.getElementById('storyStartLearning');
         
         // Slideshow elements
@@ -61,14 +54,8 @@ class GensynthStorySlideshow {
     }
 
     bindEvents() {
-        // Entry modal events
-        this.watchStoryBtn?.addEventListener('click', () => this.startStory());
-        this.skipStoryBtn?.addEventListener('click', () => this.skipStory());
-        this.entryOverlay?.addEventListener('click', () => this.skipStory());
-        
         // Story modal events
         this.storyClose?.addEventListener('click', () => this.closeStory());
-        this.storySkip?.addEventListener('click', () => this.skipToEnd());
         this.storyStartLearning?.addEventListener('click', () => this.startLearning());
         this.storyOverlay?.addEventListener('click', () => this.closeStory());
         
@@ -84,7 +71,6 @@ class GensynthStorySlideshow {
         this.bindTouchEvents();
         
         // Prevent modal closing on container click
-        document.querySelector('.story-entry-container')?.addEventListener('click', (e) => e.stopPropagation());
         document.querySelector('.story-container')?.addEventListener('click', (e) => e.stopPropagation());
     }
 
@@ -117,29 +103,6 @@ class GensynthStorySlideshow {
         }
     }
 
-    showEntryModal() {
-        this.entryModal?.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    hideEntryModal() {
-        this.entryModal?.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    startStory() {
-        this.hideEntryModal();
-        setTimeout(() => {
-            this.showStoryModal();
-            this.startAutoPlay();
-        }, 300);
-    }
-
-    skipStory() {
-        this.hideEntryModal();
-        this.markStoryAsSeen();
-    }
-
     showStoryModal() {
         this.storyModal?.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -153,16 +116,10 @@ class GensynthStorySlideshow {
         this.markStoryAsSeen();
     }
 
-    skipToEnd() {
-        this.stopAutoPlay();
-        this.goToSlide(this.totalSlides - 1);
-        this.showStartLearningButton();
-    }
-
     startLearning() {
         this.closeStory();
-        // Scroll to courses section
-        document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+        // Scroll to applications section or homepage
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     goToSlide(slideIndex, direction = 'next') {
@@ -204,9 +161,8 @@ class GensynthStorySlideshow {
             
             this.updateUI();
             
-            // Show start learning button on last slide
+            // On last slide, stop autoplay
             if (this.currentSlide === this.totalSlides - 1) {
-                this.showStartLearningButton();
                 this.stopAutoPlay();
             } else if (this.isPlaying) {
                 // Resume autoplay with new slide's duration
@@ -224,7 +180,6 @@ class GensynthStorySlideshow {
     previousSlide() {
         if (this.currentSlide > 0) {
             this.goToSlide(this.currentSlide - 1, 'prev');
-            this.hideStartLearningButton();
         }
     }
 
@@ -320,16 +275,6 @@ class GensynthStorySlideshow {
         this.updatePlayPauseButton();
     }
 
-    showStartLearningButton() {
-        if (this.storySkip) this.storySkip.style.display = 'none';
-        if (this.storyStartLearning) this.storyStartLearning.style.display = 'inline-flex';
-    }
-
-    hideStartLearningButton() {
-        if (this.storySkip) this.storySkip.style.display = 'inline-flex';
-        if (this.storyStartLearning) this.storyStartLearning.style.display = 'none';
-    }
-
     handleKeyboard(e) {
         if (!this.storyModal?.classList.contains('active')) return;
         
@@ -417,7 +362,6 @@ class GensynthStorySlideshow {
             instance.currentSlide = 0;
             instance.updateSlides();
             instance.showStoryModal();
-            instance.hideStartLearningButton();
             // Start autoplay if not on last slide
             if (instance.currentSlide < instance.totalSlides - 1) {
                 instance.startAutoPlay();
@@ -430,7 +374,6 @@ class GensynthStorySlideshow {
         this.currentSlide = 0;
         this.updateSlides();
         this.showStoryModal();
-        this.hideStartLearningButton();
         this.startAutoPlay();
     }
 }

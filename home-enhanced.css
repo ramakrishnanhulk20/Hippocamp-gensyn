@@ -2,6 +2,44 @@
    ENHANCED HOMEPAGE STYLES - GENSYN INSPIRED
    ============================================ */
 
+/* Particles Container in Hero */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 201, 212, 0.6), transparent 70%);
+    pointer-events: none;
+    animation: floatParticle 15s infinite ease-in-out;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(50px, -50px) scale(1.2);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-30px, -100px) scale(0.8);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(70px, -70px) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
 /* Enhanced Animated Background - Gensyn Style */
 .animated-bg {
     position: fixed;
@@ -700,6 +738,204 @@
     
     .cta-buttons {
         flex-direction: column;
+    }
+}
+
+/* ============================================
+   GENSYN APPLICATIONS SECTION
+   ============================================ */
+
+.applications-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.applications-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 201, 212, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82, 212, 212, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.application-card {
+    background: rgba(15, 22, 41, 0.6);
+    border: 1px solid rgba(255, 201, 212, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.application-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 201, 212, 0.4);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 201, 212, 0.2);
+}
+
+.app-video-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #000;
+}
+
+.app-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.application-card:hover .app-video {
+    transform: scale(1.05);
+}
+
+.app-content {
+    padding: 25px;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #FFC9D4, #52D4D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-title i {
+    color: var(--primary-color);
+    -webkit-text-fill-color: initial;
+}
+
+.app-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.app-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.app-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: rgba(255, 201, 212, 0.1);
+    border: 1px solid rgba(255, 201, 212, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.app-tag i {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+}
+
+.application-card:hover .app-tag {
+    background: rgba(255, 201, 212, 0.15);
+    border-color: rgba(255, 201, 212, 0.3);
+}
+
+.app-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 201, 212, 0.1);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.app-link:hover {
+    background: var(--primary-color);
+    color: #0a0e27;
+    transform: translateX(5px);
+}
+
+.app-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(82, 212, 212, 0.1);
+    border-left: 3px solid var(--secondary-color);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.app-note i {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .applications-section {
+        padding: 60px 0;
+    }
+    
+    .applications-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .app-video-container {
+        height: 180px;
+    }
+    
+    .app-content {
+        padding: 20px;
+    }
+    
+    .app-title {
+        font-size: 1.3rem;
+    }
+
+    .app-features {
+        gap: 6px;
+
         align-items: stretch;
     }
     
