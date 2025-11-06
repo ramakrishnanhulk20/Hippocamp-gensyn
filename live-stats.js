@@ -3,6 +3,10 @@
     'use strict';
 
     const API_ENDPOINTS = {
+        // Prefer Netlify proxied endpoints to avoid CORS in browsers
+        proxyDashboard: '/api/gensyn-dashboard',
+        proxyExplorer: '/api/gensyn-explorer',
+        // Direct fallbacks (may fail due to CORS or require auth)
         dashboard: 'https://dashboard.gensyn.ai/api/stats',
         alchemy: 'https://gensyn-testnet.explorer.alchemy.com/api/stats'
     };
@@ -82,10 +86,14 @@
         }, 700);
     }
 
-    // Fetch stats from dashboard
+    // Fetch stats from dashboard (proxy first, then direct)
     async function fetchDashboardStats() {
         try {
-            const response = await fetch(API_ENDPOINTS.dashboard);
+            let response = await fetch(API_ENDPOINTS.proxyDashboard);
+            if (!response.ok) {
+                // Try direct as fallback (may CORS-fail)
+                response = await fetch(API_ENDPOINTS.dashboard);
+            }
             if (!response.ok) throw new Error('Dashboard API failed');
             
             const data = await response.json();
@@ -106,10 +114,13 @@
         }
     }
 
-    // Fetch stats from Alchemy explorer
+    // Fetch stats from Alchemy explorer (proxy first, then direct)
     async function fetchAlchemyStats() {
         try {
-            const response = await fetch(API_ENDPOINTS.alchemy);
+            let response = await fetch(API_ENDPOINTS.proxyExplorer);
+            if (!response.ok) {
+                response = await fetch(API_ENDPOINTS.alchemy);
+            }
             if (!response.ok) throw new Error('Alchemy API failed');
             
             const data = await response.json();
@@ -166,10 +177,12 @@
     }
 
     // Main fetch function - tries both APIs
+    let consecutiveFailures = 0;
+
     async function fetchNetworkStats() {
         console.log('Fetching network stats...');
         setLoadingState(true);
-        setStatsError(false);
+        if (consecutiveFailures === 0) setStatsError(false);
 
         // Try dashboard API first
         const dashboardSuccess = await fetchDashboardStats();
@@ -181,7 +194,11 @@
         }
 
         if (!success) {
-            setStatsError(true);
+            consecutiveFailures += 1;
+            // Only show the error banner after 2 consecutive failures
+            if (consecutiveFailures >= 2) setStatsError(true);
+        } else {
+            consecutiveFailures = 0;
         }
 
         setLoadingState(false);
@@ -241,6 +258,8 @@
 
     // Initialize live stats
     function init() {
+        // Signal that a live stats fetcher is active, so other scripts can avoid duplicate animations
+        window.__liveStats = true;
         // Add animation and UX styles
         addAnimationStyles();
         // Mark aria-live for stat values

@@ -14,6 +14,19 @@
   to = "/index.html"
   status = 301
 
+# API proxy to avoid CORS issues for live stats
+[[redirects]]
+  from = "/api/gensyn-dashboard"
+  to = "https://dashboard.gensyn.ai/api/stats"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/gensyn-explorer"
+  to = "https://gensyn-testnet.explorer.alchemy.com/api/stats"
+  status = 200
+  force = true
+
 # Headers for security and performance
 [[headers]]
   for = "/*"

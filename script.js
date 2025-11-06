@@ -650,7 +650,10 @@
         initCountUpAnimations();
         initProgressBars();
         initScrollAnimations();
-        initLiveNetworkStats();
+        // Only run simulated stats if a live fetcher isn't active
+        if (!window.__liveStats) {
+            initLiveNetworkStats();
+        }
         
         // Interactive features
         initCourseFilters();
