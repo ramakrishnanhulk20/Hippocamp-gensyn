@@ -680,11 +680,52 @@
        ============================================ */
     function initApplicationVideos() {
         const videoContainers = document.querySelectorAll('.app-video-container');
-        
+
+        if (!('IntersectionObserver' in window)) {
+            // Fallback: try to autoplay all
+            videoContainers.forEach(container => {
+                const video = container.querySelector('.app-video');
+                if (!video) return;
+                video.muted = true;
+                video.playsInline = true;
+                video.loop = true;
+                const playPromise = video.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(() => container.classList.add('playing')).catch(() => {});
+                }
+            });
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const container = entry.target;
+                const video = container.querySelector('.app-video');
+                if (!video) return;
+
+                if (entry.isIntersecting) {
+                    // Ensure attributes for mobile autoplay compliance
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.loop = true;
+                    const playPromise = video.play();
+                    if (playPromise && typeof playPromise.then === 'function') {
+                        playPromise.then(() => container.classList.add('playing')).catch(() => {});
+                    } else {
+                        container.classList.add('playing');
+                    }
+                } else {
+                    video.pause();
+                    container.classList.remove('playing');
+                }
+            });
+        }, { threshold: 0.25 });
+
         videoContainers.forEach(container => {
             const video = container.querySelector('.app-video');
             if (!video) return;
-            
+
+            // Click toggle remains for accessibility and control
             container.addEventListener('click', function() {
                 if (video.paused) {
                     video.play();
@@ -694,7 +735,7 @@
                     container.classList.remove('playing');
                 }
             });
-            
+
             // Keyboard support (Enter/Space)
             container.addEventListener('keydown', function(e) {
                 const key = e.key || e.code;
@@ -710,10 +751,12 @@
                 }
             });
 
-            // Remove playing class when video ends
+            // Keep the overlay state in sync
             video.addEventListener('ended', function() {
                 container.classList.remove('playing');
             });
+
+            observer.observe(container);
         });
     }
 
