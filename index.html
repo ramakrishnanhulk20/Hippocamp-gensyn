@@ -284,11 +284,10 @@
                         <i class="fas fa-book-open"></i> Gensyn Story
                     </a>
                 </li>
-                <li role="none"><a href="#courses" class="nav-link" role="menuitem">Courses</a></li>
-                <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
+                <li role="none"><a href="#applications" class="nav-link" role="menuitem">Applications</a></li>
                 <li role="none"><a href="#node-setup" class="nav-link" role="menuitem">Node Setup</a></li>
+                <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
                 <li role="none"><a href="research.html" class="nav-link" role="menuitem">Research</a></li>
-                <li role="none"><a href="badges.html" class="nav-link" role="menuitem">Badges</a></li>
                 <li role="none"><a href="#community" class="nav-link" role="menuitem">Community</a></li>
             </ul>
         </div>
@@ -307,110 +306,17 @@
                 </h1>
                 <p class="hero-description">Master Gensyn Protocol through interactive learning. Deploy nodes, earn achievements, and join the permissionless compute network revolutionizing machine intelligence.</p>
                 
-                <!-- Live Network Stats -->
-                <div class="live-network-stats" role="region" aria-label="Live network statistics">
-                    <div class="live-indicator-badge">
-                        <span class="live-pulse"></span>
-                        <span>LIVE NETWORK</span>
-                    </div>
-                    <div class="network-stats-grid">
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-nodes">1,272</div>
-                                <div class="stat-label">ACTIVE NODES</div>
-                            </div>
-                        </div>
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-models">90.3K</div>
-                                <div class="stat-label">MODELS TRAINED</div>
-                            </div>
-                        </div>
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-verifications">234.5K</div>
-                                <div class="stat-label">VERIFICATIONS</div>
-                            </div>
-                        </div>
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-compute">342</div>
-                                <div class="stat-label">TFLOPS</div>
-                            </div>
-                        </div>
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-rewards">$2.4M</div>
-                                <div class="stat-label">REWARDS</div>
-                            </div>
-                        </div>
-                        <div class="network-stat-item">
-                            <div class="stat-icon-box">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="stat-details">
-                                <div class="stat-number" id="live-countries">67</div>
-                                <div class="stat-label">COUNTRIES</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <a href="network-dashboard.html" class="dashboard-link">
-                            <i class="fas fa-chart-line"></i> View Full Dashboard
-                            <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.9rem;"></i>
-                        </a>
-                    </div>
-                </div>
-
                 <div class="cta-buttons">
-                    <a href="#courses" class="btn btn-primary">
-                        <i class="fas fa-graduation-cap"></i> Start Learning
+                    <a href="#applications" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Explore Applications
                         <span class="btn-shine"></span>
                     </a>
                     <a href="#node-setup" class="btn btn-secondary">
-                        <i class="fas fa-rocket"></i> Deploy Node
+                        <i class="fas fa-server"></i> Deploy Node
                     </a>
                     <button class="btn btn-outline story-trigger" onclick="triggerGensynStory()">
                         <i class="fas fa-book-open"></i> Watch Story
                     </button>
-                    <a href="code-playground.html" class="btn btn-outline">
-                        <i class="fas fa-code"></i> Try Playground
-                    </a>
-                </div>
-                
-                <!-- Social Proof -->
-                <div class="social-proof">
-                    <div class="proof-item">
-                        <i class="fas fa-users"></i>
-                        <span>12K+ Operators</span>
-                    </div>
-                    <div class="proof-item">
-                        <i class="fas fa-globe"></i>
-                        <span>67 Countries</span>
-                    </div>
-                    <div class="proof-item">
-                        <i class="fas fa-award"></i>
-                        <span>6 Badges</span>
-                    </div>
-                    <div class="proof-item">
-                        <i class="fas fa-code"></i>
-                        <span>21+ Lessons</span>
-                    </div>
                 </div>
             </div>
             
@@ -422,6 +328,84 @@
         
         <div class="scroll-indicator" aria-hidden="true">
             <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Live Network Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="section-header">
+                <div class="live-indicator-badge">
+                    <span class="live-pulse"></span>
+                    <span>LIVE NETWORK STATS</span>
+                </div>
+                <h2 class="section-title">Real-Time Network Metrics</h2>
+                <p class="section-subtitle">Watch the Gensyn network grow in real-time across the globe</p>
+            </div>
+
+            <div class="network-stats-grid">
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-nodes">1,272</div>
+                        <div class="stat-label">ACTIVE NODES</div>
+                    </div>
+                </div>
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-models">90.3K</div>
+                        <div class="stat-label">MODELS TRAINED</div>
+                    </div>
+                </div>
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-verifications">234.5K</div>
+                        <div class="stat-label">VERIFICATIONS</div>
+                    </div>
+                </div>
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-compute">342</div>
+                        <div class="stat-label">TFLOPS</div>
+                    </div>
+                </div>
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-rewards">$2.4M</div>
+                        <div class="stat-label">REWARDS</div>
+                    </div>
+                </div>
+                <div class="network-stat-item">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="live-countries">67</div>
+                        <div class="stat-label">COUNTRIES</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="network-dashboard.html" class="dashboard-link">
+                    <i class="fas fa-chart-line"></i> View Full Dashboard
+                    <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
         </div>
     </section>
 

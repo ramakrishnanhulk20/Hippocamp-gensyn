@@ -2,6 +2,70 @@
    ENHANCED HOMEPAGE STYLES - GENSYN INSPIRED
    ============================================ */
 
+/* Stats Section */
+.stats-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(15, 22, 41, 0.95) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 201, 212, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82, 212, 212, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.stats-section .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.stats-section .live-indicator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(82, 212, 212, 0.1);
+    border: 1px solid rgba(82, 212, 212, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.dashboard-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: rgba(255, 201, 212, 0.1);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dashboard-link:hover {
+    background: var(--primary-color);
+    color: #0a0e27;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 201, 212, 0.3);
+}
+
 /* Particles Container in Hero */
 .particles-container {
     position: absolute;
