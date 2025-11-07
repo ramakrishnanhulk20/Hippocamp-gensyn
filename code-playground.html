@@ -13,13 +13,26 @@
     
     <style>
         .playground-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, rgba(255, 201, 212, 0.2) 0%, rgba(255, 175, 191, 0.2) 50%, rgba(255, 143, 163, 0.2) 100%);
             background-size: 200% 200%;
             animation: gradientShift 15s ease infinite;
             padding: 80px 20px;
             text-align: center;
             color: white;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .playground-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            z-index: -1;
         }
 
         @keyframes gradientShift {
@@ -32,13 +45,18 @@
             font-size: 3em;
             margin: 0 0 10px 0;
             font-weight: 900;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 20px rgba(255, 201, 212, 0.3);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .playground-hero p {
             font-size: 1.3em;
             opacity: 0.95;
             margin: 0;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .tabs-container {
@@ -74,8 +92,8 @@
         }
 
         .tab-btn.active {
-            background: rgba(102, 126, 234, 0.3);
-            border-bottom-color: #667eea;
+            background: rgba(255, 201, 212, 0.2);
+            border-bottom-color: var(--primary-color);
             color: white;
         }
 
@@ -112,9 +130,9 @@
 
         .example-card:hover {
             background: rgba(255,255,255,0.1);
-            border-color: #667eea;
+            border-color: var(--primary-color);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 201, 212, 0.3);
         }
 
         .example-card h3 {
@@ -172,8 +190,8 @@
         }
 
         .code-actions button:hover {
-            background: rgba(102, 126, 234, 0.3);
-            border-color: #667eea;
+            background: rgba(255, 201, 212, 0.2);
+            border-color: var(--primary-color);
             transform: translateY(-2px);
         }
 
@@ -298,7 +316,7 @@
         .sim-controls button {
             padding: 18px 40px;
             border: 2px solid rgba(255,255,255,0.3);
-            background: rgba(102, 126, 234, 0.3);
+            background: rgba(255, 201, 212, 0.2);
             color: white;
             border-radius: 10px;
             cursor: pointer;
@@ -308,9 +326,9 @@
         }
 
         .sim-controls button:hover {
-            background: rgba(102, 126, 234, 0.5);
+            background: rgba(255, 201, 212, 0.3);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 201, 212, 0.4);
         }
 
         .sim-stats {
@@ -330,7 +348,7 @@
         .stat-value {
             font-size: 3em;
             font-weight: 900;
-            color: #667eea;
+            color: var(--primary-color);
             margin: 10px 0;
         }
 
@@ -386,7 +404,7 @@
         }
 
         .progress-fill {
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
             height: 100%;
             transition: width 0.5s ease;
         }
@@ -425,7 +443,7 @@
 
         .quiz-option:hover {
             background: rgba(255,255,255,0.1);
-            border-color: rgba(102, 126, 234, 0.5);
+            border-color: rgba(255, 201, 212, 0.5);
             transform: translateX(10px);
         }
 
@@ -487,7 +505,7 @@
         .score-display {
             font-size: 5em;
             font-weight: 900;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -502,7 +520,7 @@
 
         .restart-btn {
             padding: 20px 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
             border-radius: 12px;
             color: white;
@@ -514,7 +532,7 @@
 
         .restart-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 35px rgba(255, 201, 212, 0.5);
         }
 
         @media (max-width: 768px) {
