@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Playground - Hippocamp Academy</title>
+    <title>Knowledge Quiz - Hippocamp Academy</title>
     <meta name="theme-color" content="#FFC9D4">
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home-enhanced.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     
     <style>
-        .playground-hero {
+        .quiz-hero {
             background: linear-gradient(135deg, rgba(255, 201, 212, 0.2) 0%, rgba(255, 175, 191, 0.2) 50%, rgba(255, 143, 163, 0.2) 100%);
             background-size: 200% 200%;
             animation: gradientShift 15s ease infinite;
-            padding: 80px 20px;
+            padding: 100px 20px 80px;
             text-align: center;
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             position: relative;
             overflow: hidden;
         }
 
-        .playground-hero::before {
+        .quiz-hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -41,69 +40,67 @@
             100% { background-position: 0% 50%; }
         }
 
-        .playground-hero h1 {
-            font-size: 3em;
-            margin: 0 0 10px 0;
+        .quiz-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin: 0 0 20px 0;
             font-weight: 900;
-            text-shadow: 0 4px 20px rgba(255, 201, 212, 0.3);
             background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .playground-hero p {
-            font-size: 1.3em;
+        .quiz-hero p {
+            font-size: 1.4em;
             opacity: 0.95;
             margin: 0;
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .tabs-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto 80px;
             padding: 0 20px;
         }
 
-        .tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
+        .quiz-progress {
+            background: rgba(255, 201, 212, 0.08);
+            border: 2px solid rgba(255, 201, 212, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .tab-btn {
-            padding: 15px 30px;
-            background: rgba(255,255,255,0.05);
-            border: none;
-            border-bottom: 3px solid transparent;
-            color: rgba(255,255,255,0.6);
-            font-size: 1.1em;
+        .progress-text {
+            font-size: 1.3em;
+            color: var(--primary-color);
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
         }
 
-        .tab-btn:hover {
-            background: rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.9);
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
         }
 
-        .tab-btn.active {
-            background: rgba(255, 201, 212, 0.2);
-            border-bottom-color: var(--primary-color);
-            color: white;
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
         }
 
-        .playground-section {
-            display: none;
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 201, 212, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
             animation: fadeIn 0.5s ease;
-        }
-
-        .playground-section.active {
-            display: block;
         }
 
         @keyframes fadeIn {
@@ -111,317 +108,41 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Code Examples Section */
-        .examples-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .example-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .example-card:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 201, 212, 0.3);
-        }
-
-        .example-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.5em;
-            color: white;
-        }
-
-        .example-card p {
-            margin: 0;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95em;
-        }
-
-        .code-display {
-            display: none;
-            background: rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .difficulty-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .code-title {
-            font-size: 1.8em;
-            font-weight: 800;
-            color: white;
-            margin: 0;
-        }
-
-        .code-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .code-actions button {
-            padding: 12px 24px;
-            border: 2px solid rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95em;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .code-actions button:hover {
-            background: rgba(255, 201, 212, 0.2);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .code-actions button i {
-            margin-right: 8px;
-        }
-
-        .code-content {
-            background: #1e1e1e;
-            border-radius: 10px;
-            padding: 25px;
-            overflow-x: auto;
-            max-height: 500px;
-        }
-
-        .code-content pre {
-            margin: 0;
-        }
-
-        .code-content code {
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .output-section {
-            display: none;
-            background: rgba(34, 197, 94, 0.1);
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-
-        .output-section h3 {
-            margin: 0 0 15px 0;
-            color: #22c55e;
-            font-size: 1.3em;
-        }
-
-        .output-section pre {
-            margin: 0;
-            color: white;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 0.95em;
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
-
-        /* Network Simulator Section */
-        .simulator-container {
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 40px;
-        }
-
-        .simulator-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .simulator-header h2 {
-            font-size: 2.5em;
-            margin: 0 0 15px 0;
-            color: white;
-        }
-
-        .simulator-header p {
-            font-size: 1.1em;
-            color: rgba(255,255,255,0.7);
-            margin: 0;
-        }
-
-        .node-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .node-item {
-            background: rgba(255,255,255,0.05);
-            border: 3px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 30px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .node-item:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-5px);
-        }
-
-        .node-item.active {
+        .difficulty-easy {
             background: rgba(34, 197, 94, 0.2);
-            border-color: #22c55e;
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.4);
         }
 
-        .node-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .node-label {
-            color: rgba(255,255,255,0.8);
-            font-weight: 600;
-            font-size: 1em;
-        }
-
-        .sim-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .sim-controls button {
-            padding: 18px 40px;
-            border: 2px solid rgba(255,255,255,0.3);
+        .difficulty-medium {
             background: rgba(255, 201, 212, 0.2);
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .sim-controls button:hover {
-            background: rgba(255, 201, 212, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 201, 212, 0.4);
-        }
-
-        .sim-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 3em;
-            font-weight: 900;
             color: var(--primary-color);
-            margin: 10px 0;
+            border: 1px solid rgba(255, 201, 212, 0.4);
         }
 
-        .stat-label {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-
-        /* Quiz Section */
-        .quiz-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .quiz-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .quiz-header h2 {
-            font-size: 2.5em;
-            margin: 0 0 15px 0;
-            color: white;
-        }
-
-        .quiz-header p {
-            font-size: 1.1em;
-            color: rgba(255,255,255,0.7);
-            margin: 0;
-        }
-
-        .quiz-progress {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .progress-text {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .progress-bar {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            height: 15px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
-            height: 100%;
-            transition: width 0.5s ease;
-        }
-
-        .quiz-card {
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 40px;
+        .difficulty-hard {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.4);
         }
 
         .quiz-question {
-            font-size: 1.8em;
+            font-size: 1.6em;
             font-weight: 700;
             color: white;
             margin: 0 0 30px 0;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .quiz-options {
@@ -431,94 +152,201 @@
         }
 
         .quiz-option {
-            background: rgba(255,255,255,0.05);
-            border: 3px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 20px 25px;
             color: white;
             font-size: 1.1em;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .quiz-option:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 201, 212, 0.5);
             transform: translateX(10px);
+        }
+
+        .quiz-option.selected {
+            background: rgba(255, 201, 212, 0.15);
+            border-color: var(--primary-color);
         }
 
         .quiz-option.correct {
             background: rgba(34, 197, 94, 0.2);
             border-color: #22c55e;
+            animation: correctPulse 0.5s ease;
         }
 
         .quiz-option.incorrect {
             background: rgba(239, 68, 68, 0.2);
             border-color: #ef4444;
+            animation: shake 0.5s ease;
         }
 
-        .quiz-feedback {
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .quiz-explanation {
             display: none;
-            margin-top: 25px;
+            margin-top: 20px;
             padding: 20px;
-            border-radius: 10px;
+            background: rgba(255, 201, 212, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .quiz-explanation.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .btn-quiz {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
             font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(-10px);
+            font-weight: 700;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .quiz-feedback.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
         }
 
-        .quiz-feedback.correct {
-            background: rgba(34, 197, 94, 0.2);
-            border: 2px solid #22c55e;
-            color: #22c55e;
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 201, 212, 0.5);
         }
 
-        .quiz-feedback.incorrect {
-            background: rgba(239, 68, 68, 0.2);
-            border: 2px solid #ef4444;
-            color: #ef4444;
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .quiz-score {
+        /* Results Screen */
+        .results-screen {
             display: none;
             text-align: center;
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 60px 40px;
+            padding: 60px 20px;
         }
 
-        .quiz-score h2 {
+        .results-screen.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-title {
             font-size: 3em;
             margin: 0 0 20px 0;
             color: white;
         }
 
         .score-display {
-            font-size: 5em;
+            font-size: clamp(4rem, 10vw, 8rem);
             font-weight: 900;
             background: linear-gradient(135deg, var(--primary-light), var(--primary-dark), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 20px 0;
+            margin: 30px 0;
+            line-height: 1;
         }
 
         .score-message {
-            font-size: 1.5em;
-            color: rgba(255,255,255,0.8);
-            margin: 20px 0 40px 0;
+            font-size: 1.8em;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 30px 0;
+            font-weight: 600;
         }
 
-        .restart-btn {
+        .badge-container {
+            margin: 40px 0;
+            padding: 40px;
+            background: rgba(255, 201, 212, 0.1);
+            border: 3px solid var(--primary-color);
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .badge-icon {
+            font-size: 6em;
+            margin-bottom: 20px;
+            animation: badgeFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .badge-title {
+            font-size: 2em;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .badge-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2em;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .btn-share {
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-share:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(29, 161, 242, 0.4);
+        }
+
+        .btn-restart {
             padding: 20px 50px;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             border: none;
@@ -530,20 +358,20 @@
             transition: all 0.3s ease;
         }
 
-        .restart-btn:hover {
+        .btn-restart:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(255, 201, 212, 0.5);
         }
 
         @media (max-width: 768px) {
-            .playground-hero h1 { font-size: 2em; }
-            .playground-hero p { font-size: 1.1em; }
-            .tabs { justify-content: center; }
-            .tab-btn { padding: 12px 20px; font-size: 1em; }
-            .examples-grid { grid-template-columns: 1fr; }
-            .code-header { flex-direction: column; align-items: flex-start; }
-            .quiz-question { font-size: 1.4em; }
-            .score-display { font-size: 3.5em; }
+            .quiz-hero h1 { font-size: 2.5em; }
+            .quiz-hero p { font-size: 1.1em; }
+            .quiz-card { padding: 25px; }
+            .quiz-question { font-size: 1.3em; }
+            .score-display { font-size: 5em; }
+            .badge-icon { font-size: 4em; }
+            .results-actions { flex-direction: column; }
+            .btn-share, .btn-restart { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -573,153 +401,355 @@
             </ul>
         </div>
     </nav>
-    <div class="playground-hero">
-        <h1>🎮 Interactive Playground</h1>
-        <p>Experiment, Learn, and Master Gensyn Through Hands-On Practice</p>
+
+    <div class="quiz-hero">
+        <h1>🧠 Gensyn Knowledge Quiz</h1>
+        <p>Test your understanding of the Gensyn protocol and earn your badge!</p>
     </div>
 
-    <div class="tabs-container">
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('code')">
-                <i class="fas fa-code"></i> Code Examples
-            </button>
-            <button class="tab-btn" onclick="switchTab('simulator')">
-                <i class="fas fa-network-wired"></i> Network Simulator
-            </button>
-            <button class="tab-btn" onclick="switchTab('quiz')">
-                <i class="fas fa-brain"></i> Knowledge Quiz
-            </button>
-        </div>
-
-        <!-- Code Examples Section -->
-        <div id="code-section" class="playground-section active">
-            <div class="examples-grid">
-                <div class="example-card" onclick="showExample('hello')">
-                    <h3>👋 Hello Gensyn</h3>
-                    <p>Get started with basic network interactions and learn the fundamentals</p>
-                </div>
-                
-                <div class="example-card" onclick="showExample('math')">
-                    <h3>🔢 Staking Math</h3>
-                    <p>Calculate staking rewards with daily, monthly, and yearly projections</p>
-                </div>
-                
-                <div class="example-card" onclick="showExample('nodes')">
-                    <h3>🖥️ Node Management</h3>
-                    <p>Monitor network nodes, track uptime, and analyze performance metrics</p>
-                </div>
-                
-                <div class="example-card" onclick="showExample('rewards')">
-                    <h3>💎 Rewards Calculator</h3>
-                    <p>Advanced compound interest calculations for long-term staking strategies</p>
-                </div>
-                
-                <div class="example-card" onclick="showExample('class')">
-                    <h3>🏗️ Node Architecture</h3>
-                    <p>Object-oriented design patterns for building distributed systems</p>
-                </div>
-                
-                <div class="example-card" onclick="showExample('api')">
-                    <h3>🌐 API Integration</h3>
-                    <p>Interact with Gensyn API endpoints to fetch network statistics and rewards</p>
-                </div>
-            </div>
-
-            <div id="codeDisplay" class="code-display">
-                <div class="code-header">
-                    <h2 id="codeTitle" class="code-title"></h2>
-                    <div class="code-actions">
-                        <button onclick="runCode()">
-                            <i class="fas fa-play"></i> Run Code
-                        </button>
-                        <button onclick="copyCode()">
-                            <i class="fas fa-copy"></i> Copy
-                        </button>
-                    </div>
-                </div>
-                <div class="code-content">
-                    <pre><code id="codeContent" class="language-python"></code></pre>
-                </div>
-                <div id="outputSection" class="output-section">
-                    <h3><i class="fas fa-terminal"></i> Output</h3>
-                    <pre id="outputText"></pre>
-                </div>
+    <div class="quiz-container">
+        <!-- Quiz Progress -->
+        <div class="quiz-progress">
+            <div class="progress-text">Question <span id="currentQ">1</span> of 12</div>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progressBar" style="width: 8.33%"></div>
             </div>
         </div>
 
-        <!-- Network Simulator Section -->
-        <div id="simulator-section" class="playground-section">
-            <div class="simulator-container">
-                <div class="simulator-header">
-                    <h2>🌐 Network Simulator</h2>
-                    <p>Click nodes to activate them and watch the network grow</p>
-                </div>
-
-                <div id="nodeGrid" class="node-grid"></div>
-
-                <div class="sim-controls">
-                    <button onclick="startSimulation()">
-                        <i class="fas fa-play"></i> Start Simulation
-                    </button>
-                    <button onclick="stopSimulation()">
-                        <i class="fas fa-stop"></i> Stop Simulation
-                    </button>
-                </div>
-
-                <div class="sim-stats">
-                    <div class="stat-card">
-                        <div class="stat-label">Active Nodes</div>
-                        <div id="activeNodes" class="stat-value">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Total Compute (TFLOPs)</div>
-                        <div id="totalCompute" class="stat-value">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Tasks Completed</div>
-                        <div id="tasksCompleted" class="stat-value">0</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Quiz Card -->
+        <div class="quiz-card" id="quizCard">
+            <!-- Questions will be dynamically inserted here -->
         </div>
 
-        <!-- Quiz Section -->
-        <div id="quiz-section" class="playground-section">
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h2>🧠 Test Your Knowledge</h2>
-                    <p>Challenge yourself with questions about Gensyn and decentralized ML</p>
-                </div>
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <h2 class="results-title">Quiz Complete! 🎉</h2>
+            <div class="score-display" id="scoreDisplay"></div>
+            <div class="score-message" id="scoreMessage"></div>
+            
+            <div class="badge-container" id="badgeContainer" style="display: none;">
+                <div class="badge-icon" id="badgeIcon"></div>
+                <div class="badge-title" id="badgeTitle"></div>
+                <div class="badge-subtitle" id="badgeSubtitle"></div>
+            </div>
 
-                <div id="quizProgress" class="quiz-progress">
-                    <div class="progress-text">
-                        Question <span id="currentQ">1</span> of <span id="totalQ">5</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 20%"></div>
-                    </div>
-                </div>
-
-                <div id="quizCard" class="quiz-card">
-                    <div id="quizQuestion" class="quiz-question"></div>
-                    <div id="quizOptions" class="quiz-options"></div>
-                    <div id="quizFeedback" class="quiz-feedback"></div>
-                </div>
-
-                <div id="quizScore" class="quiz-score">
-                    <h2>🎉 Quiz Complete!</h2>
-                    <div id="scoreDisplay" class="score-display"></div>
-                    <div class="score-message">Great job! Keep learning!</div>
-                    <button class="restart-btn" onclick="restartQuiz()">
-                        <i class="fas fa-redo"></i> Take Quiz Again
-                    </button>
-                </div>
+            <div class="results-actions">
+                <button class="btn-share" onclick="shareOnX()">
+                    <i class="fab fa-twitter"></i> Share on X
+                </button>
+                <button class="btn-restart" onclick="restartQuiz()">
+                    <i class="fas fa-redo"></i> Retake Quiz
+                </button>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="playground.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const quizData = [
+            {
+                question: "What is Gensyn's primary purpose?",
+                options: [
+                    "A cryptocurrency exchange platform",
+                    "A decentralized compute protocol for machine learning",
+                    "A social media platform for AI researchers",
+                    "A centralized cloud computing service"
+                ],
+                correct: 1,
+                difficulty: "easy",
+                explanation: "Gensyn is a decentralized protocol that creates a global marketplace for machine learning computation, connecting anyone with compute power to developers who need it for AI training."
+            },
+            {
+                question: "What does RL Swarm stand for?",
+                options: [
+                    "Real-time Learning System for Web Applications and Machine",
+                    "Reinforcement Learning Swarm",
+                    "Remote Learning Software with Advanced Routing and Monitoring",
+                    "Resilient Logic System with Adaptive Resource Management"
+                ],
+                correct: 1,
+                difficulty: "easy",
+                explanation: "RL Swarm is Reinforcement Learning Swarm - a peer-to-peer system where multiple AI models train collaboratively, sharing insights and learning from collective experiences."
+            },
+            {
+                question: "What is the main advantage of decentralized AI training?",
+                options: [
+                    "It requires more expensive hardware",
+                    "It makes AI training slower and less efficient",
+                    "It democratizes access to compute power and reduces costs",
+                    "It increases centralization of AI development"
+                ],
+                correct: 2,
+                difficulty: "easy",
+                explanation: "Decentralized AI training democratizes access to compute resources, making ML infrastructure accessible and affordable for everyone, not just big tech companies."
+            },
+            {
+                question: "What role does the Judge system play in Gensyn?",
+                options: [
+                    "It manages user accounts and permissions",
+                    "It verifies computation integrity and ensures consensus",
+                    "It processes cryptocurrency transactions",
+                    "It moderates community forums"
+                ],
+                correct: 1,
+                difficulty: "medium",
+                explanation: "Judge is an autonomous model verification system that runs automatically with RL Swarm nodes to ensure computation integrity and consensus in a trustless manner."
+            },
+            {
+                question: "What is the minimum RAM requirement for running a CPU-only node?",
+                options: [
+                    "8GB RAM",
+                    "16GB RAM",
+                    "32GB RAM",
+                    "64GB RAM"
+                ],
+                correct: 2,
+                difficulty: "easy",
+                explanation: "To run a Gensyn node with CPU only, you need a minimum of 32GB RAM. GPU nodes require 8GB+ VRAM."
+            },
+            {
+                question: "What is BlockAssist?",
+                options: [
+                    "A blockchain explorer",
+                    "An AI-powered Minecraft assistant using reinforcement learning",
+                    "A cryptocurrency wallet",
+                    "A block validation service"
+                ],
+                correct: 1,
+                difficulty: "medium",
+                explanation: "BlockAssist is an AI Minecraft assistant that learns from human actions, demonstrating reinforcement learning in interactive gaming environments."
+            },
+            {
+                question: "How many nodes are currently active on the Gensyn testnet?",
+                options: [
+                    "Around 1,000 nodes",
+                    "Around 5,000 nodes",
+                    "Over 12,000 nodes",
+                    "Around 50,000 nodes"
+                ],
+                correct: 2,
+                difficulty: "easy",
+                explanation: "Gensyn's testnet has grown to over 12,000 active nodes, demonstrating strong community participation and network growth."
+            },
+            {
+                question: "What is the purpose of SAPO in the Gensyn ecosystem?",
+                options: [
+                    "It's a token staking mechanism",
+                    "It's a meta-algorithm for efficient LM post-training with collective RL",
+                    "It's a data storage protocol",
+                    "It's a consensus mechanism"
+                ],
+                correct: 1,
+                difficulty: "medium",
+                explanation: "SAPO (Selective Activation of Policy Optimization) is a meta-algorithm that wraps around policy gradient algorithms for more efficient language model post-training using collective reinforcement learning."
+            },
+            {
+                question: "What does CheckFree solve in distributed training?",
+                options: [
+                    "Payment processing for compute resources",
+                    "Fault tolerance without checkpointing or redundant computation",
+                    "Free compute credits for users",
+                    "Automated check-ins for node operators"
+                ],
+                correct: 1,
+                difficulty: "medium",
+                explanation: "CheckFree is a novel recovery method for distributed training failures that achieves fault tolerance without requiring checkpointing or redundant computation, making distributed training more efficient."
+            },
+            {
+                question: "What is the key innovation of NoLoCo?",
+                options: [
+                    "Training large models without all-reduce operations",
+                    "A new consensus algorithm for blockchains",
+                    "Localized compute resource allocation",
+                    "No-login access to compute resources"
+                ],
+                correct: 0,
+                difficulty: "hard",
+                explanation: "NoLoCo replaces global synchronization (all-reduce) with a gossip method for distributed training, enabling more efficient training of large models in heterogeneous, decentralized networks where traditional all-reduce would be a bottleneck."
+            },
+            {
+                question: "How does SkipPipe improve communication efficiency in decentralized training?",
+                options: [
+                    "By compressing all data transfers",
+                    "By using pipeline parallelism with strategic skipping of certain communications",
+                    "By caching frequently accessed data locally",
+                    "By reducing the number of training epochs"
+                ],
+                correct: 1,
+                difficulty: "hard",
+                explanation: "SkipPipe uses pipeline parallelism with strategic skipping of certain communication steps, significantly reducing bandwidth requirements in heterogeneous networks while maintaining model quality. This is crucial for making decentralized training practical in networks with varying connection speeds."
+            },
+            {
+                question: "What verification approach does Verde use to ensure ML computation correctness?",
+                options: [
+                    "Re-running all computations on trusted nodes",
+                    "Probabilistic verification using statistical sampling and cryptographic proofs",
+                    "Majority voting among all network participants",
+                    "Comparing outputs with pre-computed reference values"
+                ],
+                correct: 1,
+                difficulty: "hard",
+                explanation: "Verde employs probabilistic verification using statistical sampling combined with cryptographic proofs to verify ML computations are done correctly over untrusted nodes. This approach is orders of magnitude more efficient than re-computation while still providing strong guarantees, making it practical for large-scale decentralized ML training."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function renderQuestion() {
+            const q = quizData[currentQuestion];
+            const card = document.getElementById('quizCard');
+            
+            const difficultyClass = `difficulty-${q.difficulty}`;
+            
+            card.innerHTML = `
+                <span class="${difficultyClass} difficulty-badge">${q.difficulty}</span>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+                    ${q.options.map((option, index) => `
+                        <div class="quiz-option" onclick="selectAnswer(${index})">
+                            ${option}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="quiz-explanation" id="explanation">${q.explanation}</div>
+                <div class="quiz-actions">
+                    <button class="btn-quiz btn-next" id="nextBtn" onclick="nextQuestion()" disabled>
+                        ${currentQuestion < quizData.length - 1 ? 'Next Question' : 'View Results'} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('currentQ').textContent = currentQuestion + 1;
+            document.getElementById('progressBar').style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
+            
+            answered = false;
+        }
+
+        function selectAnswer(selected) {
+            if (answered) return;
+            
+            answered = true;
+            const q = quizData[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options[selected].classList.add('selected');
+            
+            setTimeout(() => {
+                options.forEach((option, index) => {
+                    if (index === q.correct) {
+                        option.classList.add('correct');
+                    } else if (index === selected) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+
+                if (selected === q.correct) {
+                    score++;
+                }
+
+                document.getElementById('explanation').classList.add('show');
+                document.getElementById('nextBtn').disabled = false;
+            }, 300);
+        }
+
+        function nextQuestion() {
+            if (!answered) return;
+            
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizCard').style.display = 'none';
+            document.querySelector('.quiz-progress').style.display = 'none';
+            
+            const resultsScreen = document.getElementById('resultsScreen');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const scoreMessage = document.getElementById('scoreMessage');
+            const badgeContainer = document.getElementById('badgeContainer');
+            const badgeIcon = document.getElementById('badgeIcon');
+            const badgeTitle = document.getElementById('badgeTitle');
+            const badgeSubtitle = document.getElementById('badgeSubtitle');
+            
+            resultsScreen.classList.add('show');
+            scoreDisplay.textContent = `${score}/12`;
+            
+            let message = '';
+            let badge = null;
+            
+            if (score === 12) {
+                message = "Perfect Score! You're a Gensyn Master! 🌟";
+                badge = {
+                    icon: '👑',
+                    title: 'Gensyn Master',
+                    subtitle: 'Perfect Score Achievement'
+                };
+            } else if (score >= 10) {
+                message = "Excellent! You really know your Gensyn! 🎯";
+                badge = {
+                    icon: '🏆',
+                    title: 'Gensyn Expert',
+                    subtitle: 'Outstanding Performance'
+                };
+            } else if (score >= 8) {
+                message = "Great job! You have a solid understanding! 💪";
+            } else if (score >= 6) {
+                message = "Good effort! Keep learning and try again! 📚";
+            } else {
+                message = "Keep studying! You'll get there! 🦛";
+            }
+            
+            scoreMessage.textContent = message;
+            
+            if (badge) {
+                badgeContainer.style.display = 'inline-block';
+                badgeIcon.textContent = badge.icon;
+                badgeTitle.textContent = badge.title;
+                badgeSubtitle.textContent = badge.subtitle;
+            }
+        }
+
+        function shareOnX() {
+            const scoreText = score === 12 ? 'PERFECT SCORE' : `${score}/12`;
+            let badgeText = '';
+            
+            if (score === 12) {
+                badgeText = '👑 Gensyn Master';
+            } else if (score >= 10) {
+                badgeText = '🏆 Gensyn Expert';
+            }
+            
+            const text = `I just scored ${scoreText} on the Gensyn Knowledge Quiz! ${badgeText}\n\nTest your Gensyn knowledge at Hippocamp Academy 🦛\n\n#Gensyn #DecentralizedAI #Web3`;
+            const url = window.location.href;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            
+            document.getElementById('resultsScreen').classList.remove('show');
+            document.getElementById('quizCard').style.display = 'block';
+            document.querySelector('.quiz-progress').style.display = 'block';
+            
+            renderQuestion();
+        }
+
+        // Initialize quiz on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+        });
+    </script>
 </body>
 </html>
