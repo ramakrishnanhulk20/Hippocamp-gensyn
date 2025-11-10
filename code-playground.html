@@ -689,6 +689,7 @@
         let currentQuestion = 0;
         let score = 0;
         let answered = false;
+        let attemptCount = parseInt(localStorage.getItem('quizAttemptCount') || '0');
 
         function renderQuestion() {
             const q = quizData[currentQuestion];
@@ -764,6 +765,10 @@
             document.getElementById('quizCard').style.display = 'none';
             document.querySelector('.quiz-progress').style.display = 'none';
             
+            // Increment attempt count
+            attemptCount++;
+            localStorage.setItem('quizAttemptCount', attemptCount.toString());
+            
             const resultsScreen = document.getElementById('resultsScreen');
             const scoreDisplay = document.getElementById('scoreDisplay');
             const scoreMessage = document.getElementById('scoreMessage');
@@ -775,6 +780,9 @@
             resultsScreen.classList.add('show');
             scoreDisplay.textContent = `${score}/12`;
             
+            // Generate attempt text
+            const attemptText = getAttemptText(attemptCount);
+            
             let message = '';
             let badge = null;
             
@@ -783,28 +791,28 @@
                 badge = {
                     icon: '👑',
                     title: 'Master',
-                    subtitle: 'You are a true OG of Gensyn!'
+                    subtitle: `You are a true OG of Gensyn! ${attemptText}`
                 };
             } else if (score >= 10) {
                 message = "Outstanding! You're a Gensyn Master! 👑";
                 badge = {
                     icon: '👑',
                     title: 'Master',
-                    subtitle: 'Elite Level Knowledge'
+                    subtitle: `Elite Level Knowledge • ${attemptText}`
                 };
             } else if (score >= 5) {
                 message = "Great job! You're a Gensyn Pioneer! 🏆";
                 badge = {
                     icon: '🏆',
                     title: 'Pioneer',
-                    subtitle: 'You know Gensyn but not quite fully yet! Care to read the research page?'
+                    subtitle: `You know Gensyn but not quite fully yet! • ${attemptText}`
                 };
             } else {
                 message = "Keep learning, Rover! You're on the right path! 🦛";
                 badge = {
                     icon: '🦛',
                     title: 'Rover',
-                    subtitle: 'You forgot to read the research page?'
+                    subtitle: `You forgot to read the research page? • ${attemptText}`
                 };
             }
             
@@ -822,6 +830,19 @@
             
             // Add 3D tilt effect to score display
             add3DTiltEffect(scoreDisplay);
+        }
+
+        // Generate attempt text
+        function getAttemptText(attempt) {
+            const ordinals = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+            
+            if (attempt === 1) {
+                return 'Aced in one shot! 🎯';
+            } else if (attempt <= 10) {
+                return `Aced in ${ordinals[attempt]} attempt`;
+            } else {
+                return `Aced in ${attempt}th attempt`;
+            }
         }
 
         // 3D Tilt Effect Function
@@ -1021,6 +1042,12 @@
                 ctx.textAlign = 'center';
                 const badgeText = `${userName} • ${rank.title.toUpperCase()}`;
                 ctx.fillText(badgeText, canvas.width / 2, badgeY + 33);
+
+                // Attempt text below badge
+                const attemptText = getAttemptText(attemptCount);
+                ctx.font = '20px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 200, 224, 0.9)';
+                ctx.fillText(attemptText, canvas.width / 2, badgeY + 75);
 
                 // Bottom branding
                 ctx.font = '18px Inter, sans-serif';
