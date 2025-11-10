@@ -689,22 +689,32 @@
                 message = "Perfect Score! You're a Gensyn Master! 🌟";
                 badge = {
                     icon: '👑',
-                    title: 'Gensyn Master',
-                    subtitle: 'Perfect Score Achievement'
+                    title: 'Master',
+                    subtitle: 'Perfect Score - Elite Level'
                 };
             } else if (score >= 10) {
-                message = "Excellent! You really know your Gensyn! 🎯";
+                message = "Excellent! You're a Gensyn Pioneer! 🎯";
                 badge = {
                     icon: '🏆',
-                    title: 'Gensyn Expert',
-                    subtitle: 'Outstanding Performance'
+                    title: 'Pioneer',
+                    subtitle: 'Outstanding Knowledge'
                 };
             } else if (score >= 8) {
-                message = "Great job! You have a solid understanding! 💪";
+                message = "Great job! You're a Gensyn Explorer! 💪";
+                badge = {
+                    icon: '⭐',
+                    title: 'Explorer',
+                    subtitle: 'Strong Understanding'
+                };
             } else if (score >= 6) {
-                message = "Good effort! Keep learning and try again! 📚";
+                message = "Good effort! Keep learning, Rover! 📚";
+                badge = {
+                    icon: '🦛',
+                    title: 'Rover',
+                    subtitle: 'Building Knowledge'
+                };
             } else {
-                message = "Keep studying! You'll get there! 🦛";
+                message = "Keep studying! Every hippo starts somewhere! 🦛";
             }
             
             scoreMessage.textContent = message;
@@ -718,63 +728,192 @@
         }
 
         async function generateScoreCard() {
-            // Create canvas
+            // Create canvas with Twitter card dimensions
             const canvas = document.createElement('canvas');
             canvas.width = 1200;
             canvas.height = 630;
             const ctx = canvas.getContext('2d');
 
-            // Load the template image
-            const templateImg = new Image();
-            templateImg.crossOrigin = 'anonymous';
+            // Determine rank based on score
+            const getRank = (score) => {
+                if (score === 12) return { title: "Master", color: "#FFB6D9", emoji: "👑" };
+                if (score >= 10) return { title: "Pioneer", color: "#FFC8E0", emoji: "🏆" };
+                if (score >= 8) return { title: "Explorer", color: "#FFD6DE", emoji: "⭐" };
+                return { title: "Rover", color: "#FFE0E8", emoji: "🦛" };
+            };
             
+            const rank = getRank(score);
+            const percentage = Math.round((score / 12) * 100);
+
             return new Promise((resolve, reject) => {
-                templateImg.onload = () => {
-                    // Draw template background
-                    ctx.drawImage(templateImg, 0, 0, canvas.width, canvas.height);
+                // Create gradient background
+                const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                bgGradient.addColorStop(0, '#0a0e27');
+                bgGradient.addColorStop(0.5, '#1a1f3a');
+                bgGradient.addColorStop(1, '#0a0e27');
+                ctx.fillStyle = bgGradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                    // Set text properties for score
-                    ctx.font = 'bold 180px Inter, sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
+                // Add decorative elements
+                ctx.strokeStyle = 'rgba(255, 182, 217, 0.15)';
+                ctx.lineWidth = 2;
+                
+                // Draw circuit-like lines
+                for (let i = 0; i < 8; i++) {
+                    ctx.beginPath();
+                    const startX = Math.random() * canvas.width;
+                    const startY = Math.random() * canvas.height;
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(startX + (Math.random() * 200 - 100), startY + (Math.random() * 200 - 100));
+                    ctx.stroke();
+                }
 
-                    // Draw score with gradient (matching the pink theme)
-                    const scoreGradient = ctx.createLinearGradient(canvas.width / 2 - 200, 0, canvas.width / 2 + 200, 0);
-                    scoreGradient.addColorStop(0, '#FFD6DE');
-                    scoreGradient.addColorStop(0.5, '#FFAFBF');
-                    scoreGradient.addColorStop(1, '#FF8FA3');
-                    ctx.fillStyle = scoreGradient;
-                    
-                    // Draw score text
-                    const scoreText = `${score}/12`;
-                    ctx.fillText(scoreText, canvas.width / 2, canvas.height / 2 - 20);
+                // Draw node circles
+                for (let i = 0; i < 15; i++) {
+                    ctx.beginPath();
+                    ctx.arc(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        Math.random() * 3 + 1,
+                        0,
+                        Math.PI * 2
+                    );
+                    ctx.fillStyle = `rgba(255, 182, 217, ${Math.random() * 0.3 + 0.1})`;
+                    ctx.fill();
+                }
 
-                    // Draw badge text
-                    let badgeText = '';
-                    if (score === 12) {
-                        badgeText = '👑 MASTER OF GENSYN';
-                    } else if (score >= 10) {
-                        badgeText = '🏆 GENSYN EXPERT';
-                    }
+                // Draw main card container
+                const cardX = 100;
+                const cardY = 80;
+                const cardWidth = canvas.width - 200;
+                const cardHeight = canvas.height - 160;
+                const cornerRadius = 30;
 
-                    if (badgeText) {
-                        ctx.font = 'bold 42px Inter, sans-serif';
-                        ctx.fillStyle = '#FFFFFF';
-                        ctx.fillText(badgeText, canvas.width / 2, canvas.height / 2 + 140);
-                    }
+                // Card background with gradient
+                const cardGradient = ctx.createLinearGradient(cardX, cardY, cardX, cardY + cardHeight);
+                cardGradient.addColorStop(0, 'rgba(26, 31, 58, 0.95)');
+                cardGradient.addColorStop(1, 'rgba(15, 20, 40, 0.95)');
+                
+                ctx.fillStyle = cardGradient;
+                ctx.beginPath();
+                ctx.roundRect(cardX, cardY, cardWidth, cardHeight, cornerRadius);
+                ctx.fill();
 
-                    // Convert canvas to blob
-                    canvas.toBlob((blob) => {
-                        resolve(blob);
-                    }, 'image/png');
-                };
+                // Card border with glow
+                ctx.strokeStyle = rank.color;
+                ctx.lineWidth = 3;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = rank.color;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
 
-                templateImg.onerror = () => {
-                    reject(new Error('Failed to load template image'));
-                };
+                // Top section - Gensyn Logo text
+                ctx.font = 'bold 32px Inter, sans-serif';
+                ctx.fillStyle = '#FFB6D9';
+                ctx.textAlign = 'center';
+                ctx.fillText('GENSYN', canvas.width / 2, cardY + 60);
 
-                // Set the template image source
-                templateImg.src = 'images/quiz/score-card-template.png';
+                // Subtitle
+                ctx.font = '20px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.fillText('Knowledge Quiz', canvas.width / 2, cardY + 95);
+
+                // Main score display
+                ctx.font = 'bold 140px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                // Score gradient
+                const scoreGradient = ctx.createLinearGradient(
+                    canvas.width / 2 - 150, 
+                    canvas.height / 2 - 50, 
+                    canvas.width / 2 + 150, 
+                    canvas.height / 2 + 50
+                );
+                scoreGradient.addColorStop(0, '#FFD6DE');
+                scoreGradient.addColorStop(0.5, '#FFAFBF');
+                scoreGradient.addColorStop(1, '#FF8FA3');
+                
+                ctx.fillStyle = scoreGradient;
+                ctx.shadowBlur = 30;
+                ctx.shadowColor = rank.color;
+                ctx.fillText(`${score}/12`, canvas.width / 2, canvas.height / 2 - 10);
+                ctx.shadowBlur = 0;
+
+                // Percentage text
+                ctx.font = 'bold 24px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillText(`${percentage}% COMPLETE`, canvas.width / 2, canvas.height / 2 + 80);
+
+                // Rank badge
+                const badgeY = canvas.height / 2 + 130;
+                const badgeWidth = 250;
+                const badgeHeight = 50;
+                const badgeX = canvas.width / 2 - badgeWidth / 2;
+
+                // Badge background
+                const badgeGradient = ctx.createLinearGradient(badgeX, badgeY, badgeX + badgeWidth, badgeY);
+                badgeGradient.addColorStop(0, `${rank.color}20`);
+                badgeGradient.addColorStop(0.5, `${rank.color}40`);
+                badgeGradient.addColorStop(1, `${rank.color}20`);
+                
+                ctx.fillStyle = badgeGradient;
+                ctx.beginPath();
+                ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 25);
+                ctx.fill();
+
+                // Badge border
+                ctx.strokeStyle = rank.color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Badge text
+                ctx.font = 'bold 28px Inter, sans-serif';
+                ctx.fillStyle = '#FFFFFF';
+                ctx.textAlign = 'center';
+                ctx.fillText(`${rank.emoji} ${rank.title.toUpperCase()}`, canvas.width / 2, badgeY + 33);
+
+                // Bottom branding
+                ctx.font = '18px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 182, 217, 0.6)';
+                ctx.fillText('Hippocamp Academy 🦛', canvas.width / 2, cardY + cardHeight - 30);
+
+                // Decorative corner elements
+                ctx.strokeStyle = rank.color;
+                ctx.lineWidth = 3;
+                
+                // Top left corner
+                ctx.beginPath();
+                ctx.moveTo(cardX + 40, cardY + 20);
+                ctx.lineTo(cardX + 20, cardY + 20);
+                ctx.lineTo(cardX + 20, cardY + 40);
+                ctx.stroke();
+
+                // Top right corner
+                ctx.beginPath();
+                ctx.moveTo(cardX + cardWidth - 40, cardY + 20);
+                ctx.lineTo(cardX + cardWidth - 20, cardY + 20);
+                ctx.lineTo(cardX + cardWidth - 20, cardY + 40);
+                ctx.stroke();
+
+                // Bottom left corner
+                ctx.beginPath();
+                ctx.moveTo(cardX + 20, cardY + cardHeight - 40);
+                ctx.lineTo(cardX + 20, cardY + cardHeight - 20);
+                ctx.lineTo(cardX + 40, cardY + cardHeight - 20);
+                ctx.stroke();
+
+                // Bottom right corner
+                ctx.beginPath();
+                ctx.moveTo(cardX + cardWidth - 20, cardY + cardHeight - 40);
+                ctx.lineTo(cardX + cardWidth - 20, cardY + cardHeight - 20);
+                ctx.lineTo(cardX + cardWidth - 40, cardY + cardHeight - 20);
+                ctx.stroke();
+
+                // Convert canvas to blob
+                canvas.toBlob((blob) => {
+                    resolve(blob);
+                }, 'image/png');
             });
         }
 
@@ -786,17 +925,18 @@
                 // Create a temporary URL for the image
                 const imageUrl = URL.createObjectURL(imageBlob);
                 
-                // Prepare tweet text
+                // Determine rank for tweet text
+                const getRankForTweet = (score) => {
+                    if (score === 12) return { title: "Master", emoji: "👑" };
+                    if (score >= 10) return { title: "Pioneer", emoji: "🏆" };
+                    if (score >= 8) return { title: "Explorer", emoji: "⭐" };
+                    return { title: "Rover", emoji: "🦛" };
+                };
+                
+                const rank = getRankForTweet(score);
                 const scoreText = score === 12 ? 'PERFECT SCORE' : `${score}/12`;
-                let badgeText = '';
                 
-                if (score === 12) {
-                    badgeText = '👑 Master of Gensyn';
-                } else if (score >= 10) {
-                    badgeText = '🏆 Gensyn Expert';
-                }
-                
-                const text = `I just scored ${scoreText} on the Gensyn Knowledge Quiz! ${badgeText}\n\nTest your knowledge at Hippocamp Academy 🦛\n\n#Gensyn #DecentralizedAI #Web3 #MachineLearning`;
+                const text = `I just scored ${scoreText} on the Gensyn Knowledge Quiz! ${rank.emoji} ${rank.title}\n\nTest your knowledge at Hippocamp Academy 🦛\n\n#Gensyn #DecentralizedAI #Web3 #MachineLearning`;
                 const url = window.location.href;
                 
                 // Check if Web Share API is available (for mobile)
@@ -808,8 +948,7 @@
                         files: [file]
                     });
                 } else {
-                    // Fallback: Open Twitter with text and prompt user to attach the image
-                    // Download the image for user
+                    // Fallback: Download the image and open Twitter
                     const link = document.createElement('a');
                     link.download = 'gensyn-quiz-score.png';
                     link.href = imageUrl;
@@ -828,16 +967,17 @@
             } catch (error) {
                 console.error('Error generating score card:', error);
                 // Fallback to text-only tweet
+                const getRankForTweet = (score) => {
+                    if (score === 12) return { title: "Master", emoji: "👑" };
+                    if (score >= 10) return { title: "Pioneer", emoji: "🏆" };
+                    if (score >= 8) return { title: "Explorer", emoji: "⭐" };
+                    return { title: "Rover", emoji: "🦛" };
+                };
+                
+                const rank = getRankForTweet(score);
                 const scoreText = score === 12 ? 'PERFECT SCORE' : `${score}/12`;
-                let badgeText = '';
                 
-                if (score === 12) {
-                    badgeText = '👑 Master of Gensyn';
-                } else if (score >= 10) {
-                    badgeText = '🏆 Gensyn Expert';
-                }
-                
-                const text = `I just scored ${scoreText} on the Gensyn Knowledge Quiz! ${badgeText}\n\nTest your knowledge at Hippocamp Academy 🦛\n\n#Gensyn #DecentralizedAI #Web3`;
+                const text = `I just scored ${scoreText} on the Gensyn Knowledge Quiz! ${rank.emoji} ${rank.title}\n\nTest your knowledge at Hippocamp Academy 🦛\n\n#Gensyn #DecentralizedAI #Web3`;
                 const url = window.location.href;
                 const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                 
