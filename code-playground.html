@@ -456,7 +456,7 @@
             </div>
 
             <div class="results-actions">
-                <button class="btn-share" onclick="shareOnX()">
+                <button class="btn-share" onclick="shareOnX(event)">
                     <i class="fab fa-twitter"></i> Share on X
                 </button>
                 <button class="btn-restart" onclick="restartQuiz()">
@@ -785,10 +785,10 @@
 
             // Determine rank based on score
             const getRank = (score) => {
-                if (score === 12) return { title: "Master", color: "#FFB6D9", emoji: "👑" };
-                if (score >= 10) return { title: "Pioneer", color: "#FFC8E0", emoji: "🏆" };
-                if (score >= 8) return { title: "Explorer", color: "#FFD6DE", emoji: "⭐" };
-                return { title: "Rover", color: "#FFE0E8", emoji: "🦛" };
+                if (score === 12) return { title: "Master", color: "#FFB6D9" };
+                if (score >= 10) return { title: "Pioneer", color: "#FFC8E0" };
+                if (score >= 8) return { title: "Explorer", color: "#FFD6DE" };
+                return { title: "Rover", color: "#FFE0E8" };
             };
             
             const rank = getRank(score);
@@ -856,16 +856,48 @@
                 ctx.stroke();
                 ctx.shadowBlur = 0;
 
-                // Top section - Gensyn Logo text
-                ctx.font = 'bold 32px Inter, sans-serif';
+                // Draw Gensyn pixelated logo at top
+                const logoSize = 60;
+                const logoX = canvas.width / 2 - logoSize / 2;
+                const logoY = cardY + 25;
+                const pixelSize = 5;
+                
+                // Gensyn logo pixel pattern (simplified hippo head)
+                const logoPattern = [
+                    [0,0,1,1,1,1,1,1,1,1,0,0],
+                    [0,1,1,0,0,0,0,0,0,1,1,0],
+                    [1,1,0,1,0,0,0,0,1,0,1,1],
+                    [1,1,0,0,0,0,0,0,0,0,1,1],
+                    [1,1,0,0,0,0,0,0,0,0,1,1],
+                    [1,1,0,0,0,0,0,0,0,0,1,1],
+                    [0,1,1,0,0,0,0,0,0,1,1,0],
+                    [0,0,1,1,1,1,1,1,1,1,0,0]
+                ];
+                
+                ctx.fillStyle = rank.color;
+                logoPattern.forEach((row, y) => {
+                    row.forEach((pixel, x) => {
+                        if (pixel === 1) {
+                            ctx.fillRect(
+                                logoX + x * pixelSize,
+                                logoY + y * pixelSize,
+                                pixelSize,
+                                pixelSize
+                            );
+                        }
+                    });
+                });
+
+                // Gensyn text below logo
+                ctx.font = 'bold 28px Inter, sans-serif';
                 ctx.fillStyle = '#FFB6D9';
                 ctx.textAlign = 'center';
-                ctx.fillText('GENSYN', canvas.width / 2, cardY + 60);
+                ctx.fillText('GENSYN', canvas.width / 2, logoY + 70);
 
                 // Subtitle
-                ctx.font = '20px Inter, sans-serif';
+                ctx.font = '18px Inter, sans-serif';
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-                ctx.fillText('Knowledge Quiz', canvas.width / 2, cardY + 95);
+                ctx.fillText('Knowledge Quiz', canvas.width / 2, logoY + 95);
 
                 // Main score display
                 ctx.font = 'bold 140px Inter, sans-serif';
@@ -966,10 +998,12 @@
             });
         }
 
-        async function shareOnX() {
+        async function shareOnX(event) {
             try {
                 // Show loading state on button
-                const shareBtn = event.target.closest('.btn-share');
+                const shareBtn = event ? event.target.closest('.btn-share') : document.querySelector('.btn-share');
+                if (!shareBtn) return;
+                
                 const originalText = shareBtn.innerHTML;
                 shareBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
                 shareBtn.disabled = true;
@@ -1015,29 +1049,29 @@
                 }
                 
                 // Desktop/fallback: Download image and open Twitter
-                shareBtn.innerHTML = '<i class="fas fa-download"></i> Downloading image...';
+                shareBtn.innerHTML = '<i class="fas fa-download"></i> Downloading...';
                 
+                // Force download
                 const link = document.createElement('a');
                 link.download = 'gensyn-quiz-score.png';
                 link.href = imageUrl;
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
                 
-                // Show instruction message
-                setTimeout(() => {
-                    shareBtn.innerHTML = '<i class="fas fa-check"></i> Opening X...';
-                    
-                    // Open Twitter compose with pre-filled text and instruction to attach downloaded image
-                    setTimeout(() => {
-                        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\n📸 Attach your downloaded score card image!')}&url=${encodeURIComponent(url)}`;
-                        window.open(twitterUrl, '_blank', 'width=550,height=420');
-                        
-                        // Reset button
-                        setTimeout(() => {
-                            shareBtn.innerHTML = originalText;
-                            shareBtn.disabled = false;
-                        }, 1500);
-                    }, 800);
-                }, 500);
+                // Wait a moment then open Twitter
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                shareBtn.innerHTML = '<i class="fas fa-check"></i> Opening X...';
+                
+                // Open Twitter compose
+                const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\n📸 Attach your downloaded score card image!')}&url=${encodeURIComponent(url)}`;
+                const twitterWindow = window.open(twitterUrl, '_blank', 'width=550,height=420');
+                
+                // Reset button
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                shareBtn.innerHTML = originalText;
+                shareBtn.disabled = false;
                 
                 // Clean up blob URL
                 setTimeout(() => URL.revokeObjectURL(imageUrl), 15000);
