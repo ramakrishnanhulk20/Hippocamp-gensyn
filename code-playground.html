@@ -519,152 +519,172 @@
 
     <script src="script.js"></script>
     <script>
-        const quizData = [
+        const quizDataBase = [
             {
                 question: "What is Gensyn's primary purpose?",
                 options: [
-                    "A cryptocurrency exchange platform",
                     "A decentralized compute protocol for machine learning",
-                    "A social media platform for AI researchers",
-                    "A centralized cloud computing service"
+                    "A decentralized data storage network for AI models",
+                    "A decentralized marketplace for pre-trained AI models",
+                    "A decentralized consensus protocol for ML verification"
                 ],
-                correct: 1,
+                correct: 0,
                 difficulty: "easy",
                 explanation: "Gensyn is a decentralized protocol that creates a global marketplace for machine learning computation, connecting anyone with compute power to developers who need it for AI training."
             },
             {
-                question: "What does RL Swarm stand for?",
+                question: "Which component verifies computation integrity in Gensyn?",
                 options: [
-                    "Real-time Learning System for Web Applications and Machine",
-                    "Reinforcement Learning Swarm",
-                    "Remote Learning Software with Advanced Routing and Monitoring",
-                    "Resilient Logic System with Adaptive Resource Management"
+                    "The Oracle system validates all node computations",
+                    "The Judge system ensures consensus and verification",
+                    "The Validator system processes verification requests",
+                    "The Arbiter system manages dispute resolution"
                 ],
                 correct: 1,
                 difficulty: "easy",
-                explanation: "RL Swarm is Reinforcement Learning Swarm - a peer-to-peer system where multiple AI models train collaboratively, sharing insights and learning from collective experiences."
-            },
-            {
-                question: "What is the main advantage of decentralized AI training?",
-                options: [
-                    "It requires more expensive hardware",
-                    "It makes AI training slower and less efficient",
-                    "It democratizes access to compute power and reduces costs",
-                    "It increases centralization of AI development"
-                ],
-                correct: 2,
-                difficulty: "easy",
-                explanation: "Decentralized AI training democratizes access to compute resources, making ML infrastructure accessible and affordable for everyone, not just big tech companies."
-            },
-            {
-                question: "What role does the Judge system play in Gensyn?",
-                options: [
-                    "It manages user accounts and permissions",
-                    "It verifies computation integrity and ensures consensus",
-                    "It processes cryptocurrency transactions",
-                    "It moderates community forums"
-                ],
-                correct: 1,
-                difficulty: "medium",
                 explanation: "Judge is an autonomous model verification system that runs automatically with RL Swarm nodes to ensure computation integrity and consensus in a trustless manner."
             },
             {
-                question: "What is the minimum RAM requirement for running a CPU-only node?",
+                question: "What is the minimum RAM requirement for a CPU-only Gensyn node?",
                 options: [
-                    "8GB RAM",
-                    "16GB RAM",
-                    "32GB RAM",
-                    "64GB RAM"
+                    "32GB RAM with 4-core processor minimum",
+                    "16GB RAM with 8-core processor minimum",
+                    "64GB RAM with 8-core processor minimum",
+                    "24GB RAM with 6-core processor minimum"
                 ],
-                correct: 2,
+                correct: 0,
                 difficulty: "easy",
                 explanation: "To run a Gensyn node with CPU only, you need a minimum of 32GB RAM. GPU nodes require 8GB+ VRAM."
             },
             {
-                question: "What is BlockAssist?",
+                question: "What does RL Swarm enable in decentralized training?",
                 options: [
-                    "A blockchain explorer",
-                    "An AI-powered Minecraft assistant using reinforcement learning",
-                    "A cryptocurrency wallet",
-                    "A block validation service"
+                    "Collaborative reinforcement learning across distributed nodes",
+                    "Rapid layer-wise synchronization for model weights",
+                    "Resource-limited swarm intelligence for edge devices",
+                    "Randomized learning schedules for worker nodes"
                 ],
-                correct: 1,
-                difficulty: "medium",
-                explanation: "BlockAssist is an AI Minecraft assistant that learns from human actions, demonstrating reinforcement learning in interactive gaming environments."
+                correct: 0,
+                difficulty: "easy",
+                explanation: "RL Swarm is Reinforcement Learning Swarm - a peer-to-peer system where multiple AI models train collaboratively, sharing insights and learning from collective experiences."
             },
             {
-                question: "How many nodes are currently active on the Gensyn testnet?",
+                question: "How many active nodes are on the Gensyn testnet?",
                 options: [
-                    "Around 1,000 nodes",
-                    "Around 5,000 nodes",
-                    "Over 12,000 nodes",
-                    "Around 50,000 nodes"
+                    "Over 12,000 nodes across global infrastructure",
+                    "Over 8,000 nodes across global infrastructure",
+                    "Over 15,000 nodes across global infrastructure",
+                    "Over 10,000 nodes across global infrastructure"
                 ],
-                correct: 2,
+                correct: 0,
                 difficulty: "easy",
                 explanation: "Gensyn's testnet has grown to over 12,000 active nodes, demonstrating strong community participation and network growth."
             },
             {
-                question: "What is the purpose of SAPO in the Gensyn ecosystem?",
+                question: "In SAPO, what does 'selective activation' specifically refer to?",
                 options: [
-                    "It's a token staking mechanism",
-                    "It's a meta-algorithm for efficient LM post-training with collective RL",
-                    "It's a data storage protocol",
-                    "It's a consensus mechanism"
-                ],
-                correct: 1,
-                difficulty: "medium",
-                explanation: "SAPO (Selective Activation of Policy Optimization) is a meta-algorithm that wraps around policy gradient algorithms for more efficient language model post-training using collective reinforcement learning."
-            },
-            {
-                question: "What does CheckFree solve in distributed training?",
-                options: [
-                    "Payment processing for compute resources",
-                    "Fault tolerance without checkpointing or redundant computation",
-                    "Free compute credits for users",
-                    "Automated check-ins for node operators"
-                ],
-                correct: 1,
-                difficulty: "medium",
-                explanation: "CheckFree is a novel recovery method for distributed training failures that achieves fault tolerance without requiring checkpointing or redundant computation, making distributed training more efficient."
-            },
-            {
-                question: "What is the key innovation of NoLoCo?",
-                options: [
-                    "Training large models without all-reduce operations",
-                    "A new consensus algorithm for blockchains",
-                    "Localized compute resource allocation",
-                    "No-login access to compute resources"
+                    "Dynamically choosing which policy gradient updates to apply based on advantage estimates",
+                    "Selectively activating neural network layers during forward passes",
+                    "Choosing which nodes participate in each training round",
+                    "Activating specific model parameters for gradient computation"
                 ],
                 correct: 0,
                 difficulty: "hard",
-                explanation: "NoLoCo replaces global synchronization (all-reduce) with a gossip method for distributed training, enabling more efficient training of large models in heterogeneous, decentralized networks where traditional all-reduce would be a bottleneck."
+                explanation: "SAPO (Selective Activation of Policy Optimization) selectively activates policy gradient updates based on advantage estimates, wrapping around policy gradient algorithms for more efficient language model post-training using collective reinforcement learning."
             },
             {
-                question: "How does SkipPipe improve communication efficiency in decentralized training?",
+                question: "How does CheckFree achieve fault tolerance without checkpointing?",
                 options: [
-                    "By compressing all data transfers",
-                    "By using pipeline parallelism with strategic skipping of certain communications",
-                    "By caching frequently accessed data locally",
-                    "By reducing the number of training epochs"
+                    "By reconstructing lost gradients from remaining workers using gradient algebra",
+                    "By maintaining redundant computation across multiple worker sets",
+                    "By storing intermediate activations in distributed memory",
+                    "By recomputing only the failed batch iterations"
                 ],
-                correct: 1,
+                correct: 0,
                 difficulty: "hard",
-                explanation: "SkipPipe uses pipeline parallelism with strategic skipping of certain communication steps, significantly reducing bandwidth requirements in heterogeneous networks while maintaining model quality. This is crucial for making decentralized training practical in networks with varying connection speeds."
+                explanation: "CheckFree reconstructs lost gradients from remaining workers using gradient algebra, achieving fault tolerance without requiring checkpointing or redundant computation, making distributed training more efficient."
             },
             {
-                question: "What verification approach does Verde use to ensure ML computation correctness?",
+                question: "What communication pattern does NoLoCo use instead of all-reduce?",
                 options: [
-                    "Re-running all computations on trusted nodes",
-                    "Probabilistic verification using statistical sampling and cryptographic proofs",
-                    "Majority voting among all network participants",
-                    "Comparing outputs with pre-computed reference values"
+                    "Gossip-based gradient exchange with local neighbor aggregation",
+                    "Hierarchical tree-based gradient aggregation with master nodes",
+                    "Ring-based gradient passing with sequential updates",
+                    "Star topology with central parameter server coordination"
                 ],
-                correct: 1,
+                correct: 0,
                 difficulty: "hard",
-                explanation: "Verde employs probabilistic verification using statistical sampling combined with cryptographic proofs to verify ML computations are done correctly over untrusted nodes. This approach is orders of magnitude more efficient than re-computation while still providing strong guarantees, making it practical for large-scale decentralized ML training."
+                explanation: "NoLoCo replaces global synchronization (all-reduce) with a gossip method for gradient exchange, enabling more efficient training of large models in heterogeneous, decentralized networks where traditional all-reduce would be a bottleneck."
+            },
+            {
+                question: "What is SkipPipe's key optimization for pipeline parallelism?",
+                options: [
+                    "Strategically skipping backward pass communications for certain micro-batches",
+                    "Skipping gradient synchronization for low-variance parameters",
+                    "Bypassing activation checkpointing for memory-efficient layers",
+                    "Omitting forward pass computations for frozen model stages"
+                ],
+                correct: 0,
+                difficulty: "hard",
+                explanation: "SkipPipe uses pipeline parallelism with strategic skipping of certain backward pass communications for micro-batches, significantly reducing bandwidth requirements in heterogeneous networks while maintaining model quality."
+            },
+            {
+                question: "What cryptographic technique does Verde combine with statistical sampling?",
+                options: [
+                    "Zero-knowledge proofs for gradient verification with probabilistic checking",
+                    "Homomorphic encryption for secure gradient aggregation",
+                    "Multi-party computation for distributed model evaluation",
+                    "Merkle trees for tamper-proof gradient transmission"
+                ],
+                correct: 0,
+                difficulty: "hard",
+                explanation: "Verde employs probabilistic verification using statistical sampling combined with zero-knowledge cryptographic proofs to verify ML computations are done correctly over untrusted nodes, providing strong guarantees while being orders of magnitude more efficient than re-computation."
+            },
+            {
+                question: "In RL Swarm's collective learning, how do agents share experience?",
+                options: [
+                    "Through distributed replay buffers with prioritized sampling across peers",
+                    "By broadcasting state-action pairs to all network participants",
+                    "Using centralized experience aggregation on coordinator nodes",
+                    "Via model weight averaging after independent training episodes"
+                ],
+                correct: 0,
+                difficulty: "hard",
+                explanation: "RL Swarm agents share experiences through distributed replay buffers with prioritized sampling across peers, enabling collaborative learning where agents benefit from collective experiences while maintaining decentralization."
+            },
+            {
+                question: "What mechanism does Gensyn's Judge use to prevent Byzantine behavior?",
+                options: [
+                    "Probabilistic verification with stake-weighted dispute resolution and slashing",
+                    "Proof-of-work challenges for each computation submission",
+                    "Trusted execution environments for all gradient computations",
+                    "Majority voting with reputation-based node weighting"
+                ],
+                correct: 0,
+                difficulty: "hard",
+                explanation: "Judge uses probabilistic verification combined with stake-weighted dispute resolution and slashing mechanisms to prevent Byzantine behavior, ensuring honest computation without requiring trusted hardware or excessive re-computation."
             }
         ];
+
+        // Shuffle options for each quiz attempt
+        let quizData = [];
+        
+        function shuffleOptions(questions) {
+            return questions.map(q => {
+                const correctAnswer = q.options[q.correct];
+                const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+                
+                return {
+                    ...q,
+                    options: shuffledOptions,
+                    correct: newCorrectIndex
+                };
+            });
+        }
+        
+        // Initialize quiz with shuffled options
+        quizData = shuffleOptions(quizDataBase);
 
         let currentQuestion = 0;
         let score = 0;
@@ -758,7 +778,14 @@
             let message = '';
             let badge = null;
             
-            if (score >= 10) {
+            if (score === 12) {
+                message = "Outstanding! You're a Gensyn Master! 👑";
+                badge = {
+                    icon: '👑',
+                    title: 'Master',
+                    subtitle: 'You are a true OG of Gensyn!'
+                };
+            } else if (score >= 10) {
                 message = "Outstanding! You're a Gensyn Master! 👑";
                 badge = {
                     icon: '👑',
@@ -770,14 +797,14 @@
                 badge = {
                     icon: '🏆',
                     title: 'Pioneer',
-                    subtitle: 'Strong Foundation'
+                    subtitle: 'You know Gensyn but not quite fully yet! Care to read the research page?'
                 };
             } else {
                 message = "Keep learning, Rover! You're on the right path! 🦛";
                 badge = {
                     icon: '🦛',
                     title: 'Rover',
-                    subtitle: 'Building Knowledge'
+                    subtitle: 'You forgot to read the research page?'
                 };
             }
             
@@ -1126,6 +1153,9 @@
             currentQuestion = 0;
             score = 0;
             answered = false;
+            
+            // Reshuffle options for new quiz attempt
+            quizData = shuffleOptions(quizDataBase);
             
             document.getElementById('resultsScreen').classList.remove('show');
             document.getElementById('quizCard').style.display = 'block';
