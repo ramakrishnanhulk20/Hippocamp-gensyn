@@ -340,6 +340,45 @@
             font-size: 1.2em;
         }
 
+        /* Name Input Styling */
+        .name-input-container {
+            margin: 40px auto;
+            max-width: 400px;
+        }
+
+        .name-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 201, 212, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .name-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .name-input:focus {
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(255, 201, 212, 0.3);
+        }
+
         .results-actions {
             display: flex;
             gap: 20px;
@@ -453,6 +492,18 @@
                 <div class="badge-icon" id="badgeIcon"></div>
                 <div class="badge-title" id="badgeTitle"></div>
                 <div class="badge-subtitle" id="badgeSubtitle"></div>
+            </div>
+
+            <!-- Name Input for Score Card -->
+            <div class="name-input-container">
+                <label for="userName" class="name-label">Your Name (for score card):</label>
+                <input 
+                    type="text" 
+                    id="userName" 
+                    class="name-input" 
+                    placeholder="Enter your name..." 
+                    maxlength="20"
+                />
             </div>
 
             <div class="results-actions">
@@ -707,36 +758,27 @@
             let message = '';
             let badge = null;
             
-            if (score === 12) {
-                message = "Perfect Score! You're a Gensyn Master! 🌟";
+            if (score >= 10) {
+                message = "Outstanding! You're a Gensyn Master! 👑";
                 badge = {
                     icon: '👑',
                     title: 'Master',
-                    subtitle: 'Perfect Score - Elite Level'
+                    subtitle: 'Elite Level Knowledge'
                 };
-            } else if (score >= 10) {
-                message = "Excellent! You're a Gensyn Pioneer! 🎯";
+            } else if (score >= 5) {
+                message = "Great job! You're a Gensyn Pioneer! 🏆";
                 badge = {
                     icon: '🏆',
                     title: 'Pioneer',
-                    subtitle: 'Outstanding Knowledge'
+                    subtitle: 'Strong Foundation'
                 };
-            } else if (score >= 8) {
-                message = "Great job! You're a Gensyn Explorer! 💪";
-                badge = {
-                    icon: '⭐',
-                    title: 'Explorer',
-                    subtitle: 'Strong Understanding'
-                };
-            } else if (score >= 6) {
-                message = "Good effort! Keep learning, Rover! 📚";
+            } else {
+                message = "Keep learning, Rover! You're on the right path! 🦛";
                 badge = {
                     icon: '🦛',
                     title: 'Rover',
                     subtitle: 'Building Knowledge'
                 };
-            } else {
-                message = "Keep studying! Every hippo starts somewhere! 🦛";
             }
             
             scoreMessage.textContent = message;
@@ -785,9 +827,8 @@
 
             // Determine rank based on score
             const getRank = (score) => {
-                if (score === 12) return { title: "Master", color: "#FFB6D9" };
-                if (score >= 10) return { title: "Pioneer", color: "#FFC8E0" };
-                if (score >= 8) return { title: "Explorer", color: "#FFD6DE" };
+                if (score >= 10) return { title: "Master", color: "#FFB6D9" };
+                if (score >= 5) return { title: "Pioneer", color: "#FFC8E0" };
                 return { title: "Rover", color: "#FFE0E8" };
             };
             
@@ -921,14 +962,13 @@
                 ctx.fillText(`${score}/12`, canvas.width / 2, canvas.height / 2 - 10);
                 ctx.shadowBlur = 0;
 
-                // Percentage text
-                ctx.font = 'bold 24px Inter, sans-serif';
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                ctx.fillText(`${percentage}% COMPLETE`, canvas.width / 2, canvas.height / 2 + 80);
+                // Get user name from input field
+                const userNameInput = document.getElementById('userName');
+                const userName = userNameInput && userNameInput.value.trim() ? userNameInput.value.trim() : 'Anonymous';
 
-                // Rank badge
-                const badgeY = canvas.height / 2 + 130;
-                const badgeWidth = 250;
+                // Rank badge (moved up since we removed percentage)
+                const badgeY = canvas.height / 2 + 100;
+                const badgeWidth = userName.length > 12 ? 300 : 250;
                 const badgeHeight = 50;
                 const badgeX = canvas.width / 2 - badgeWidth / 2;
 
@@ -948,11 +988,12 @@
                 ctx.lineWidth = 2;
                 ctx.stroke();
 
-                // Badge text
+                // Badge text with user name
                 ctx.font = 'bold 28px Inter, sans-serif';
                 ctx.fillStyle = '#FFFFFF';
                 ctx.textAlign = 'center';
-                ctx.fillText(`${rank.emoji} ${rank.title.toUpperCase()}`, canvas.width / 2, badgeY + 33);
+                const badgeText = `${userName} • ${rank.title.toUpperCase()}`;
+                ctx.fillText(badgeText, canvas.width / 2, badgeY + 33);
 
                 // Bottom branding
                 ctx.font = '18px Inter, sans-serif';
@@ -1016,9 +1057,8 @@
                 
                 // Determine rank for tweet text
                 const getRankForTweet = (score) => {
-                    if (score === 12) return { title: "Master", emoji: "👑" };
-                    if (score >= 10) return { title: "Pioneer", emoji: "🏆" };
-                    if (score >= 8) return { title: "Explorer", emoji: "⭐" };
+                    if (score >= 10) return { title: "Master", emoji: "👑" };
+                    if (score >= 5) return { title: "Pioneer", emoji: "🏆" };
                     return { title: "Rover", emoji: "🦛" };
                 };
                 
@@ -1066,9 +1106,8 @@
                 
                 // Fallback to text-only tweet
                 const getRankForTweet = (score) => {
-                    if (score === 12) return { title: "Master", emoji: "👑" };
-                    if (score >= 10) return { title: "Pioneer", emoji: "🏆" };
-                    if (score >= 8) return { title: "Explorer", emoji: "⭐" };
+                    if (score >= 10) return { title: "Master", emoji: "👑" };
+                    if (score >= 5) return { title: "Pioneer", emoji: "🏆" };
                     return { title: "Rover", emoji: "🦛" };
                 };
                 
