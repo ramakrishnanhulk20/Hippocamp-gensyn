@@ -1028,27 +1028,7 @@
                 const text = `I just scored ${scoreText} on the @gensyn_ai Knowledge Quiz! ${rank.emoji} ${rank.title}\n\nThink you can beat my score? Test your knowledge at Hippocamp Academy! 🦛\n\n#Gensyn #DecentralizedAI #Web3`;
                 const url = 'https://hippocamp-gensyn.vercel.app/code-playground.html';
                 
-                // Check if Web Share API is available (mobile with file support)
-                if (navigator.share && navigator.canShare) {
-                    try {
-                        const file = new File([imageBlob], 'gensyn-quiz-score.png', { type: 'image/png' });
-                        if (navigator.canShare({ files: [file] })) {
-                            await navigator.share({
-                                title: 'My Gensyn Quiz Score',
-                                text: text,
-                                files: [file],
-                                url: url
-                            });
-                            shareBtn.innerHTML = originalText;
-                            shareBtn.disabled = false;
-                            return;
-                        }
-                    } catch (shareError) {
-                        console.log('Web Share API not fully supported, using fallback');
-                    }
-                }
-                
-                // Desktop/fallback: Download image and open Twitter
+                // Always download image and open Twitter directly (skip Web Share API)
                 shareBtn.innerHTML = '<i class="fas fa-download"></i> Downloading...';
                 
                 // Force download
