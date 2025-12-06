@@ -1,23 +1,33 @@
 // Hippocamp Academy Service Worker
-// Version 1.0.0
+// Version 3.0.0 - Enhanced with offline quiz support and interactive tutorials
 
-const CACHE_NAME = 'hippocamp-v1';
+const CACHE_NAME = 'hippocamp-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/styles.css',
-  '/script.js',
-  '/course-system.js',
+  '/home-enhanced.css',
+  '/dashboard.css',
   '/course-interactive.css',
   '/enhancements.css',
+  '/script.js',
+  '/user-system.js',
+  '/dashboard.js',
+  '/course-system.js',
   '/learning-paths.js',
+  '/live-stats.js',
+  '/social-share.js',
+  '/particles.js',
+  '/interactive-tutorials.js',
+  '/topic-quizzes.js',
+  '/analytics.js',
+  '/glossary.html',
   '/gensyn-basics.html',
   '/rl-swarm-basics.html',
   '/protocol-architecture.html',
   '/advanced-optimization.html',
   '/building-dapps.html',
   '/node-operation.html',
-  '/research.html',
   '/badges.html',
   '/network-dashboard.html',
   '/learning-paths.html',

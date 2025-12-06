@@ -6,7 +6,11 @@
     <title>Node Operation Guide - Hippocamp Academy</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home-enhanced.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="user-system.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="interactive-tutorials.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         .step-card {
@@ -181,6 +185,19 @@
                     <a href="https://github.com/0xmoei/gensyn-ai" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">
                         <i class="fab fa-github"></i> Based on Community Guide by 0xmoei
                     </a>
+                </div>
+                
+                <!-- Interactive Tutorial Buttons -->
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="launch-tutorial-btn" onclick="startTutorial('node-setup')">
+                        <i class="fas fa-play-circle"></i> Interactive Setup Tutorial
+                    </button>
+                    <button class="launch-tutorial-btn" onclick="startTutorial('wallet-setup')" style="background: linear-gradient(135deg, #FFAFBF, #FF8FA3);">
+                        <i class="fas fa-wallet"></i> Wallet Setup Tutorial
+                    </button>
+                    <button class="launch-tutorial-btn" onclick="startTutorial('troubleshooting')" style="background: linear-gradient(135deg, #FFD6DE, #FFC9D4);">
+                        <i class="fas fa-wrench"></i> Troubleshooting Guide
+                    </button>
                 </div>
             </div>
         </div>

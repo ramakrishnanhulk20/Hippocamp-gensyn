@@ -8,7 +8,12 @@
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home-enhanced.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- User System & Dashboard -->
+    <script src="user-system.js"></script>
+    <script src="dashboard.js"></script>
     
     <style>
         .quiz-hero {
@@ -830,6 +835,16 @@
             
             // Add 3D tilt effect to score display
             add3DTiltEffect(scoreDisplay);
+            
+            // Record quiz in user system
+            if (window.HippocampUser) {
+                window.HippocampUser.recordQuizAttempt('main', score, 12);
+                
+                // Show confetti for perfect score
+                if (score === 12 && window.HippocampDashboard) {
+                    window.HippocampDashboard.showConfetti();
+                }
+            }
         }
 
         // Generate attempt text
@@ -1141,6 +1156,11 @@
                 // Open Twitter compose
                 const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + '\n\n📸 Attach your downloaded score card image!')}&url=${encodeURIComponent(url)}`;
                 const twitterWindow = window.open(twitterUrl, '_blank', 'width=550,height=420');
+                
+                // Award social sharing achievement
+                if (window.HippocampUser) {
+                    window.HippocampUser.awardAchievement('social_sharer');
+                }
                 
                 // Reset button
                 await new Promise(resolve => setTimeout(resolve, 1500));

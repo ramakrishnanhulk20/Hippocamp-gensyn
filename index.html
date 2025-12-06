@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home-enhanced.css">
     <link rel="stylesheet" href="story-slideshow.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
     <!-- Fonts -->
@@ -64,6 +65,8 @@
     <script src="live-stats.js"></script>
     <script src="social-share.js"></script>
     <script src="story-slideshow.js"></script>
+    <script src="user-system.js"></script>
+    <script src="dashboard.js"></script>
     <script src="script.js"></script>
     
     <!-- Structured Data / JSON-LD -->
@@ -288,6 +291,9 @@
                 <li role="none"><a href="#applications" class="nav-link" role="menuitem">Applications</a></li>
                 <li role="none"><a href="code-playground.html" class="nav-link" role="menuitem">Playground</a></li>
                 <li role="none"><a href="#research" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="#" class="nav-link" role="menuitem" onclick="event.preventDefault(); window.HippocampDashboard && window.HippocampDashboard.open();">
+                    <i class="fas fa-chart-line"></i> Progress
+                </a></li>
                 <li role="none"><a href="#community" class="nav-link" role="menuitem">Community</a></li>
             </ul>
         </div>
